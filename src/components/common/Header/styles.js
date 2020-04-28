@@ -1,0 +1,16 @@
+import styled from "styled-components";
+
+export const HeaderStyled = styled.header`
+  width: calc(100% - 1rem * 2);
+  height: 5rem;
+  padding: 0 1rem;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* color: white; */
+`;
+
+export const Spacer = styled.div`
+  height: 5rem;
+`;
