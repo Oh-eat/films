@@ -1,9 +1,13 @@
 import React, { useCallback } from "react";
-import { MdArrowDropDown } from "react-icons/md";
-import { MenuStyled, SubmenuWrapperStyled, SubmenuStyled } from "./styles";
-import { Link } from "react-router-dom";
+import {
+  VerticalMenuItemStyled,
+  VerticalSubmenuWrapperStyled,
+  VerticalSubmenuItemStyled,
+} from "./styles";
+import MenuItemCaption from "./MenuItemCaption";
+import SubmenuItemCaption from "./SubmenuItemCaption";
 
-function DropdownMenu({
+function DropdownMenuItem({
   index,
   caption,
   submenus,
@@ -24,34 +28,32 @@ function DropdownMenu({
   }, [handleMenuClick]);
 
   return (
-    <MenuStyled>
-      <h2 className="caption" onClick={handleSelected}>
-        <span className={`arrow ${selected && "selected"}`}>
-          <MdArrowDropDown />
-        </span>
-        <span>{caption}</span>
-      </h2>
-      <SubmenuWrapperStyled
+    <VerticalMenuItemStyled>
+      <MenuItemCaption
+        caption={caption}
+        dropdown
+        selected={selected}
+        onClick={handleSelected}
+      />
+      <VerticalSubmenuWrapperStyled
         className={selected && "visible"}
         onClick={handleSubmenuClick}
         itemCount={submenus.length}
       >
         {submenus.map(({ caption, to }, index) => (
-          <Submenu key={index} caption={caption} to={to} />
+          <SubmenuItem key={index} caption={caption} to={to} />
         ))}
-      </SubmenuWrapperStyled>
-    </MenuStyled>
+      </VerticalSubmenuWrapperStyled>
+    </VerticalMenuItemStyled>
   );
 }
 
-function Submenu({ caption, to }) {
+function SubmenuItem({ caption, to }) {
   return (
-    <SubmenuStyled className="submenu">
-      <h3 className="caption">
-        <Link to={to}>{caption}</Link>
-      </h3>
-    </SubmenuStyled>
+    <VerticalSubmenuItemStyled>
+      <SubmenuItemCaption caption={caption} to={to} />
+    </VerticalSubmenuItemStyled>
   );
 }
 
-export default DropdownMenu;
+export default DropdownMenuItem;

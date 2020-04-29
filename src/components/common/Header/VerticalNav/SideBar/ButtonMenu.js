@@ -1,15 +1,12 @@
 import React from "react";
-import { MenuStyled } from "./styles";
-import { Link } from "react-router-dom";
+import { VerticalMenuItemStyled } from "./styles";
+import MenuItemCaption from "./MenuItemCaption";
 
 function ButtonMenu({ caption, to, handleMenuClick }) {
   return (
-    <MenuStyled onClick={handleMenuClick}>
-      <h2 className="caption">
-        <div></div>
-        <Link to={to}>{caption}</Link>
-      </h2>
-    </MenuStyled>
+    <VerticalMenuItemStyled onClick={handleMenuClick}>
+      <MenuItemCaption to={to} caption={caption} />
+    </VerticalMenuItemStyled>
   );
 }
 

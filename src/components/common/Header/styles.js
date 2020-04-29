@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const HeaderStyled = styled.header`
+  z-index: 2;
   width: calc(100% - 1rem * 2);
   height: 5rem;
   padding: 0 1rem;

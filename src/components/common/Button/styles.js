@@ -5,12 +5,13 @@ import color from "../../../lib/color";
 const ButtonStyle = css`
   cursor: pointer;
   box-sizing: content-box;
-  padding: 0.5rem;
+  padding: 0.25rem 1rem;
   background: none;
   border: none;
   outline: none;
   width: ${(props) => props.width || "auto"};
   height: ${(props) => props.height || "auto"};
+  font-size: ${(props) => props.fontSize || "initial"};
   transition: border 0.25s ease, background-color 0.25s ease, color 0.25s ease;
 
   &.outlined,
@@ -49,6 +50,7 @@ const ButtonStyle = css`
   }
 
   &.icon {
+    padding: 0.5rem;
     width: 2rem;
     height: 2rem;
     border-radius: 100%;

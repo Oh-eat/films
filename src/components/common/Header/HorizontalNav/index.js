@@ -1,26 +1,35 @@
 import React from "react";
-import { MenuWrapperStyled } from "./styles";
-import ButtonMenu from "./ButtonMenu";
-import HoverableMenu from "./HoverableMenu";
+import { HorizontalMenuWrapperStyled, HorizontalNavStyled } from "./styles";
+import ButtonMenuItem from "./ButtonMenuItem";
+import HoverableMenuItem from "./HoverableMenuItem";
 import sitemap from "../../../../lib/sitemap";
+import Button from "../../Button";
+import { MdSearch } from "react-icons/md";
 
-function MenuWrapper({ children }) {
-  return <MenuWrapperStyled>{children}</MenuWrapperStyled>;
+function HorizontalMenuWrapper({ children }) {
+  return <HorizontalMenuWrapperStyled>{children}</HorizontalMenuWrapperStyled>;
 }
 
 function HorizontalNav() {
   return (
-    <nav id="HorizontalNav">
-      <MenuWrapper>
+    <HorizontalNavStyled>
+      <Button variant="icon">
+        <MdSearch size="2rem" />
+      </Button>
+      <HorizontalMenuWrapper>
         {sitemap.map(({ caption, to, submenus }, index) =>
           submenus ? (
-            <HoverableMenu key={index} caption={caption} submenus={submenus} />
+            <HoverableMenuItem
+              key={index}
+              caption={caption}
+              submenus={submenus}
+            />
           ) : (
-            <ButtonMenu key={index} caption={caption} to={to} />
+            <ButtonMenuItem key={index} caption={caption} to={to} />
           )
         )}
-      </MenuWrapper>
-    </nav>
+      </HorizontalMenuWrapper>
+    </HorizontalNavStyled>
   );
 }
 

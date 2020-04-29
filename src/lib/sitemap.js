@@ -1,5 +1,9 @@
 const sitemap = [
   {
+    caption: "홈",
+    to: "/",
+  },
+  {
     caption: "영화",
     submenus: [
       {
