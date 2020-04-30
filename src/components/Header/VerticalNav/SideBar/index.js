@@ -6,8 +6,8 @@ import {
   VerticalMenuWrapperStyled,
   Fullscreen,
 } from "./styles";
-import Button from "../../../Button";
-import sitemap from "../../../../../lib/sitemap";
+import Button from "../../../common/Button";
+import sitemap from "../../../../lib/sitemap";
 import DropdownMenu from "./DropdownMenu";
 import ButtonMenu from "./ButtonMenu";
 

@@ -2,8 +2,8 @@ import React from "react";
 import { HorizontalMenuWrapperStyled, HorizontalNavStyled } from "./styles";
 import ButtonMenuItem from "./ButtonMenuItem";
 import HoverableMenuItem from "./HoverableMenuItem";
-import sitemap from "../../../../lib/sitemap";
-import Button from "../../Button";
+import sitemap from "../../../lib/sitemap";
+import Button from "../../common/Button";
 import { MdSearch } from "react-icons/md";
 
 function HorizontalMenuWrapper({ children }) {

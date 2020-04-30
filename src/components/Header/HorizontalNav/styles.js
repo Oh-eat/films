@@ -6,7 +6,7 @@ import {
   SubmenuWrapperStyled,
   SubmenuItemStyled,
   SubmenuItemCaptionStyled,
-} from "../../Menu/styles";
+} from "../Menu/styles";
 
 export const HorizontalNavStyled = styled.nav`
   display: flex;

@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { MdMenu } from "react-icons/md";
 import SideBar from "./SideBar";
-import Button from "../../Button";
+import Button from "../../common/Button";
 import { VerticalNavStyled, VerticalNavButtonsStyled } from "./styles";
 
 function VerticalNav() {

@@ -5,7 +5,7 @@ import {
   SubmenuItemStyled,
   SubmenuWrapperStyled,
   SubmenuItemCaptionStyled,
-} from "../../../Menu/styles";
+} from "../../Menu/styles";
 
 export const Fullscreen = styled.div`
   z-index: 1;

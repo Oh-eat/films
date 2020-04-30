@@ -8,19 +8,19 @@ const sitemap = [
     submenus: [
       {
         caption: "상영 중",
-        to: "/now_playing",
+        to: "/movies/now_playing",
       },
       {
         caption: "인기",
-        to: "/popular",
+        to: "/movies/popular",
       },
       {
         caption: "평점 우수",
-        to: "/top_rated",
+        to: "/movies/top_rated",
       },
       {
         caption: "개봉 예정",
-        to: "/upcoming",
+        to: "/movies/upcoming",
       },
     ],
   },

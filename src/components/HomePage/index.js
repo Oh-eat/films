@@ -1,46 +1,77 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import pickRandomMovie from "../../lib/pickRandomMovie";
+import { getDetail, initializeState } from "../../reducers/movieDetail";
+import { getNowPlaying } from "../../reducers/movies";
+import { setBackground } from "../../reducers/background";
 import { HomePageBodyStyled, Wrapper } from "./styles";
 import Button from "../common/Button";
-import FullscreenBackground from "../common/FullscreenBackground";
-import {
-  fetchNowPlayingMovies,
-  buildImageUrl,
-  fetchMovieDetail,
-} from "../../lib/TMDB_API";
-import pickRandomMovie from "../../lib/pickRandomMovie";
+import Error from "../common/Error";
+import Loading from "../common/Loading";
 
 function HomePageBody() {
-  const [movie, setMovie] = useState(null);
-  const loading = useRef(false);
+  const dispatch = useDispatch();
+  const { nowPlaying, nowPlayingError, nowPlayingLoading } = useSelector(
+    ({ movies, loading }) => ({
+      nowPlaying: movies.nowPlaying,
+      nowPlayingError: movies.error,
+      nowPlayingLoading: loading["movies/GET_NOW_PLAYING_REQUEST"],
+    })
+  );
+  const { detail, detailError, detailLoading } = useSelector(
+    ({ movieDetail, loading }) => ({
+      detail: movieDetail.detail,
+      detailError: movieDetail.error,
+      detailLoading: loading["movieDetail/GET_DETAIL_REQUEST"],
+    })
+  );
+  const backgroundPath = useSelector(({ background }) => background.path);
 
   useEffect(() => {
-    loading.current = true;
-    const fetchMovie = async () => {
-      const movies = await fetchNowPlayingMovies();
-      const movie = pickRandomMovie(movies);
-      const movieDetail = await fetchMovieDetail(movie.id);
-      loading.current = false;
-      setMovie(movieDetail);
+    return () => {
+      dispatch(initializeState());
     };
-    fetchMovie();
-  }, []);
+  }, [dispatch]);
 
-  if (!movie || loading.current) return null;
+  useEffect(() => {
+    if (!nowPlaying && !nowPlayingLoading) {
+      dispatch(getNowPlaying());
+      return;
+    }
+    if (!detail && !detailLoading) {
+      const movie = pickRandomMovie(nowPlaying, backgroundPath);
+      dispatch(getDetail(movie.id));
+      return;
+    }
+    if (detail && detail.backdrop_path !== backgroundPath) {
+      dispatch(
+        setBackground({ path: detail.backdrop_path, brightness: "bright" })
+      );
+    }
+  }, [
+    nowPlaying,
+    nowPlayingLoading,
+    detail,
+    detailLoading,
+    backgroundPath,
+    dispatch,
+  ]);
+
+  if (detailError || nowPlayingError) return <Error />;
+  if (detailLoading || nowPlayingLoading) return <Loading />;
+  if (!detail || !nowPlaying) return null;
 
   return (
     <HomePageBodyStyled>
-      <FullscreenBackground
-        imagePath={buildImageUrl(movie.backdrop_path, "original")}
-      />
       <Wrapper>
-        <h2>{movie.title}</h2>
+        <h2>{detail.title}</h2>
         <p>
-          <em>{movie.tagline}</em>
+          <em>{detail.tagline}</em>
         </p>
         <Button
           fontSize="min(4vw, 4vh)"
           variant="outlined"
-          to={`/movie/${movie.id}`}
+          to={`/movie/${detail.id}`}
         >
           더 보기
         </Button>

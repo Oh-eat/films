@@ -8,9 +8,21 @@ export const FullscreenBackgroundStyled = styled.img`
   width: 100%;
   height: 100vh;
   object-fit: cover;
-  filter: brightness(0.75);
   opacity: 0;
-  transition: opacity 0.25s linear;
+  filter: brightness(0.25);
+  transition: opacity 0.25s linear, filter 0.25s linear;
+
+  &.dark {
+    filter: brightness(0.25);
+  }
+
+  &.normal {
+    filter: brightness(0.5);
+  }
+
+  &.bright {
+    filter: brightness(0.75);
+  }
 
   &.loaded {
     opacity: 1;

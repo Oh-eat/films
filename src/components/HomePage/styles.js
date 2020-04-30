@@ -1,14 +1,10 @@
 import styled from "styled-components";
 
-export const HomePageBodyStyled = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+export const HomePageBodyStyled = styled.main`
   min-height: calc(100vh - 5rem);
 `;
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.section`
   z-index: 1;
   text-align: center;
   position: absolute;
@@ -20,6 +16,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-shadow: 0 0 3px black;
 
   h2 {
     font-size: min(6vw, 6vh);
