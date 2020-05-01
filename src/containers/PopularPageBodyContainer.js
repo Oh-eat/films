@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearMovies, getNowPlaying } from "../reducers/movies.js";
+import { clearMovies, getPopular } from "../reducers/movies.js";
 import { setBackground } from "../reducers/background.js";
 import pickRandomMovie from "../lib/pickRandomMovie.js";
 import isEmptyArray from "../lib/isEmptyArray.js";
@@ -8,44 +8,42 @@ import MoviesPageBody from "../components/MoviesPage";
 import Loading from "../components/common/Loading.js";
 import Error from "../components/common/Error.js";
 
-function NowPlayingPageBodyContainer({ currentPage }) {
+function PopularPageBodyContainer({ currentPage }) {
   const dispatch = useDispatch();
-  const { nowPlaying, lastPage, error } = useSelector(({ movies }) => movies);
+  const { popular, lastPage, error } = useSelector(({ movies }) => movies);
   const backgroundPath = useSelector(({ background }) => background.path);
   const loading = useSelector(
-    ({ loading }) => loading["movies/GET_NOW_PLAYING_REQUEST"]
+    ({ loading }) => loading["movies/GET_POPULAR_REQUEST"]
   );
 
   useEffect(() => {
-    dispatch(getNowPlaying(currentPage));
+    dispatch(getPopular(currentPage));
   }, [currentPage, dispatch]);
 
   useEffect(() => {
-    if (!nowPlaying || isEmptyArray(nowPlaying)) {
+    if (!popular || isEmptyArray(popular)) {
       return;
     }
-    const movie = pickRandomMovie(nowPlaying, backgroundPath);
+    const movie = pickRandomMovie(popular, backgroundPath);
     dispatch(setBackground({ path: movie.backdrop_path, brightness: "dark" }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [nowPlaying, dispatch]);
+  }, [popular, dispatch]);
 
   useEffect(() => {
-    return () => {
-      dispatch(clearMovies("nowPlaying"));
-    };
+    return () => dispatch(clearMovies("popular"));
   }, [dispatch]);
 
   if (loading) return <Loading />;
-  if (error || isEmptyArray(nowPlaying)) return <Error />;
-  if (!nowPlaying) return null;
+  if (error || isEmptyArray(popular)) return <Error />;
+  if (!popular) return null;
 
   return (
     <MoviesPageBody
-      movies={nowPlaying}
+      movies={popular}
       currentPage={currentPage}
       lastPage={lastPage}
     />
   );
 }
 
-export default NowPlayingPageBodyContainer;
+export default PopularPageBodyContainer;

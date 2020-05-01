@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import {
-  MenuItemCaptionStyled,
-  MenuItemStyled,
-  SubmenuItemStyled,
-  SubmenuWrapperStyled,
-  SubmenuItemCaptionStyled,
-} from "../../Menu/styles";
+  NavItemCaptionStyled,
+  NavItemStyled,
+  SubnavItemStyled,
+  SubnavItemWrapper,
+  SubnavItemCaptionStyled,
+} from "../../Nav/styles";
 
 export const Fullscreen = styled.div`
   z-index: 1;
@@ -46,13 +46,13 @@ export const Closer = styled.header`
   padding: 0.5rem;
 `;
 
-export const VerticalMenuWrapperStyled = styled.ul`
+export const VerticalNavItemWrapper = styled.ul`
   width: 100%;
   display: flex;
   flex-direction: column;
 `;
 
-export const VerticalMenuItemStyled = styled(MenuItemStyled)`
+export const VerticalNavItemStyled = styled(NavItemStyled)`
   width: 100%;
 
   & + & {
@@ -60,7 +60,7 @@ export const VerticalMenuItemStyled = styled(MenuItemStyled)`
   }
 `;
 
-export const VerticalMenuItemCaptionStyled = styled(MenuItemCaptionStyled)`
+export const VerticalNavItemCaptionStyled = styled(NavItemCaptionStyled)`
   height: 4rem;
   justify-content: ${(props) => (props.dropdown ? "space-between" : "center")};
   padding: ${(props) => (props.dropdown ? "0 1rem" : 0)};
@@ -79,17 +79,15 @@ export const VerticalMenuItemCaptionStyled = styled(MenuItemCaptionStyled)`
   }
 `;
 
-export const VerticalSubmenuWrapperStyled = styled(SubmenuWrapperStyled)`
+export const VerticalSubnavItemWrapper = styled(SubnavItemWrapper)`
   &.visible {
     height: ${(props) => `${props.itemCount * 3}rem`};
   }
 `;
 
-export const VerticalSubmenuItemStyled = styled(SubmenuItemStyled)``;
+export const VerticalSubnavItemStyled = styled(SubnavItemStyled)``;
 
-export const VerticalSubmenuItemCaptionStyled = styled(
-  SubmenuItemCaptionStyled
-)`
+export const VerticalSubnavItemCaptionStyled = styled(SubnavItemCaptionStyled)`
   width: 100%;
   height: 3rem;
 

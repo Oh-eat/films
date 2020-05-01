@@ -5,7 +5,7 @@ const sitemap = [
   },
   {
     caption: "영화",
-    submenus: [
+    subnavs: [
       {
         caption: "상영 중",
         to: "/movies/now_playing",
@@ -26,7 +26,7 @@ const sitemap = [
   },
   {
     caption: "나의 영화",
-    submenus: [
+    subnavs: [
       {
         caption: "좋아요",
         to: "/like",

@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import {
-  MenuWrapperStyled,
-  MenuItemStyled,
-  MenuItemCaptionStyled,
-  SubmenuWrapperStyled,
-  SubmenuItemStyled,
-  SubmenuItemCaptionStyled,
-} from "../Menu/styles";
+  NavItemWrapper,
+  NavItemStyled,
+  NavItemCaptionStyled,
+  SubnavItemWrapper,
+  SubnavItemStyled,
+  SubnavItemCaptionStyled,
+} from "../Nav/styles";
 
 export const HorizontalNavStyled = styled.nav`
   display: flex;
@@ -16,17 +16,17 @@ export const HorizontalNavStyled = styled.nav`
   }
 `;
 
-export const HorizontalMenuWrapperStyled = styled(MenuWrapperStyled)``;
+export const HorizontalNavItemWrapper = styled(NavItemWrapper)``;
 
-export const HoverableMenuItemStyled = styled(MenuItemStyled)``;
+export const HoverableNavItemStyled = styled(NavItemStyled)``;
 
-export const HorizontalMenuItemCaptionStyled = styled(MenuItemCaptionStyled)`
+export const HorizontalNavItemCaptionStyled = styled(NavItemCaptionStyled)`
   cursor: default;
   width: 7rem;
   height: 3rem;
 `;
 
-export const HoverableSubmenuWrapperStyled = styled(SubmenuWrapperStyled)`
+export const HoverableSubnavItemWrapper = styled(SubnavItemWrapper)`
   position: absolute;
   color: transparent;
 
@@ -35,10 +35,10 @@ export const HoverableSubmenuWrapperStyled = styled(SubmenuWrapperStyled)`
   }
 `;
 
-export const HoverableSubmenuItemStyled = styled(SubmenuItemStyled)``;
+export const HoverableSubnavItemStyled = styled(SubnavItemStyled)``;
 
-export const HorizontalSubmenuItemCaptionStyled = styled(
-  SubmenuItemCaptionStyled
+export const HorizontalSubnavItemCaptionStyled = styled(
+  SubnavItemCaptionStyled
 )`
   height: 2.5rem;
 `;

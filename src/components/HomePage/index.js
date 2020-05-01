@@ -4,7 +4,7 @@ import pickRandomMovie from "../../lib/pickRandomMovie";
 import { getDetail, initializeState } from "../../reducers/movieDetail";
 import { getNowPlaying } from "../../reducers/movies";
 import { setBackground } from "../../reducers/background";
-import { HomePageBodyStyled, Wrapper } from "./styles";
+import { Wrapper } from "./styles";
 import Button from "../common/Button";
 import Error from "../common/Error";
 import Loading from "../common/Loading";
@@ -62,21 +62,15 @@ function HomePageBody() {
   if (!detail || !nowPlaying) return null;
 
   return (
-    <HomePageBodyStyled>
-      <Wrapper>
-        <h2>{detail.title}</h2>
-        <p>
-          <em>{detail.tagline}</em>
-        </p>
-        <Button
-          fontSize="min(4vw, 4vh)"
-          variant="outlined"
-          to={`/movie/${detail.id}`}
-        >
-          더 보기
-        </Button>
-      </Wrapper>
-    </HomePageBodyStyled>
+    <Wrapper>
+      <h2>{detail.title}</h2>
+      <p>
+        <em>{detail.tagline}</em>
+      </p>
+      <Button fontSize="4vmin" variant="outlined" to={`/movie/${detail.id}`}>
+        더 보기
+      </Button>
+    </Wrapper>
   );
 }
 

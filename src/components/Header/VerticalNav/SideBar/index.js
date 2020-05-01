@@ -1,15 +1,15 @@
 import React, { useState, useCallback } from "react";
 import { MdClose } from "react-icons/md";
+import sitemap from "../../../../lib/sitemap";
 import {
   SideBarStyled,
   Closer,
-  VerticalMenuWrapperStyled,
+  VerticalNavItemWrapper,
   Fullscreen,
 } from "./styles";
 import Button from "../../../common/Button";
-import sitemap from "../../../../lib/sitemap";
-import DropdownMenu from "./DropdownMenu";
-import ButtonMenu from "./ButtonMenu";
+import DropdownMenu from "./DropdownNavItem";
+import ButtonNavItem from "./ButtonNavItem";
 
 function SideBar({ visible, setNavHidden }) {
   const [selected, setSelected] = useState(null);
@@ -28,20 +28,20 @@ function SideBar({ visible, setNavHidden }) {
             <MdClose size="2rem" />
           </Button>
         </Closer>
-        <VerticalMenuWrapperStyled>
-          {sitemap.map(({ caption, to, submenus }, index) =>
-            submenus ? (
+        <VerticalNavItemWrapper>
+          {sitemap.map(({ caption, to, subnavs }, index) =>
+            subnavs ? (
               <DropdownMenu
                 key={index}
                 index={index}
                 selected={selected === index}
-                submenus={submenus}
+                subnavs={subnavs}
                 caption={caption}
                 setSelected={setSelected}
                 handleMenuClick={handleMenuClick}
               />
             ) : (
-              <ButtonMenu
+              <ButtonNavItem
                 key={index}
                 caption={caption}
                 to={to}
@@ -49,7 +49,7 @@ function SideBar({ visible, setNavHidden }) {
               />
             )
           )}
-        </VerticalMenuWrapperStyled>
+        </VerticalNavItemWrapper>
       </SideBarStyled>
     </>
   );

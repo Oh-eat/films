@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { MdArrowDropDown } from "react-icons/md";
-import { VerticalMenuItemCaptionStyled } from "./styles";
+import { VerticalNavItemCaptionStyled } from "./styles";
 
-function MenuItemCaption({ caption, to, dropdown, selected, onClick }) {
+function NavItemCaption({ caption, to, dropdown, selected, onClick }) {
   return (
-    <VerticalMenuItemCaptionStyled dropdown={dropdown} onClick={onClick}>
+    <VerticalNavItemCaptionStyled dropdown={dropdown} onClick={onClick}>
       {dropdown ? (
         <>
           <span className={`arrow ${selected && "selected"}`}>
@@ -16,8 +16,8 @@ function MenuItemCaption({ caption, to, dropdown, selected, onClick }) {
       ) : (
         <Link to={to}>{caption}</Link>
       )}
-    </VerticalMenuItemCaptionStyled>
+    </VerticalNavItemCaptionStyled>
   );
 }
 
-export default MenuItemCaption;
+export default NavItemCaption;

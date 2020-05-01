@@ -1,19 +1,12 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { fadeIn } from "../../lib/defaultStyles";
-
-export const MoviesPageBodyStyled = styled.main`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+import { FADE_IN, DEFAULT_HORIZONTAL_MARGIN } from "../../lib/defaultStyles";
 
 export const MovieGridStyled = styled.div`
-  box-sizing: border-box;
-  padding: 0 1rem;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-gap: min(2vw, 2vh);
+  grid-template-rows: repeat(auto-fill, 1fr);
+  grid-gap: ${DEFAULT_HORIZONTAL_MARGIN};
 
   @media (max-width: 1280px) {
     & {
@@ -30,14 +23,18 @@ export const MovieGridStyled = styled.div`
 
 export const MovieItemStyled = styled(Link)`
   display: block;
+  position: relative;
   width: 100%;
-  height: 100%;
+  padding-top: 150%;
   opacity: 0;
   transition: box-shadow 0.25s ease;
   /* transition: opacity 0.25s ease; */
-  animation: ${fadeIn} ${(props) => `${props.index * 0.1}s`} linear;
+  animation: ${FADE_IN} ${(props) => `${props.index * 0.1}s`} linear;
 
   img {
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
     object-fit: fill;
@@ -45,7 +42,7 @@ export const MovieItemStyled = styled(Link)`
   }
 
   &:hover {
-    box-shadow: 0 0 0 min(0.5vw, 0.5vh) white;
+    box-shadow: 0 0 0 0.5vmin white;
 
     img {
       /* filter: brightness(0.8); */

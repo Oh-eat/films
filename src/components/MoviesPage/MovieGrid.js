@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MovieGridStyled } from "./styles";
 import MovieItem from "./MovieItem";
 
 function MovieGrid({ movies }) {
+  useEffect(() => {
+    document.getElementById("scrollbar").scrollTo({ top: 0 });
+  }, [movies]);
   return (
     <MovieGridStyled>
       {movies.map((movie, index) => (

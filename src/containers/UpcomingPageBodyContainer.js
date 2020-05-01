@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearMovies, getNowPlaying } from "../reducers/movies.js";
+import { clearMovies, getUpcoming } from "../reducers/movies.js";
 import { setBackground } from "../reducers/background.js";
 import pickRandomMovie from "../lib/pickRandomMovie.js";
 import isEmptyArray from "../lib/isEmptyArray.js";
@@ -8,44 +8,42 @@ import MoviesPageBody from "../components/MoviesPage";
 import Loading from "../components/common/Loading.js";
 import Error from "../components/common/Error.js";
 
-function NowPlayingPageBodyContainer({ currentPage }) {
+function UpcomingPageBodyContainer({ currentPage }) {
   const dispatch = useDispatch();
-  const { nowPlaying, lastPage, error } = useSelector(({ movies }) => movies);
+  const { upcoming, lastPage, error } = useSelector(({ movies }) => movies);
   const backgroundPath = useSelector(({ background }) => background.path);
   const loading = useSelector(
-    ({ loading }) => loading["movies/GET_NOW_PLAYING_REQUEST"]
+    ({ loading }) => loading["movies/GET_UPCOMING_REQUEST"]
   );
 
   useEffect(() => {
-    dispatch(getNowPlaying(currentPage));
+    dispatch(getUpcoming(currentPage));
   }, [currentPage, dispatch]);
 
   useEffect(() => {
-    if (!nowPlaying || isEmptyArray(nowPlaying)) {
+    if (!upcoming || isEmptyArray(upcoming)) {
       return;
     }
-    const movie = pickRandomMovie(nowPlaying, backgroundPath);
+    const movie = pickRandomMovie(upcoming, backgroundPath);
     dispatch(setBackground({ path: movie.backdrop_path, brightness: "dark" }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [nowPlaying, dispatch]);
+  }, [upcoming, dispatch]);
 
   useEffect(() => {
-    return () => {
-      dispatch(clearMovies("nowPlaying"));
-    };
+    return () => dispatch(clearMovies("upcoming"));
   }, [dispatch]);
 
   if (loading) return <Loading />;
-  if (error || isEmptyArray(nowPlaying)) return <Error />;
-  if (!nowPlaying) return null;
+  if (error || isEmptyArray(upcoming)) return <Error />;
+  if (!upcoming) return null;
 
   return (
     <MoviesPageBody
-      movies={nowPlaying}
+      movies={upcoming}
       currentPage={currentPage}
       lastPage={lastPage}
     />
   );
 }
 
-export default NowPlayingPageBodyContainer;
+export default UpcomingPageBodyContainer;

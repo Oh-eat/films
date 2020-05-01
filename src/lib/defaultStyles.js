@@ -1,10 +1,14 @@
+//@ts-ignore
 import { keyframes, css } from "styled-components";
 
-export const transitionHeight = `height 0.25s ease`;
-export const transitionBackgroundColor = `background-color 0.25s ease`;
-export const transitionColor = `color 0.25s ease`;
+export const DEFAULT_HORIZONTAL_MARGIN = "max(1rem, 2vmin)";
+export const HEADER_HEIGHT = "5rem";
 
-const fadeInKeyframes = keyframes`
+export const TRANSITION_HEIGHT = `height 0.25s ease`;
+export const TRANSITION_BACKGROUND_COLOR = `background-color 0.25s ease`;
+export const TRANSITION_COLOR = `color 0.25s ease`;
+
+const FADE_INKeyframes = keyframes`
     from {
         opacity: 0;
     }
@@ -12,6 +16,7 @@ const fadeInKeyframes = keyframes`
         opacity: 1;
     }
 `;
-export const fadeIn = css`
-  ${fadeInKeyframes} ${"0.5s forwards"}
+
+export const FADE_IN = css`
+  ${FADE_INKeyframes} ${"0.5s forwards"}
 `;

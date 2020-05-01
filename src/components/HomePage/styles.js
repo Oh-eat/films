@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-export const HomePageBodyStyled = styled.main`
-  min-height: calc(100vh - 5rem);
-`;
-
 export const Wrapper = styled.section`
   z-index: 1;
   text-align: center;
@@ -16,15 +12,15 @@ export const Wrapper = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-shadow: 0 0 3px black;
+  text-shadow: 0 0 5px black;
 
   h2 {
-    font-size: min(6vw, 6vh);
+    font-size: 6vmin;
     letter-spacing: 2px;
   }
 
   p {
     margin: 2vh 0 3vh;
-    font-size: min(4vw, 4vh);
+    font-size: 4vmin;
   }
 `;
