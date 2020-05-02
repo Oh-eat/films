@@ -12,7 +12,7 @@ export const Wrapper = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-shadow: 0 0 5px black;
+  /* text-shadow: 0 0 5px black; */
 
   h2 {
     font-size: 6vmin;

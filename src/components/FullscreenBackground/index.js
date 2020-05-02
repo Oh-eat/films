@@ -33,7 +33,7 @@ function FullscreenBackground() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path, brightness]);
 
-  if (!path) return null;
+  if (!currentPath) return null;
 
   return (
     <FullscreenBackgroundStyled

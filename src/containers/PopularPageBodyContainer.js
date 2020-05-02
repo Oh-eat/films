@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearMovies, getPopular } from "../reducers/movies.js";
-import { setBackground } from "../reducers/background.js";
-import pickRandomMovie from "../lib/pickRandomMovie.js";
-import isEmptyArray from "../lib/isEmptyArray.js";
+import { clearMovies, getPopular } from "../reducers/movies";
+import { setBackground } from "../reducers/background";
+import pickRandomMovie from "../lib/pickRandomMovie";
+import isEmptyArray from "../lib/isEmptyArray";
 import MoviesPageBody from "../components/MoviesPage";
-import Loading from "../components/common/Loading.js";
-import Error from "../components/common/Error.js";
+import Loading from "../components/common/Loading";
+import Error from "../components/common/Error";
+import initializeView from "../lib/initializeView";
 
 function PopularPageBodyContainer({ currentPage }) {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ function PopularPageBodyContainer({ currentPage }) {
   );
 
   useEffect(() => {
+    initializeView();
     dispatch(getPopular(currentPage));
   }, [currentPage, dispatch]);
 

@@ -4,14 +4,18 @@ import color from "../../../lib/color";
 
 const ButtonStyle = css`
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   box-sizing: content-box;
   padding: 0.25rem 1rem;
   background: none;
   border: none;
   outline: none;
-  width: ${(props) => props.width || "auto"};
-  height: ${(props) => props.height || "auto"};
+  width: ${(props) => (props.size ? props.size : props.width || "auto")};
+  height: ${(props) => (props.size ? props.size : props.height || "auto")};
   font-size: ${(props) => props.fontSize || "initial"};
+  visibility: ${(props) => (props.hidden ? "hidden" : "visible")};
   transition: border 0.25s ease, background-color 0.25s ease, color 0.25s ease;
 
   &.outlined,
@@ -50,9 +54,9 @@ const ButtonStyle = css`
   }
 
   &.icon {
-    padding: 0.5rem;
-    width: 2rem;
-    height: 2rem;
+    padding: 0.25rem;
+    width: ${(props) => (props.size ? props.size : props.width || "2rem")};
+    height: ${(props) => (props.size ? props.size : props.height || "2rem")};
     border-radius: 100%;
   }
 `;

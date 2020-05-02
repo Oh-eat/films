@@ -11,7 +11,7 @@ import {
 export const HorizontalNavStyled = styled.nav`
   display: flex;
 
-  @media (max-width: 1024px) {
+  @media screen and (max-width: 1024px) {
     display: none;
   }
 `;

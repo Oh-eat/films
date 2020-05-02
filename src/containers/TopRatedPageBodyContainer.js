@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearMovies, getTopRated } from "../reducers/movies.js";
-import { setBackground } from "../reducers/background.js";
-import pickRandomMovie from "../lib/pickRandomMovie.js";
-import isEmptyArray from "../lib/isEmptyArray.js";
+import { clearMovies, getTopRated } from "../reducers/movies";
+import { setBackground } from "../reducers/background";
+import pickRandomMovie from "../lib/pickRandomMovie";
+import isEmptyArray from "../lib/isEmptyArray";
 import MoviesPageBody from "../components/MoviesPage";
-import Loading from "../components/common/Loading.js";
-import Error from "../components/common/Error.js";
+import Loading from "../components/common/Loading";
+import Error from "../components/common/Error";
+import initializeView from "../lib/initializeView";
 
 function TopRatedPageBodyContainer({ currentPage }) {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ function TopRatedPageBodyContainer({ currentPage }) {
   );
 
   useEffect(() => {
+    initializeView();
     dispatch(getTopRated(currentPage));
   }, [currentPage, dispatch]);
 

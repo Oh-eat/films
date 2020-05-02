@@ -1,6 +1,10 @@
 import React from "react";
 import Scrollbars from "react-custom-scrollbars";
 
+export function initializeScrollbar() {
+  document.getElementById("scrollbar").scrollTo({ top: 0 });
+}
+
 function CustomScrollbars({ children }) {
   return (
     <Scrollbars

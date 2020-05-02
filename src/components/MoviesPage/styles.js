@@ -4,17 +4,21 @@ import { FADE_IN, DEFAULT_HORIZONTAL_MARGIN } from "../../lib/defaultStyles";
 
 export const MovieGridStyled = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(auto-fill, 1fr);
   grid-gap: ${DEFAULT_HORIZONTAL_MARGIN};
 
-  @media (max-width: 1280px) {
+  @media screen and (min-width: 1281px) {
+    & {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 1280px) {
     & {
       grid-template-columns: repeat(4, 1fr);
     }
   }
 
-  @media (max-width: 600px) {
+  @media screen and (max-width: 600px) and (orientation: portrait) {
     & {
       grid-template-columns: repeat(2, 1fr);
     }

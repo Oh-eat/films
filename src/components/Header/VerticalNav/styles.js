@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const VerticalNavStyled = styled.nav`
   display: none;
   position: relative;
-  @media (max-width: 1024px) {
+  @media screen and (max-width: 1024px) {
     & {
       display: block;
     }

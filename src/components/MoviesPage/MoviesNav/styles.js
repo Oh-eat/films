@@ -16,9 +16,13 @@ export const MoviesNavItemWrapper = styled.ul`
 export const MoviesNavItemStyled = styled.li``;
 
 export const MoviesNavItemCaptionStyled = styled.h2`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   a {
     font-size: 3vmin;
-    padding: 0.5rem 1rem;
+    padding: 1.5vmin 3vmin;
     border-top: 0.5vmin solid transparent;
     border-bottom: 0.5vmin solid transparent;
     transition: border 0.25s ease, ${TRANSITION_COLOR};

@@ -8,6 +8,7 @@ import { Wrapper } from "./styles";
 import Button from "../common/Button";
 import Error from "../common/Error";
 import Loading from "../common/Loading";
+import initializeView from "../../lib/initializeView";
 
 function HomePageBody() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function HomePageBody() {
   const backgroundPath = useSelector(({ background }) => background.path);
 
   useEffect(() => {
+    initializeView();
     return () => {
       dispatch(initializeState());
     };

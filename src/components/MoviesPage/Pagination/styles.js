@@ -9,33 +9,33 @@ export const PaginationStyled = styled.nav`
 `;
 
 export const PrevWrapper = styled.div`
+  width: 100%;
   display: flex;
   justify-content: flex-end;
+  flex: auto;
 `;
 
-export const PageNumberWrapper = styled.ul`
+export const PageNumberWrapper = styled.ol`
   display: flex;
-  justify-content: space-around;
-  margin: 0 0.5rem;
+  flex: none;
 `;
 
 export const PageNumberStyled = styled.li`
   a {
     display: flex;
     line-height: 1;
-    font-size: 1rem;
+    font-size: 1.25rem;
+    padding: 1vmin;
   }
 
   &.selected {
     text-decoration: underline;
   }
-
-  & + & {
-    margin-left: 0.75rem;
-  }
 `;
 
 export const NextWrapper = styled.div`
+  width: 100%;
   display: flex;
   justify-content: flex-start;
+  flex: auto;
 `;

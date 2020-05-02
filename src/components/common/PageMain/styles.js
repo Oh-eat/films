@@ -14,13 +14,13 @@ export const PageMainStyled = styled.main`
 
 export const PageMainWrapper = styled.div`
   margin: 0 auto;
-  height: 100%;
+  min-height: calc(100vh - ${HEADER_HEIGHT});
   width: max(
     calc(1280px - ${DEFAULT_HORIZONTAL_MARGIN} * 2),
     calc(60% - ${DEFAULT_HORIZONTAL_MARGIN} * 2)
   );
 
-  @media (max-width: 1280px) {
+  @media screen and (max-width: 1280px) {
     margin: 0 ${DEFAULT_HORIZONTAL_MARGIN};
     width: calc(100% - ${DEFAULT_HORIZONTAL_MARGIN} * 2);
     box-sizing: border-box;
