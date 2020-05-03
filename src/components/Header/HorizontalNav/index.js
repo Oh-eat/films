@@ -9,7 +9,7 @@ import { MdSearch } from "react-icons/md";
 function HorizontalNav() {
   return (
     <HorizontalNavStyled>
-      <Button variant="icon">
+      <Button variant="transparent circle" size="1.75rem">
         <MdSearch size="2rem" />
       </Button>
       <HorizontalNavItemWrapper>

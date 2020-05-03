@@ -15,6 +15,7 @@ import {
 import Button from "../../common/Button";
 import { NavLink } from "react-router-dom";
 import debounce from "../../../lib/debounce";
+import checkEnoughWidth from "../../../lib/checkEnoughWidth";
 
 function getPageNumbers(pageIndex, lastPage, size) {
   return [...Array(size).keys()]
@@ -22,17 +23,21 @@ function getPageNumbers(pageIndex, lastPage, size) {
     .filter((page) => page <= lastPage);
 }
 
+function getPageIndex(page, size) {
+  return parseInt((page - 1) / size);
+}
+
 function Pagination({ currentPage, lastPage }) {
   const [size, setSize] = useState(10);
   const [currentPageIndex, setCurrentPageIndex] = useState(
-    parseInt((currentPage - 1) / size)
+    getPageIndex(currentPage, size)
   );
-  const lastPageIndex = parseInt((lastPage - 1) / size);
+  const lastPageIndex = getPageIndex(lastPage, size);
   const hidePrev = currentPageIndex === 0;
   const hideNext = currentPageIndex >= lastPageIndex;
 
   const onResize = useCallback(() => {
-    const size = window.matchMedia("(orientation: landscape)").matches ? 10 : 5;
+    const size = checkEnoughWidth() ? 10 : 5;
     setSize(size);
   }, []);
   const debouncedOnResize = useCallback(debounce(onResize, 100), [onResize]);
@@ -50,7 +55,7 @@ function Pagination({ currentPage, lastPage }) {
   }, [lastPageIndex]);
 
   useEffect(() => {
-    const size = window.matchMedia("(orientation: landscape)").matches ? 10 : 5;
+    const size = checkEnoughWidth() ? 10 : 5;
     setSize(size);
     window.addEventListener("resize", debouncedOnResize);
     return () => {
@@ -59,7 +64,7 @@ function Pagination({ currentPage, lastPage }) {
   }, [debouncedOnResize]);
 
   useEffect(() => {
-    setCurrentPageIndex(parseInt((currentPage - 1) / size));
+    setCurrentPageIndex(getPageIndex(currentPage, size));
   }, [currentPage, size]);
 
   return (
@@ -67,16 +72,16 @@ function Pagination({ currentPage, lastPage }) {
       <PrevWrapper>
         <Button
           hidden={hidePrev}
-          size="1.5rem"
-          variant="icon"
+          size="1rem"
+          variant="transparent circle"
           onClick={onClickFirst}
         >
           <MdFirstPage size="1.5rem" />
         </Button>
         <Button
           hidden={hidePrev}
-          size="1.5rem"
-          variant="icon"
+          size="1rem"
+          variant="transparent circle"
           onClick={onClickPrev}
         >
           <MdNavigateBefore size="1.5rem" />
@@ -93,16 +98,16 @@ function Pagination({ currentPage, lastPage }) {
       <NextWrapper>
         <Button
           hidden={hideNext}
-          size="1.5rem"
-          variant="icon"
+          size="1rem"
+          variant="transparent circle"
           onClick={onClickNext}
         >
           <MdNavigateNext size="1.5rem" />
         </Button>
         <Button
           hidden={hideNext}
-          size="1.5rem"
-          variant="icon"
+          size="1rem"
+          variant="transparent circle"
           onClick={onClickLast}
         >
           <MdLastPage size="1.5rem" />
@@ -114,9 +119,20 @@ function Pagination({ currentPage, lastPage }) {
 
 function PageNumber({ currentPage, page }) {
   return (
-    <PageNumberStyled className={currentPage === page && "selected"}>
-      <NavLink to={`?page=${page}`}>{page}</NavLink>
-    </PageNumberStyled>
+    // <PageNumberStyled className={currentPage === page && "selected"}>
+    //   <NavLink to={`?page=${page}`}>{page}</NavLink>
+    // </PageNumberStyled>
+    <Button
+      variant={`${
+        currentPage === page ? "outlined circle" : "transparent circle"
+      }`}
+      size="1rem"
+      fontSize="0.75rem"
+      to={`?page=${page}`}
+      color="default"
+    >
+      {page}
+    </Button>
   );
 }
 

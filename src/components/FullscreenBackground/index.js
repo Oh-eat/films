@@ -1,19 +1,20 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FullscreenBackgroundStyled } from "./styles";
 import { buildImageUrl } from "../../lib/TMDB_API";
+import { setLoaded } from "../../reducers/background";
 
 function FullscreenBackground() {
-  const [loaded, setLoaded] = useState(false);
+  const dispatch = useDispatch();
   const [currentPath, setCurrentPath] = useState(null);
   const [currentBrightness, setCurrentBrightness] = useState(null);
-  const { path, brightness = "dark" } = useSelector(
+  const { path, brightness = "dark", loaded } = useSelector(
     ({ background }) => background
   );
 
   const onLoad = useCallback(() => {
-    setLoaded(true);
-  }, []);
+    dispatch(setLoaded(true));
+  }, [dispatch]);
 
   useEffect(() => {
     if (!currentPath) {
@@ -25,7 +26,6 @@ function FullscreenBackground() {
       setCurrentBrightness(brightness);
       return;
     }
-    setLoaded(false);
     setTimeout(() => {
       setCurrentPath(path);
       setCurrentBrightness(brightness);
@@ -35,10 +35,11 @@ function FullscreenBackground() {
 
   if (!currentPath) return null;
 
+  console.log(loaded);
   return (
     <FullscreenBackgroundStyled
       className={`${currentBrightness} ${loaded && "loaded"}`}
-      src={buildImageUrl(currentPath, "original")}
+      src={currentPath ? buildImageUrl(currentPath, "original") : ""}
       onLoad={onLoad}
     />
   );

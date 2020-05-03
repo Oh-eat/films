@@ -23,8 +23,30 @@ export const getSimilar = (movieId, page = 1) =>
   );
 export const getDetail = (movieId) =>
   axios.get(
-    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=ko-KR&append_to_response=videos,images`
+    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=ko-KR`
   );
+export const getImages = (movieId) =>
+  axios.get(
+    `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${API_KEY}`
+  );
+export const getVideos = (movieId) =>
+  axios.get(
+    `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}`
+  );
+export const getCredit = (movieId) =>
+  axios.get(
+    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}`
+  );
+export const getFurtherDetail = (movieId) =>
+  axios
+    .all([
+      getDetail(movieId),
+      getImages(movieId),
+      getVideos(movieId),
+      getCredit(movieId),
+      getSimilar(movieId),
+    ])
+    .then((data) => ({ data }));
 
 export const buildImageUrl = (path, size = 500) => {
   return `

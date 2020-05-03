@@ -24,7 +24,11 @@ function SideBar({ visible, setNavHidden }) {
       <Fullscreen className={visible && "visible"} onClick={handleMenuClick} />
       <SideBarStyled className={visible && "visible"}>
         <Closer>
-          <Button variant="icon" onClick={handleMenuClick}>
+          <Button
+            variant="transparent circle"
+            size="1.75rem"
+            onClick={handleMenuClick}
+          >
             <MdClose size="2rem" />
           </Button>
         </Closer>

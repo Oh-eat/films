@@ -20,6 +20,7 @@ function UpcomingPageBodyContainer({ currentPage }) {
   useEffect(() => {
     initializeView();
     dispatch(getUpcoming(currentPage));
+    return () => dispatch(clearMovies("upcoming"));
   }, [currentPage, dispatch]);
 
   useEffect(() => {
@@ -30,10 +31,6 @@ function UpcomingPageBodyContainer({ currentPage }) {
     dispatch(setBackground({ path: movie.backdrop_path, brightness: "dark" }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [upcoming, dispatch]);
-
-  useEffect(() => {
-    return () => dispatch(clearMovies("upcoming"));
-  }, [dispatch]);
 
   if (loading) return <Loading />;
   if (error || isEmptyArray(upcoming)) return <Error />;

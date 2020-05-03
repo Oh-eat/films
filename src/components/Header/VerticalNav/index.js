@@ -17,7 +17,11 @@ function VerticalNav() {
   return (
     <VerticalNavStyled>
       <VerticalNavButtonsStyled>
-        <Button variant="icon" icon onClick={setVisibleTrue}>
+        <Button
+          variant="transparent circle"
+          size="1.75rem"
+          onClick={setVisibleTrue}
+        >
           <MdMenu size="2rem" />
         </Button>
       </VerticalNavButtonsStyled>

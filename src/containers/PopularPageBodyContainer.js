@@ -20,6 +20,7 @@ function PopularPageBodyContainer({ currentPage }) {
   useEffect(() => {
     initializeView();
     dispatch(getPopular(currentPage));
+    return () => dispatch(clearMovies("popular"));
   }, [currentPage, dispatch]);
 
   useEffect(() => {
@@ -30,10 +31,6 @@ function PopularPageBodyContainer({ currentPage }) {
     dispatch(setBackground({ path: movie.backdrop_path, brightness: "dark" }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [popular, dispatch]);
-
-  useEffect(() => {
-    return () => dispatch(clearMovies("popular"));
-  }, [dispatch]);
 
   if (loading) return <Loading />;
   if (error || isEmptyArray(popular)) return <Error />;

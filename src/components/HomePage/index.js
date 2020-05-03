@@ -12,21 +12,19 @@ import initializeView from "../../lib/initializeView";
 
 function HomePageBody() {
   const dispatch = useDispatch();
-  const { nowPlaying, nowPlayingError, nowPlayingLoading } = useSelector(
-    ({ movies, loading }) => ({
-      nowPlaying: movies.nowPlaying,
-      nowPlayingError: movies.error,
-      nowPlayingLoading: loading["movies/GET_NOW_PLAYING_REQUEST"],
-    })
+  const { nowPlaying, error: nowPlayingError } = useSelector(
+    ({ movies }) => movies
   );
-  const { detail, detailError, detailLoading } = useSelector(
-    ({ movieDetail, loading }) => ({
-      detail: movieDetail.detail,
-      detailError: movieDetail.error,
-      detailLoading: loading["movieDetail/GET_DETAIL_REQUEST"],
-    })
+  const { detail, error: detailError } = useSelector(
+    ({ movieDetail }) => movieDetail
   );
-  const backgroundPath = useSelector(({ background }) => background.path);
+  const { nowPlayingLoading, detailLoading } = useSelector(({ loading }) => ({
+    nowPlayingLoading: loading["movies/GET_NOW_PLAYING_REQUEST"],
+    detailLoading: loading["movieDetail/GET_DETAIL_REQUEST"],
+  }));
+  const { path: backgroundPath, loaded: backgroundLoaded } = useSelector(
+    ({ background }) => background
+  );
 
   useEffect(() => {
     initializeView();
@@ -60,7 +58,8 @@ function HomePageBody() {
   ]);
 
   if (detailError || nowPlayingError) return <Error />;
-  if (detailLoading || nowPlayingLoading) return <Loading />;
+  if (detailLoading || nowPlayingLoading || !backgroundLoaded)
+    return <Loading />;
   if (!detail || !nowPlaying) return null;
 
   return (

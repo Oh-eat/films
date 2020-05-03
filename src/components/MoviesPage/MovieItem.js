@@ -1,15 +1,32 @@
 import React from "react";
-import { MovieItemStyled } from "./styles";
+import { MdLocalMovies } from "react-icons/md";
+import { MovieItemStyled, PosterReplacementStyled } from "./styles";
 import { buildImageUrl } from "../../lib/TMDB_API";
+import Image from "../common/Image";
 
 function MovieItem({ movie, index }) {
   return (
     <MovieItemStyled to={`/movie/${movie.id}`} index={index}>
-      <img
-        src={movie.poster_path ? buildImageUrl(movie.poster_path, 400) : ""}
-        alt={movie.title}
-      />
+      {movie.poster_path ? (
+        <Image
+          src={buildImageUrl(movie.poster_path, 500)}
+          alt={movie.title}
+          position="absolute"
+          objectFit="fill"
+        />
+      ) : (
+        <PosterReplacement title={movie.title} />
+      )}
     </MovieItemStyled>
+  );
+}
+
+function PosterReplacement({ title }) {
+  return (
+    <PosterReplacementStyled>
+      <h3>{title}</h3>
+      <MdLocalMovies size="75%" />
+    </PosterReplacementStyled>
   );
 }
 

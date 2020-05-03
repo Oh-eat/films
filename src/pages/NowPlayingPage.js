@@ -6,7 +6,6 @@ function NowPlayingPage({ location }) {
   const { page: currentPage } = qs.parse(location.search, {
     ignoreQueryPrefix: true,
   });
-
   return (
     <NowPlayingPageBodyContainer currentPage={parseInt(currentPage || 1)} />
   );

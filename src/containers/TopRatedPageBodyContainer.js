@@ -20,6 +20,7 @@ function TopRatedPageBodyContainer({ currentPage }) {
   useEffect(() => {
     initializeView();
     dispatch(getTopRated(currentPage));
+    return () => dispatch(clearMovies("topRated"));
   }, [currentPage, dispatch]);
 
   useEffect(() => {
@@ -30,10 +31,6 @@ function TopRatedPageBodyContainer({ currentPage }) {
     dispatch(setBackground({ path: movie.backdrop_path, brightness: "dark" }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [topRated, dispatch]);
-
-  useEffect(() => {
-    return () => dispatch(clearMovies("topRated"));
-  }, [dispatch]);
 
   if (loading) return <Loading />;
   if (error || isEmptyArray(topRated)) return <Error />;

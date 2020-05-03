@@ -20,6 +20,9 @@ function NowPlayingPageBodyContainer({ currentPage }) {
   useEffect(() => {
     initializeView();
     dispatch(getNowPlaying(currentPage));
+    return () => {
+      dispatch(clearMovies("nowPlaying"));
+    };
   }, [currentPage, dispatch]);
 
   useEffect(() => {
@@ -30,12 +33,6 @@ function NowPlayingPageBodyContainer({ currentPage }) {
     dispatch(setBackground({ path: movie.backdrop_path, brightness: "dark" }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nowPlaying, dispatch]);
-
-  useEffect(() => {
-    return () => {
-      dispatch(clearMovies("nowPlaying"));
-    };
-  }, [dispatch]);
 
   if (loading) return <Loading />;
   if (error || isEmptyArray(nowPlaying)) return <Error />;
