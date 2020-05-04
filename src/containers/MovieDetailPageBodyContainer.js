@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MovieDetailPageBody from "../components/MovieDetailPage";
 import { useDispatch, useSelector } from "react-redux";
 import Error from "../components/common/Error";
@@ -8,18 +8,17 @@ import { setBackground } from "../reducers/background";
 import initializeView from "../lib/initializeView";
 
 function MovieDetailPageBodyContainer({ movieId }) {
+  const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
   const movieDetail = useSelector(({ movieDetail }) => movieDetail);
-  const { detail, error, ...furtherDetail } = movieDetail;
-  const loading = useSelector(
-    ({ loading }) => loading["movieDetail/GET_FURTHER_DETAIL_REQUST"]
-  );
+  const { detailKR, error, ...furtherDetail } = movieDetail;
   const { loaded: backgroundLoaded } = useSelector(
     ({ background }) => background
   );
 
   useEffect(() => {
     initializeView();
+    setLoaded(false);
     dispatch(getFurtherDetail(movieId));
     return () => {
       dispatch(initializeState());
@@ -27,18 +26,19 @@ function MovieDetailPageBodyContainer({ movieId }) {
   }, [movieId, dispatch]);
 
   useEffect(() => {
-    if (!detail) return;
-    dispatch(setBackground({ path: detail.backdrop_path, brightness: "dark" }));
-  }, [detail, dispatch]);
+    if (!detailKR) return;
+    setLoaded(true);
+    dispatch(
+      setBackground({ path: detailKR.backdrop_path, brightness: "dark" })
+    );
+  }, [detailKR, dispatch]);
 
-  console.log(furtherDetail);
   if (error) return <Error />;
-  console.log("after error");
-  if (loading || !backgroundLoaded) return <Loading />;
-  console.log("after loading");
-  if (!detail || Object.values(furtherDetail).includes(null)) return null;
+  if (!loaded || (detailKR && detailKR.backdrop_path && !backgroundLoaded))
+    return <Loading />;
+  if (!detailKR || Object.values(furtherDetail).includes(null)) return null;
 
-  return <MovieDetailPageBody detail={detail} {...furtherDetail} />;
+  return <MovieDetailPageBody detailKR={detailKR} {...furtherDetail} />;
 }
 
 export default MovieDetailPageBodyContainer;

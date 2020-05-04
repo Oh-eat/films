@@ -34,8 +34,8 @@ function NowPlayingPageBodyContainer({ currentPage }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nowPlaying, dispatch]);
 
-  if (loading) return <Loading />;
   if (error || isEmptyArray(nowPlaying)) return <Error />;
+  if (loading) return <Loading />;
   if (!nowPlaying) return null;
 
   return (

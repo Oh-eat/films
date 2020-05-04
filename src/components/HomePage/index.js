@@ -15,7 +15,7 @@ function HomePageBody() {
   const { nowPlaying, error: nowPlayingError } = useSelector(
     ({ movies }) => movies
   );
-  const { detail, error: detailError } = useSelector(
+  const { detailKR, detailEN, error: detailError } = useSelector(
     ({ movieDetail }) => movieDetail
   );
   const { nowPlayingLoading, detailLoading } = useSelector(({ loading }) => ({
@@ -38,20 +38,20 @@ function HomePageBody() {
       dispatch(getNowPlaying());
       return;
     }
-    if (!detail && !detailLoading) {
+    if (!detailKR && !detailLoading) {
       const movie = pickRandomMovie(nowPlaying, backgroundPath);
       dispatch(getDetail(movie.id));
       return;
     }
-    if (detail && detail.backdrop_path !== backgroundPath) {
+    if (detailKR && detailKR.backdrop_path !== backgroundPath) {
       dispatch(
-        setBackground({ path: detail.backdrop_path, brightness: "bright" })
+        setBackground({ path: detailKR.backdrop_path, brightness: "bright" })
       );
     }
   }, [
     nowPlaying,
     nowPlayingLoading,
-    detail,
+    detailKR,
     detailLoading,
     backgroundPath,
     dispatch,
@@ -60,15 +60,15 @@ function HomePageBody() {
   if (detailError || nowPlayingError) return <Error />;
   if (detailLoading || nowPlayingLoading || !backgroundLoaded)
     return <Loading />;
-  if (!detail || !nowPlaying) return null;
+  if (!detailKR || !nowPlaying) return null;
 
   return (
     <Wrapper>
-      <h2>{detail.title}</h2>
+      <h2>{detailKR.title || detailEN.title}</h2>
       <p>
-        <em>{detail.tagline}</em>
+        <em>{detailKR.tagline || detailEN.tagline}</em>
       </p>
-      <Button fontSize="4vmin" variant="outlined" to={`/movie/${detail.id}`}>
+      <Button fontSize="4vmin" variant="outlined" to={`/movie/${detailKR.id}`}>
         더 보기
       </Button>
     </Wrapper>

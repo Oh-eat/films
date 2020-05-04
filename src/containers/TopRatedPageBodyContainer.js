@@ -32,8 +32,8 @@ function TopRatedPageBodyContainer({ currentPage }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [topRated, dispatch]);
 
-  if (loading) return <Loading />;
   if (error || isEmptyArray(topRated)) return <Error />;
+  if (loading) return <Loading />;
   if (!topRated) return null;
 
   return (

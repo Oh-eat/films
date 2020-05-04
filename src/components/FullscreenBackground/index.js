@@ -35,11 +35,10 @@ function FullscreenBackground() {
 
   if (!currentPath) return null;
 
-  console.log(loaded);
   return (
     <FullscreenBackgroundStyled
       className={`${currentBrightness} ${loaded && "loaded"}`}
-      src={currentPath ? buildImageUrl(currentPath, "original") : ""}
+      src={buildImageUrl(currentPath, "original")}
       onLoad={onLoad}
     />
   );

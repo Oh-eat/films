@@ -32,8 +32,8 @@ function PopularPageBodyContainer({ currentPage }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [popular, dispatch]);
 
-  if (loading) return <Loading />;
   if (error || isEmptyArray(popular)) return <Error />;
+  if (loading) return <Loading />;
   if (!popular) return null;
 
   return (

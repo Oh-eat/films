@@ -32,8 +32,8 @@ function UpcomingPageBodyContainer({ currentPage }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [upcoming, dispatch]);
 
-  if (loading) return <Loading />;
   if (error || isEmptyArray(upcoming)) return <Error />;
+  if (loading) return <Loading />;
   if (!upcoming) return null;
 
   return (

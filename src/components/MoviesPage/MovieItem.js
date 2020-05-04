@@ -9,7 +9,7 @@ function MovieItem({ movie, index }) {
     <MovieItemStyled to={`/movie/${movie.id}`} index={index}>
       {movie.poster_path ? (
         <Image
-          src={buildImageUrl(movie.poster_path, 500)}
+          src={buildImageUrl(movie.poster_path, 400)}
           alt={movie.title}
           position="absolute"
           objectFit="fill"

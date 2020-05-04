@@ -22,9 +22,16 @@ export const getSimilar = (movieId, page = 1) =>
     `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${API_KEY}&language=ko-KR&page=${page}`
   );
 export const getDetail = (movieId) =>
-  axios.get(
-    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=ko-KR`
-  );
+  axios
+    .all([
+      axios.get(
+        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=ko-KR`
+      ),
+      axios.get(
+        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`
+      ),
+    ])
+    .then((data) => ({ data }));
 export const getImages = (movieId) =>
   axios.get(
     `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${API_KEY}`

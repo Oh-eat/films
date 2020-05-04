@@ -26,7 +26,8 @@ export function* movieDetailSaga() {
 }
 
 const initialState = {
-  detail: null,
+  detailKR: null,
+  detailEN: null,
   images: null,
   videos: null,
   credit: null,
@@ -38,28 +39,28 @@ const initialState = {
 const movieDetail = handleActions(
   {
     [INITIALIZE_STATE]: () => initialState,
-    [GET_DETAIL.REQUEST]: (state) => ({
+    [GET_DETAIL.REQUEST]: () => initialState,
+    [GET_DETAIL.SUCCESS]: (
+      state,
+      { payload: [{ data: detailKR }, { data: detailEN }], meta }
+    ) => ({
       ...state,
-      error: null,
-    }),
-    [GET_DETAIL.SUCCESS]: (state, { payload: detail, meta }) => ({
-      ...state,
-      detail,
+      detailKR,
+      detailEN,
       meta,
     }),
     [GET_DETAIL.FAILURE]: (state, { payload: error }) => ({
       ...state,
       error,
     }),
-    [GET_FURTHER_DETAIL.REQUEST]: (state) => ({
-      ...state,
-      error: null,
-    }),
+    [GET_FURTHER_DETAIL.REQUEST]: () => initialState,
     [GET_FURTHER_DETAIL.SUCCESS]: (
       state,
       {
         payload: [
-          { data: detail },
+          {
+            data: [{ data: detailKR }, { data: detailEN }],
+          },
           { data: images },
           { data: videos },
           { data: credit },
@@ -69,7 +70,8 @@ const movieDetail = handleActions(
       }
     ) => ({
       ...state,
-      detail,
+      detailKR,
+      detailEN,
       images,
       videos,
       credit,

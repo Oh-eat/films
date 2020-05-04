@@ -29,7 +29,7 @@ const background = handleActions(
       ...state,
       path,
       brightness,
-      loaded: false,
+      loaded: state.path === path ? true : false,
     }),
     [SET_BRIGHTNESS]: (state, { payload: brightness }) => ({
       ...state,
