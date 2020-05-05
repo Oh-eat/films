@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { Wrapper } from "./styles";
 import Loading from "../Loading";
 
-function Image({ src, alt = "", objectFit }) {
+function Image({ src, alt = "", objectFit, basis }) {
   const [loaded, setLoaded] = useState(false);
 
   const onLoad = useCallback(() => {
@@ -10,7 +10,7 @@ function Image({ src, alt = "", objectFit }) {
   }, []);
 
   return (
-    <Wrapper objectFit={objectFit}>
+    <Wrapper objectFit={objectFit} basis={basis}>
       {!loaded && <Loading loaded={loaded} />}
       <img
         className={loaded ? "loaded" : ""}

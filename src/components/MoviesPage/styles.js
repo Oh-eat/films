@@ -36,7 +36,7 @@ export const MovieItemStyled = styled(Link)`
   animation: ${FADE_IN} ${(props) => `${props.index * 0.1}s`} linear;
 
   & > * {
-    position: absolute;
+    position: absolute !important;
     top: 0;
     left: 0;
   }

@@ -56,4 +56,4 @@ function SubnavItem({ caption, to }) {
   );
 }
 
-export default DropdownNavItem;
+export default React.memo(DropdownNavItem);
