@@ -6,7 +6,7 @@ export const FullscreenBackgroundStyled = styled.img`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   object-fit: cover;
   opacity: 0;
   filter: brightness(0.25);

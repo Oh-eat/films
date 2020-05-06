@@ -1,9 +1,11 @@
 import React from "react";
-import Detail from "./Detail";
-import Credit from "./Credit";
-import Images from "./Images";
-import Videos from "./Videos";
-import Similars from "./Similars";
+import Info from "./Info";
+import Title from "./Title";
+import Poster from "./Poster";
+import Buttons from "./Buttons";
+import mergeDetail from "../../lib/mergeDetail";
+import Genres from "./Genres";
+import Summary from "./Summary";
 
 function MovieDetailPageBody({
   detailKR,
@@ -13,13 +15,16 @@ function MovieDetailPageBody({
   credit,
   similars,
 }) {
+  const detail = mergeDetail(detailKR, detailEN);
+  console.log(detail);
   return (
     <>
-      <Detail detailKR={detailKR} detailEN={detailEN} />
-      <Credit credit={credit} />
-      <Images images={images} />
-      <Videos videos={videos} />
-      <Similars similars={similars} />
+      <Title title={detail.title} originalTitle={detail.original_title} />
+      <Genres genres={detail.genres} />
+      <Buttons homepage={detail.homepage} />
+      <Poster posterPath={detail.poster_path} />
+      <Info detail={detail} />
+      <Summary tagline={detail.tagline} overview={detail.overview} />
     </>
   );
 }

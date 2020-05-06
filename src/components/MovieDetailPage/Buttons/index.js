@@ -6,7 +6,7 @@ import {
   MdBookmark,
   MdBookmarkBorder,
 } from "react-icons/md";
-import Button from "../../../common/Button";
+import Button from "../../common/Button";
 import { ButtonsStyled } from "./styles";
 
 function Buttons({ homepage }) {
@@ -27,15 +27,15 @@ function Buttons({ homepage }) {
       <Button size="1.5rem" variant="transparent circle" color="red">
         <MdFavorite size="1.5rem" />
       </Button>
-      <Button size="1.5rem" variant="transparent circle" color="red">
+      {/* <Button size="1.5rem" variant="transparent circle" color="red">
         <MdFavoriteBorder size="1.5rem" />
-      </Button>
+      </Button> */}
       <Button size="1.5rem" variant="transparent circle" color="yellow">
         <MdBookmark size="1.5rem" />
       </Button>
-      <Button size="1.5rem" variant="transparent circle" color="yellow">
+      {/* <Button size="1.5rem" variant="transparent circle" color="yellow">
         <MdBookmarkBorder size="1.5rem" />
-      </Button>
+      </Button> */}
     </ButtonsStyled>
   );
 }

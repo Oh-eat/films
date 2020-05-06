@@ -5,13 +5,13 @@ export const Wrapper = styled.div`
   &,
   img {
     width: ${(props) =>
-      props.objectFit === "fill"
+      props.objectFit === "fill" || props.objectFit === "contain"
         ? "100%"
         : props.basis === "height"
         ? "auto"
         : "100%"};
     height: ${(props) =>
-      props.objectFit === "fill"
+      props.objectFit === "fill" || props.objectFit === "contain"
         ? "100%"
         : props.basis === "height"
         ? "100%"

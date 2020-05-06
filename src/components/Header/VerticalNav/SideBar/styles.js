@@ -13,7 +13,7 @@ export const Fullscreen = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
   display: none;
 
@@ -28,7 +28,7 @@ export const SideBarStyled = styled.div`
   top: 0;
   right: 0;
   width: 15rem;
-  height: 100vh;
+  height: 100%;
   background-color: rgb(50, 50, 50);
   transform: translateX(100%);
   transition: transform 0.5s ease;

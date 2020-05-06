@@ -1,6 +1,6 @@
 import React from "react";
 import { GenreTagStyled, Wrapper } from "./styles";
-import mapGenres from "../../../../lib/GENRES";
+import mapGenres from "../../../lib/GENRES";
 
 function Genres({ genres }) {
   return (
