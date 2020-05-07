@@ -6,6 +6,7 @@ import Buttons from "./Buttons";
 import mergeDetail from "../../lib/mergeDetail";
 import Genres from "./Genres";
 import Summary from "./Summary";
+import { Wrapper } from "./styles";
 
 function MovieDetailPageBody({
   detailKR,
@@ -19,10 +20,15 @@ function MovieDetailPageBody({
   console.log(detail);
   return (
     <>
-      <Title title={detail.title} originalTitle={detail.original_title} />
+      {/* <HorizontalDetail detail={detail} /> */}
+      <Wrapper className="wrapper">
+        <Poster posterPath={detail.poster_path} />
+        <div className="info">
+          <Title title={detail.title} originalTitle={detail.original_title} />
+          <Buttons homepage={detail.homepage} />
+        </div>
+      </Wrapper>
       <Genres genres={detail.genres} />
-      <Buttons homepage={detail.homepage} />
-      <Poster posterPath={detail.poster_path} />
       <Info detail={detail} />
       <Summary tagline={detail.tagline} overview={detail.overview} />
     </>

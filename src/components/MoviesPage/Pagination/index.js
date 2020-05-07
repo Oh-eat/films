@@ -10,10 +10,8 @@ import {
   PrevWrapper,
   PageNumberWrapper,
   NextWrapper,
-  PageNumberStyled,
 } from "./styles";
 import Button from "../../common/Button";
-import { NavLink } from "react-router-dom";
 import debounce from "../../../lib/debounce";
 import checkEnoughWidth from "../../../lib/checkEnoughWidth";
 
@@ -36,11 +34,6 @@ function Pagination({ currentPage, lastPage }) {
   const hidePrev = currentPageIndex === 0;
   const hideNext = currentPageIndex >= lastPageIndex;
 
-  const onResize = useCallback(() => {
-    const size = checkEnoughWidth() ? 10 : 5;
-    setSize(size);
-  }, []);
-  const debouncedOnResize = useCallback(debounce(onResize, 100), [onResize]);
   const onClickFirst = useCallback(() => {
     setCurrentPageIndex(0);
   }, []);
@@ -53,6 +46,11 @@ function Pagination({ currentPage, lastPage }) {
   const onClickLast = useCallback(() => {
     setCurrentPageIndex(lastPageIndex);
   }, [lastPageIndex]);
+  const onResize = useCallback(() => {
+    const size = checkEnoughWidth() ? 10 : 5;
+    setSize(size);
+  }, []);
+  const debouncedOnResize = useCallback(debounce(onResize, 100), [onResize]);
 
   useEffect(() => {
     const size = checkEnoughWidth() ? 10 : 5;

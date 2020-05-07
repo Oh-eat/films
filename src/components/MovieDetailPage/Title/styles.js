@@ -9,6 +9,7 @@ export const TitleStyled = styled.div`
   text-transform: uppercase;
   letter-spacing: 1px;
   line-height: 1;
+  text-align: center;
 
   h1 {
     font-size: 2rem;

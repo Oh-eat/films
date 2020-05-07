@@ -1,16 +1,15 @@
 import styled from "styled-components";
 
 export const InfoStyled = styled.div`
-  margin-top: 2rem;
+  margin: 2rem auto 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: flex-start;
-  /* display: flex;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  flex-wrap: wrap; */
-  /* flex-direction: column; */
-  /* border: 1px solid rgba(255, 255, 255, 0.1); */
+  max-width: 768px;
+
+  /* @media screen and (max-width: 767px) {
+    width: 100%;
+  } */
 `;
 
 export const InfoItemStyled = styled.div`
@@ -18,12 +17,18 @@ export const InfoItemStyled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  line-height: 1;
 
   svg {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
   }
 
   span {
     font-size: 1.25rem;
+  }
+
+  span + span {
+    margin-top: 0.75rem;
   }
 `;

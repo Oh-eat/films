@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 `;
 
 export const GenreTagStyled = styled.span`
@@ -14,10 +15,11 @@ export const GenreTagStyled = styled.span`
   color: ${color.default.normal};
   font-size: 1rem;
   display: inline-block;
+  line-height: 1;
 
   & + & {
     padding-left: 0.5rem;
-    border-left: 1px solid ${color.default.normal};
-    margin-left: 0.5rem;
+    /* border-left: 1px solid ${color.default.normal};
+    margin-left: 0.5rem; */
   }
 `;

@@ -24,7 +24,7 @@ function Runtime({ runtime }) {
   return (
     <InfoItemStyled>
       {/* <strong>상영 시간</strong> */}
-      <MdAccessTime size="2rem" />
+      <MdAccessTime size="1.5rem" />
       <span>
         {!runtime || runtime === "0" || runtime === 0 ? "미정" : `${runtime}분`}
       </span>
@@ -36,7 +36,7 @@ function Status({ status }) {
   return (
     <InfoItemStyled>
       {/* <strong>상태</strong> */}
-      <MdMovie size="2rem" />
+      <MdMovie size="1.5rem" />
       <span>{statusMap[status] || status}</span>
     </InfoItemStyled>
   );
@@ -45,7 +45,7 @@ function VoteAverage({ voteAverage }) {
   return (
     <InfoItemStyled>
       {/* <strong>평균 평점</strong> */}
-      <MdStar size="2rem" />
+      <MdStar size="1.5rem" />
       <span>{voteAverage}</span>
     </InfoItemStyled>
   );
@@ -55,7 +55,7 @@ function ProductionCountries({ productionCountries }) {
   return (
     <InfoItemStyled>
       {/* <strong>제작 국가</strong> */}
-      <MdFlag size="2rem" />
+      <MdFlag size="1.5rem" />
       {mapCountries(productionCountries).map((country) => (
         <span key={country}>{country} </span>
       ))}
