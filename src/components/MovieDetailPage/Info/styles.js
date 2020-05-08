@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const InfoStyled = styled.div`
   margin: 2rem auto 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   align-items: flex-start;
   max-width: 768px;
 
@@ -25,7 +25,7 @@ export const InfoItemStyled = styled.div`
   }
 
   span {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 
   span + span {

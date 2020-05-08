@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Info from "./Info";
 import Title from "./Title";
 import Poster from "./Poster";
 import Buttons from "./Buttons";
 import mergeDetail from "../../lib/mergeDetail";
-import Genres from "./Genres";
 import Summary from "./Summary";
 import { Wrapper } from "./styles";
+import Credit from "./Credit";
 
 function MovieDetailPageBody({
   detailKR,
@@ -20,17 +20,20 @@ function MovieDetailPageBody({
   console.log(detail);
   return (
     <>
-      {/* <HorizontalDetail detail={detail} /> */}
-      <Wrapper className="wrapper">
+      <Wrapper>
         <Poster posterPath={detail.poster_path} />
-        <div className="info">
-          <Title title={detail.title} originalTitle={detail.original_title} />
+        <div className="header">
+          <Title
+            title={detail.title}
+            originalTitle={detail.original_title}
+            year={new Date(detail.release_date).getFullYear()}
+          />
           <Buttons homepage={detail.homepage} />
         </div>
       </Wrapper>
-      <Genres genres={detail.genres} />
       <Info detail={detail} />
       <Summary tagline={detail.tagline} overview={detail.overview} />
+      <Credit credit={credit} />
     </>
   );
 }

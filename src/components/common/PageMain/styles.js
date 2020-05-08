@@ -5,18 +5,24 @@ import {
 } from "../../../lib/defaultStyles";
 
 export const PageMainStyled = styled.main`
+  overflow-y: scroll;
+  width: 100%;
+  /* width: ${(props) =>
+    props.hideScrollbar
+      ? `$calc(100% + ${props.scrollbarWidth + 1}px)`
+      : "100%"}; */
+  /* width: 100%; */
   min-height: calc(100% - ${HEADER_HEIGHT});
   /* min-height: 100%; */
-  width: 100%;
   display: block;
-  position: absolute;
+  position: relative;
 `;
 
 export const PageMainWrapper = styled.div`
-  left: 0;
   top: 0;
-  right: 0;
   bottom: 0;
+  left: 0;
+  right: 0;
   margin: 0 auto;
   position: absolute;
   min-height: 100%;

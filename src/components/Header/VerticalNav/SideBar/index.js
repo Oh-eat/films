@@ -21,7 +21,14 @@ function SideBar({ visible, setNavHidden }) {
 
   return (
     <>
-      <Fullscreen className={visible && "visible"} onClick={handleMenuClick} />
+      <Fullscreen
+        className={visible && "visible"}
+        onClick={handleMenuClick}
+        onScroll={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+      />
       <SideBarStyled className={visible && "visible"}>
         <Closer>
           <Button

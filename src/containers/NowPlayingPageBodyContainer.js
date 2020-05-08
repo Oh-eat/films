@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearMovies, getNowPlaying } from "../reducers/movies";
 import { setBackground } from "../reducers/background";
 import pickRandomMovie from "../lib/pickRandomMovie";
-import isEmptyArray from "../lib/isEmptyArray";
+import { isEmptyArray } from "../lib/isEmpty";
 import MoviesPageBody from "../components/MoviesPage";
 import Loading from "../components/common/Loading";
 import Error from "../components/common/Error";

@@ -32,46 +32,45 @@ export const SectionStyle = styled.section`
   }
 `;
 
-export const Detail = styled(SectionStyle)`
-  display: grid;
-  grid-template-areas:
-    "poster detail"
-    "poster detail"
-    "poster detail"
-    "buttons detail";
-  grid-template-columns: min-content auto;
-
-  .poster {
-    grid-area: poster;
-    & > * {
-      width: auto !important;
-    }
-  }
-
-  .buttons {
-    grid-area: buttons;
-  }
-
-  .detail {
-    grid-area: detail;
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-`;
-
 export const Wrapper = styled.section`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  /* display: grid;
-  grid-template-columns: fit-content(100%) auto;
-  grid-gap: 1rem; */
   height: calc(100% - 4rem);
   margin: 2rem auto;
+  width: 100%;
 
-  .info {
+  .header {
     display: flex;
     flex-direction: column;
+    flex: initial;
+    width: max-content;
+    order: 2;
+    max-width: 60%;
+  }
+
+  @media screen and (orientation: portrait) {
+    flex-direction: column;
     justify-content: flex-start;
+    height: auto;
+
+    .header {
+      order: 1;
+      margin: 0;
+      /* width: 100%; */
+      max-width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 768px) and (min-height: 768px) {
+    height: auto;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    .header {
+      order: 1;
+      margin: 0;
+      width: 100%;
+    }
   }
 `;

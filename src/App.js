@@ -16,24 +16,24 @@ import CustomScrollbars from "./components/CustomScrollbars";
 function App() {
   return (
     <>
-      <CustomScrollbars>
-        <Header />
-        <FullscreenBackground />
-        <PageMain>
-          <Switch>
-            <Route path="/" exact component={HomePage} />
-            <Route path="/movies">
-              <MoviesNav />
-              <Route path="/movies/now_playing" component={NowPlayingPage} />
-              <Route path="/movies/popular" component={PopularPage} />
-              <Route path="/movies/top_rated" component={TopRatedPage} />
-              <Route path="/movies/upcoming" component={UpcomingPage} />
-            </Route>
-            <Route path="/movie/:movieId" component={MovieDetailPage} />
-            <Route path="/about" component={AboutPage} />
-          </Switch>
-        </PageMain>
-      </CustomScrollbars>
+      {/* <CustomScrollbars> */}
+      <Header />
+      <FullscreenBackground />
+      <PageMain>
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/movies">
+            <MoviesNav />
+            <Route path="/movies/now_playing" component={NowPlayingPage} />
+            <Route path="/movies/popular" component={PopularPage} />
+            <Route path="/movies/top_rated" component={TopRatedPage} />
+            <Route path="/movies/upcoming" component={UpcomingPage} />
+          </Route>
+          <Route path="/movie/:movieId" component={MovieDetailPage} />
+          <Route path="/about" component={AboutPage} />
+        </Switch>
+      </PageMain>
+      {/* </CustomScrollbars> */}
     </>
   );
 }
