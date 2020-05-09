@@ -11,10 +11,6 @@ import {
 export const HorizontalNavStyled = styled.nav`
   display: flex;
   align-items: center;
-
-  @media screen and (max-width: 1024px) {
-    display: none;
-  }
 `;
 
 export const HorizontalNavItemWrapper = styled(NavItemWrapper)``;

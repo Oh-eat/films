@@ -1,8 +1,8 @@
 import React from "react";
-import HomePageBody from "../components/HomePage";
+import HomePageBodyContainer from "../containers/HomePageBodyContainer";
 
 function HomePage(props) {
-  return <HomePageBody />;
+  return <HomePageBodyContainer />;
 }
 
 export default HomePage;

@@ -7,6 +7,7 @@ import mergeDetail from "../../lib/mergeDetail";
 import Summary from "./Summary";
 import { Wrapper } from "./styles";
 import Credit from "./Credit";
+import Images from "./Images";
 
 function MovieDetailPageBody({
   detailKR,
@@ -34,6 +35,7 @@ function MovieDetailPageBody({
       <Info detail={detail} />
       <Summary tagline={detail.tagline} overview={detail.overview} />
       <Credit credit={credit} />
+      <Images images={images} />
     </>
   );
 }

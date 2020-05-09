@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { HeaderStyled, Spacer, HeaderWrapper } from "./styles";
 import Logo from "./Logo";
 import HorizontalNav from "./HorizontalNav";
@@ -44,6 +44,20 @@ function Header() {
   //   };
   // }, [throttledOnScroll]);
 
+  const [showVerticalNav, setShowVerticalNav] = useState(false);
+
+  const onResize = useCallback(() => {
+    setShowVerticalNav(window.innerWidth < 1024);
+  }, []);
+
+  useEffect(() => {
+    onResize();
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("resize", onResize);
+    };
+  }, [onResize]);
+
   return (
     <>
       <HeaderStyled
@@ -52,8 +66,7 @@ function Header() {
       >
         <HeaderWrapper>
           <Logo />
-          <HorizontalNav />
-          <VerticalNav />
+          {showVerticalNav ? <VerticalNav /> : <HorizontalNav />}
         </HeaderWrapper>
       </HeaderStyled>
       <Spacer />

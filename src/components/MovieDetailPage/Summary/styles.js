@@ -15,8 +15,4 @@ export const SummaryStyled = styled(SectionStyle)`
     /* padding: 0 2vmin; */
     /* text-align: justify; */
   }
-  span {
-    color: gray;
-    text-align: center;
-  }
 `;

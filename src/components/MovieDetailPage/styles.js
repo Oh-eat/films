@@ -17,10 +17,10 @@ export const SectionStyle = styled.section`
   }
 
   h2 {
-    margin: 0 auto 2rem;
+    margin: 0 auto 2.5rem;
     padding: 0 2rem;
     display: inline-block;
-    font-size: 2rem;
+    font-size: 1.5rem;
     border-left: 5px solid ${color.default.normal};
     border-right: 5px solid ${color.default.normal};
   }
@@ -73,4 +73,9 @@ export const Wrapper = styled.section`
       width: 100%;
     }
   }
+`;
+
+export const NoContentStyled = styled.span`
+  color: gray;
+  text-align: center;
 `;
