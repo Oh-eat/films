@@ -1,50 +1,113 @@
 import styled from "styled-components";
 import { SectionStyle } from "../styles";
+import { DEFAULT_HORIZONTAL_MARGIN } from "../../../lib/defaultStyles";
+import color from "../../../lib/color";
+
+export const CreditWrapper = styled.div`
+  margin-top: 4rem;
+  display: grid;
+  grid-gap: 0 ${DEFAULT_HORIZONTAL_MARGIN};
+  column-rule: 1px ${color.default.normal} solid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    "header header"
+    "cast crew";
+
+  .swiper-container {
+    height: calc(
+      calc(min(calc(60vmin / 2), 9rem) * 3) +
+        calc(${DEFAULT_HORIZONTAL_MARGIN} * 2)
+    );
+
+    .swiper-wrapper {
+      flex-direction: column;
+    }
+
+    @media screen and (max-height: 500px) {
+      height: calc(
+        calc(min(calc(60vmin / 2), 9rem) * 2) +
+          calc(${DEFAULT_HORIZONTAL_MARGIN})
+      );
+    }
+  }
+
+  & > h2 {
+    grid-area: header;
+    line-height: 1.25;
+    text-align: center;
+    margin: 0 auto 2.5rem;
+    padding: 0 2rem;
+    display: inline-block;
+    font-size: 1.5rem;
+    border-left: 5px solid ${color.default.normal};
+    border-right: 5px solid ${color.default.normal};
+  }
+
+  section {
+    margin-top: 0;
+
+    h2,
+    h3 {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 1023px) {
+    margin-top: 0;
+    grid-gap: 0;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "header"
+      "cast"
+      "crew";
+
+    h2 {
+      display: none;
+    }
+
+    section {
+      margin-top: 4rem;
+
+      h2,
+      h3 {
+        display: block;
+      }
+    }
+  }
+`;
 
 export const CreditStyled = styled(SectionStyle)`
-  /* width: calc((100vw - 1rem) / 2); */
-  /* flex: auto; */
+  @media screen and (max-width: 1023px) {
+    h2 {
+      display: none;
+    }
+  }
 `;
 
 export const PersonCardStyled = styled.div`
   display: flex;
-  /* flex-direction: column; */
-  align-items: center;
-  /* width: 10rem; */
-  height: 9rem;
+  align-items: flex-start;
+  height: min(calc(60vmin / 2), 9rem);
+
+  img,
+  .placeholder {
+    flex: none;
+    width: min(calc(60vmin / 3), 6rem);
+    height: 100%;
+  }
 
   img {
-    flex: none;
-    /* width: 6rem; */
-    /* height: 9rem; */
-    /* width: 100%; */
-    /* height: auto; */
-    height: 9rem;
-    width: 6rem;
     object-fit: cover;
   }
 
   .placeholder {
-    flex: none;
-    /* width: 6rem; */
-    /* height: 9rem; */
-    box-sizing: border-box;
-    /* width: 100%; */
-    /* height: 0; */
-    /* padding-top: 150%; */
-    width: 6rem;
-    height: 9rem;
-    position: relative;
     background: rgb(45, 45, 45);
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgb(120, 120, 120);
 
     svg {
-      position: absolute;
-      top: 0;
-      left: 0;
+      color: rgb(120, 120, 120);
       width: 100%;
       height: 100%;
     }
@@ -54,7 +117,7 @@ export const PersonCardStyled = styled.div`
     flex: auto;
     display: flex;
     flex-direction: column;
-    margin-left: 0.25rem;
+    margin-left: 0.5rem;
 
     span {
       /* margin-top: 0.5rem; */

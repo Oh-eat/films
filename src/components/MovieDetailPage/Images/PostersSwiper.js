@@ -1,6 +1,8 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { buildImageUrl } from "../../../lib/TMDB_API";
 import Swiper from "react-id-swiper";
+import remToPixel from "../../../lib/remToPixel";
+import getVmin from "../../../lib/getVmin";
 
 function PostersSwiper({ posters }) {
   const [swiperParams, setSwiperParams] = useState(null);
@@ -12,15 +14,10 @@ function PostersSwiper({ posters }) {
   };
 
   const onResize = useCallback(() => {
-    const fontSize = Number(
-      window
-        .getComputedStyle(document.body)
-        .getPropertyValue("font-size")
-        .match(/\d+/)[0]
-    );
-    const { innerWidth: width, innerHeight: height } = window;
-    const vmin = Math.min(width * 0.02, height * 0.02);
-    const spaceBetween = Math.max(fontSize, vmin);
+    const { innerWidth: width } = window;
+    const rem = remToPixel();
+    const vmin = getVmin(2);
+    const spaceBetween = Math.max(rem, vmin);
     // const slidesPerColumn = height >= 500 ? 2 : 1;
     const slidesPerView = width >= 1024 ? 6 : width >= 568 ? 4 : 2;
     const slidesPerGroup = slidesPerView;
@@ -43,7 +40,7 @@ function PostersSwiper({ posters }) {
   return (
     <Swiper {...params}>
       {posters.map((poster, index) => (
-        <div key={index} className="swiper-slide">
+        <div key={index} className="swiper-slide click-action">
           <a href="https://www.naver.com">
             <img
               src={buildImageUrl(poster.file_path, 500)}

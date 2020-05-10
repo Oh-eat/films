@@ -1,24 +1,16 @@
 import React from "react";
-import { CreditStyled } from "./styles";
+import { CreditStyled, CreditWrapper } from "./styles";
 import CreditSwiper from "./CreditSwiper";
 import { isEmpty } from "../../../lib/isEmpty";
 import NoContent from "../NoContent";
 
 function Credit({ credit }) {
   return (
-    <div
-      style={{
-        display: "grid",
-        width: "100%",
-        gridGap: "1rem",
-        gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-        gridTemplateRows: "minmax(0, 30rem)",
-        alignItems: "center",
-      }}
-    >
+    <CreditWrapper>
+      <h2>출연진 & 제작진</h2>
       <Cast cast={credit.cast} />
       <Crew crew={credit.crew} />
-    </div>
+    </CreditWrapper>
   );
 }
 

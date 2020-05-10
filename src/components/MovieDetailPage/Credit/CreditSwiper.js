@@ -1,33 +1,27 @@
 import React, { useState, useCallback, useEffect } from "react";
 import Swiper from "react-id-swiper";
 import PersonCard from "./PersonCard";
-import { MdVerticalAlignBottom } from "react-icons/md";
+import remToPixel from "../../../lib/remToPixel";
+import getVmin from "../../../lib/getVmin";
 
 function CreditSwiper({ people }) {
   const [swiperParams, setSwiperParams] = useState(null);
   const params = {
+    height: 0,
     ...swiperParams,
-    direction: "column",
     // slidesPerColumnFill: "row",
     rebuildOnUpdate: true,
     grabCursor: true,
   };
 
   const onResize = useCallback(() => {
-    const fontSize = Number(
-      window
-        .getComputedStyle(document.body)
-        .getPropertyValue("font-size")
-        .match(/\d+/)[0]
-    );
     const { innerWidth: width, innerHeight: height } = window;
-    const vmin = Math.min(width * 0.02, height * 0.02);
-    const spaceBetween = Math.max(fontSize, vmin);
-    // const slidesPerColumn = height >= 500 ? 2 : 1;
-    // const slidesPerView = width >= 1024 ? 8 : width >= 568 ? 6 : 4;
-    const slidesPerView = 1;
+    const rem = remToPixel();
+    const vmin = getVmin(2);
+    const spaceBetween = Math.max(rem, vmin);
+    const slidesPerView = 1024 > width && width >= 500 ? 2 : 1;
+    const slidesPerColumn = height <= 500 ? 2 : 3;
     const slidesPerGroup = slidesPerView;
-    const slidesPerColumn = 3;
     setSwiperParams({
       spaceBetween,
       slidesPerView,

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Info from "./Info";
 import Title from "./Title";
 import Poster from "./Poster";
@@ -8,6 +8,7 @@ import Summary from "./Summary";
 import { Wrapper } from "./styles";
 import Credit from "./Credit";
 import Images from "./Images";
+import Similars from "./Similars";
 
 function MovieDetailPageBody({
   detailKR,
@@ -18,7 +19,6 @@ function MovieDetailPageBody({
   similars,
 }) {
   const detail = mergeDetail(detailKR, detailEN);
-  console.log(detail);
   return (
     <>
       <Wrapper>
@@ -36,6 +36,7 @@ function MovieDetailPageBody({
       <Summary tagline={detail.tagline} overview={detail.overview} />
       <Credit credit={credit} />
       <Images images={images} />
+      <Similars similars={similars} />
     </>
   );
 }

@@ -1,8 +1,8 @@
 import React from "react";
-import { MdLocalMovies } from "react-icons/md";
-import { MovieItemStyled, PosterReplacementStyled } from "./styles";
+import { MovieItemStyled } from "./styles";
 import { buildImageUrl } from "../../lib/TMDB_API";
 import Image from "../common/Image";
+import PosterPlaceholder from "../common/PosterPlaceholder";
 
 function MovieItem({ movie, index }) {
   return (
@@ -15,18 +15,9 @@ function MovieItem({ movie, index }) {
           objectFit="fill"
         />
       ) : (
-        <PosterReplacement title={movie.title} />
+        <PosterPlaceholder title={movie.title} />
       )}
     </MovieItemStyled>
-  );
-}
-
-function PosterReplacement({ title }) {
-  return (
-    <PosterReplacementStyled>
-      <h3>{title}</h3>
-      <MdLocalMovies size="75%" />
-    </PosterReplacementStyled>
   );
 }
 

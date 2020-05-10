@@ -1,31 +1,30 @@
-import React, { useState, useCallback, useEffect } from "react";
-import { buildImageUrl } from "../../../lib/TMDB_API";
+import React, { useEffect, useCallback, useState } from "react";
 import Swiper from "react-id-swiper";
 import remToPixel from "../../../lib/remToPixel";
 import getVmin from "../../../lib/getVmin";
+import SimilarItem from "./SimilarItem";
 
-function BackdropsSwiper({ backdrops }) {
+function SimilarsSwiper({ similars }) {
   const [swiperParams, setSwiperParams] = useState(null);
   const params = {
     ...swiperParams,
-    slidesPerColumnFill: "row",
-    grabCursor: true,
     rebuildOnUpdate: true,
+    grabCursor: true,
   };
 
   const onResize = useCallback(() => {
-    const { innerWidth: width, innerHeight: height } = window;
+    const { innerWidth: width } = window;
     const rem = remToPixel();
     const vmin = getVmin(2);
     const spaceBetween = Math.max(rem, vmin);
-    const slidesPerColumn = height >= 500 ? 2 : 1;
-    const slidesPerView = width >= 1024 ? 3 : width <= 567 ? 1 : 2;
+    // const slidesPerColumn = height >= 500 ? 2 : 1;
+    const slidesPerView = width >= 1024 ? 6 : width >= 568 ? 4 : 2;
     const slidesPerGroup = slidesPerView;
     setSwiperParams({
       spaceBetween,
       slidesPerView,
       slidesPerGroup,
-      slidesPerColumn,
+      // slidesPerColumn,
     });
   }, []);
 
@@ -39,19 +38,11 @@ function BackdropsSwiper({ backdrops }) {
 
   return (
     <Swiper {...params}>
-      {backdrops.map((backdrop, index) => (
-        <div key={index} className="swiper-slide click-action">
-          <a href="https://www.naver.com">
-            <img
-              src={buildImageUrl(backdrop.file_path, 500)}
-              alt=""
-              style={{ height: "auto", width: "100%" }}
-            />
-          </a>
-        </div>
+      {similars.map((similar) => (
+        <SimilarItem key={similar.id} similar={similar} />
       ))}
     </Swiper>
   );
 }
 
-export default BackdropsSwiper;
+export default SimilarsSwiper;

@@ -23,19 +23,19 @@ export const BackdropsStyled = styled(SectionStyle)``;
 //   }
 // `;
 
-export const PosterGrid = styled.div`
-  display: grid;
-  grid-gap: ${DEFAULT_HORIZONTAL_MARGIN};
+// export const PosterGrid = styled.div`
+//   display: grid;
+//   grid-gap: ${DEFAULT_HORIZONTAL_MARGIN};
 
-  @media screen and (min-width: 1281px) {
-    grid-template-columns: repeat(7, 1fr);
-  }
+//   @media screen and (min-width: 1281px) {
+//     grid-template-columns: repeat(7, 1fr);
+//   }
 
-  @media screen and (max-width: 1280px) {
-    grid-template-columns: repeat(5, 1fr);
-  }
+//   @media screen and (max-width: 1280px) {
+//     grid-template-columns: repeat(5, 1fr);
+//   }
 
-  @media screen and (max-width: 600px) and (orientation: portrait) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-`;
+//   @media screen and (max-width: 600px) and (orientation: portrait) {
+//     grid-template-columns: repeat(3, 1fr);
+//   }
+// `;

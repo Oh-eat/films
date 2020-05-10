@@ -6,7 +6,6 @@ import PostersSwiper from "./PostersSwiper";
 import NoContent from "../NoContent";
 
 function Images({ images }) {
-  console.log(images);
   return (
     <>
       <Backdrops backdrops={images.backdrops} />

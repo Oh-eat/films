@@ -30,6 +30,14 @@ export const SectionStyle = styled.section`
     font-size: 1.25rem;
     font-style: italic;
   }
+
+  .swiper-slide.click-action {
+    transition: transform 0.25s ease;
+
+    &:hover {
+      transform: scale(0.95, 0.95);
+    }
+  }
 `;
 
 export const Wrapper = styled.section`

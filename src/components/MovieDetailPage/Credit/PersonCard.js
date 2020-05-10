@@ -7,7 +7,7 @@ function PersonCard({ imagePath, name, role }) {
   return (
     <PersonCardStyled className="swiper-slide">
       {imagePath ? (
-        <img src={buildImageUrl(imagePath, 400)} alt="" />
+        <img src={buildImageUrl(imagePath, 300)} alt="" />
       ) : (
         <div className="placeholder">
           <MdPerson size="80%" />
