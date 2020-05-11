@@ -1,10 +1,14 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { buildImageUrl } from "../../../lib/TMDB_API";
+import { useDispatch } from "react-redux";
 import Swiper from "react-id-swiper";
 import remToPixel from "../../../lib/remToPixel";
 import getVmin from "../../../lib/getVmin";
+import { showZoom } from "../../../reducers/zoom";
+import ImagesSlide from "./ImagesSlide";
+import debounce from "../../../lib/debounce";
 
 function PostersSwiper({ posters }) {
+  const dispatch = useDispatch();
   const [swiperParams, setSwiperParams] = useState(null);
   const params = {
     ...swiperParams,
@@ -28,27 +32,31 @@ function PostersSwiper({ posters }) {
       // slidesPerColumn,
     });
   }, []);
+  const debouncedOnResize = useCallback(debounce(onResize, 100), [onResize]);
+  const onClick = useCallback(
+    (path) => {
+      dispatch(showZoom(path));
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
-    onResize();
-    window.addEventListener("resize", onResize);
+    debouncedOnResize();
+    window.addEventListener("resize", debouncedOnResize);
     return () => {
-      window.removeEventListener("resize", onResize);
+      window.removeEventListener("resize", debouncedOnResize);
     };
-  }, [onResize]);
+  }, [debouncedOnResize]);
 
   return (
     <Swiper {...params}>
       {posters.map((poster, index) => (
-        <div key={index} className="swiper-slide click-action">
-          <a href="https://www.naver.com">
-            <img
-              src={buildImageUrl(poster.file_path, 500)}
-              alt=""
-              style={{ height: "auto", width: "100%" }}
-            />
-          </a>
-        </div>
+        <ImagesSlide
+          key={index}
+          type="poster"
+          image={poster}
+          onClick={onClick}
+        />
       ))}
     </Swiper>
   );

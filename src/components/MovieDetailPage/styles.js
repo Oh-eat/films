@@ -33,6 +33,7 @@ export const SectionStyle = styled.section`
 
   .swiper-slide.click-action {
     transition: transform 0.25s ease;
+    cursor: pointer;
 
     &:hover {
       transform: scale(0.95, 0.95);

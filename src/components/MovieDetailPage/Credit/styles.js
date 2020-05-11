@@ -4,10 +4,9 @@ import { DEFAULT_HORIZONTAL_MARGIN } from "../../../lib/defaultStyles";
 import color from "../../../lib/color";
 
 export const CreditWrapper = styled.div`
-  margin-top: 4rem;
+  margin-top: 6rem;
   display: grid;
   grid-gap: 0 ${DEFAULT_HORIZONTAL_MARGIN};
-  column-rule: 1px ${color.default.normal} solid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-areas:
     "header header"
@@ -66,7 +65,7 @@ export const CreditWrapper = styled.div`
     }
 
     section {
-      margin-top: 4rem;
+      margin-top: 6rem;
 
       h2,
       h3 {
@@ -84,13 +83,14 @@ export const CreditStyled = styled(SectionStyle)`
   }
 `;
 
-export const PersonCardStyled = styled.div`
+export const CreditSlideStyled = styled.div`
   display: flex;
   align-items: flex-start;
   height: min(calc(60vmin / 2), 9rem);
 
   img,
   .placeholder {
+    position: relative;
     flex: none;
     width: min(calc(60vmin / 3), 6rem);
     height: 100%;

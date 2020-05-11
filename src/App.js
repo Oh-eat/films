@@ -11,7 +11,9 @@ import FullscreenBackground from "./components/FullscreenBackground";
 import Header from "./components/Header";
 import PageMain from "./components/common/PageMain";
 import MoviesNav from "./components/MoviesPage/MoviesNav";
+// eslint-disable-next-line
 import CustomScrollbars from "./components/CustomScrollbars";
+import Zoom from "./components/Zoom";
 
 function App() {
   return (
@@ -19,9 +21,10 @@ function App() {
       {/* <CustomScrollbars> */}
       <Header />
       <FullscreenBackground />
+      <Zoom />
       <PageMain>
         <Switch>
-          <Route path="/" exact component={HomePage} />
+          <Route path={["/", "/films"]} exact component={HomePage} />
           <Route path="/movies">
             <MoviesNav />
             <Route path="/movies/now_playing" component={NowPlayingPage} />

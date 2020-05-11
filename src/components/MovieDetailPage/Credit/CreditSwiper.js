@@ -1,13 +1,13 @@
 import React, { useState, useCallback, useEffect } from "react";
 import Swiper from "react-id-swiper";
-import PersonCard from "./PersonCard";
+import CreditSlide from "./CreditSlide";
 import remToPixel from "../../../lib/remToPixel";
 import getVmin from "../../../lib/getVmin";
+import debounce from "../../../lib/debounce";
 
 function CreditSwiper({ people }) {
   const [swiperParams, setSwiperParams] = useState(null);
   const params = {
-    height: 0,
     ...swiperParams,
     // slidesPerColumnFill: "row",
     rebuildOnUpdate: true,
@@ -29,19 +29,19 @@ function CreditSwiper({ people }) {
       slidesPerColumn,
     });
   }, []);
-
+  const debouncedOnResize = useCallback(debounce(onResize, 100), [onResize]);
   useEffect(() => {
-    onResize();
-    window.addEventListener("resize", onResize);
+    debouncedOnResize();
+    window.addEventListener("resize", debouncedOnResize);
     return () => {
-      window.removeEventListener("resize", onResize);
+      window.removeEventListener("resize", debouncedOnResize);
     };
-  }, [onResize]);
+  }, [debouncedOnResize]);
 
   return (
     <Swiper {...params}>
       {people.map((person, index) => (
-        <PersonCard
+        <CreditSlide
           key={index}
           imagePath={person.profile_path}
           name={person.name}

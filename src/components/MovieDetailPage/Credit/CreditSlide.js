@@ -1,13 +1,13 @@
 import React from "react";
 import { MdPerson } from "react-icons/md";
-import { PersonCardStyled } from "./styles";
+import { CreditSlideStyled } from "./styles";
 import { buildImageUrl } from "../../../lib/TMDB_API";
 
-function PersonCard({ imagePath, name, role }) {
+function CreditSlide({ imagePath, name, role }) {
   return (
-    <PersonCardStyled className="swiper-slide">
+    <CreditSlideStyled className="swiper-slide">
       {imagePath ? (
-        <img src={buildImageUrl(imagePath, 300)} alt="" />
+        <img src={buildImageUrl(imagePath, 200)} alt="" />
       ) : (
         <div className="placeholder">
           <MdPerson size="80%" />
@@ -17,8 +17,8 @@ function PersonCard({ imagePath, name, role }) {
         <span className="name">{name}</span>
         <span className="role">{role}</span>
       </div>
-    </PersonCardStyled>
+    </CreditSlideStyled>
   );
 }
 
-export default PersonCard;
+export default CreditSlide;

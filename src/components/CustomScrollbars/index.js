@@ -1,7 +1,5 @@
-import React, { useCallback, useEffect } from "react";
+import React from "react";
 import Scrollbars from "react-custom-scrollbars";
-import { HEADER_HEIGHT } from "../../lib/defaultStyles";
-import debounce from "../../lib/debounce";
 
 export function initializeScrollbar() {
   document.getElementById("scrollbar").scrollTo({ top: 0 });

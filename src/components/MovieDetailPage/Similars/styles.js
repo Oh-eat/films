@@ -6,9 +6,7 @@ export const SimilarsStyled = styled(SectionStyle)`
   margin-bottom: 2rem;
 `;
 
-export const SimilarItemStyled = styled(Link)`
-  position: relative;
-
+export const SimilarSlideStyled = styled(Link)`
   img {
     width: 100%;
     height: auto;

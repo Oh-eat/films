@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import Info from "./Info";
 import Title from "./Title";
 import Poster from "./Poster";
@@ -19,6 +19,7 @@ function MovieDetailPageBody({
   similars,
 }) {
   const detail = mergeDetail(detailKR, detailEN);
+
   return (
     <>
       <Wrapper>

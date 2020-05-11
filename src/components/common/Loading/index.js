@@ -2,9 +2,9 @@ import React from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { LoadingStyled } from "./styles";
 
-function Loading({ loaded }) {
+function Loading({ loaded, height }) {
   return (
-    <LoadingStyled className={loaded ? "loadead" : ""}>
+    <LoadingStyled className={loaded ? "loadead" : ""} height={height}>
       <AiOutlineLoading3Quarters size="2.5rem" />
     </LoadingStyled>
   );
