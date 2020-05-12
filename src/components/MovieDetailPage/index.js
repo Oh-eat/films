@@ -1,14 +1,15 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import Info from "./Info";
 import Title from "./Title";
 import Poster from "./Poster";
-import Buttons from "./Buttons";
+import MovieDetailButtonsContainer from "../../containers/MovieDetailPage/MovieDetailButtonsContainer";
 import mergeDetail from "../../lib/mergeDetail";
 import Summary from "./Summary";
 import { Wrapper } from "./styles";
 import Credit from "./Credit";
 import Images from "./Images";
 import Similars from "./Similars";
+import Videos from "./Videos";
 
 function MovieDetailPageBody({
   detailKR,
@@ -30,13 +31,17 @@ function MovieDetailPageBody({
             originalTitle={detail.original_title}
             year={new Date(detail.release_date).getFullYear()}
           />
-          <Buttons homepage={detail.homepage} />
+          <MovieDetailButtonsContainer
+            homepage={detail.homepage}
+            movie={detail}
+          />
         </div>
       </Wrapper>
       <Info detail={detail} />
       <Summary tagline={detail.tagline} overview={detail.overview} />
       <Credit credit={credit} />
       <Images images={images} />
+      <Videos videos={videos} />
       <Similars similars={similars} />
     </>
   );

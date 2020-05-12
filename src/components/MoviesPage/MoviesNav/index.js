@@ -2,12 +2,14 @@ import React from "react";
 import { MoviesNavStyled, MoviesNavItemWrapper } from "./styles";
 import sitemap from "../../../lib/sitemap";
 import NavItem from "./NavItem";
+import { withRouter } from "react-router-dom";
 
-function MoviesNav() {
+function MoviesNav({ match }) {
+  const sitemapIndex = match.path === "/movies" ? 1 : 2;
   return (
     <MoviesNavStyled>
       <MoviesNavItemWrapper>
-        {sitemap[1].subnavs.map(({ caption, to }, index) => (
+        {sitemap[sitemapIndex].subnavs.map(({ caption, to }, index) => (
           <NavItem key={index} caption={caption} to={to} />
         ))}
       </MoviesNavItemWrapper>
@@ -15,4 +17,4 @@ function MoviesNav() {
   );
 }
 
-export default MoviesNav;
+export default withRouter(MoviesNav);

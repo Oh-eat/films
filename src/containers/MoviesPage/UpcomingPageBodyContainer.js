@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearMovies, getUpcoming } from "../reducers/movies";
-import { setBackground } from "../reducers/background";
-import pickRandomMovie from "../lib/pickRandomMovie";
-import { isEmptyArray } from "../lib/isEmpty";
-import MoviesPageBody from "../components/MoviesPage";
-import Loading from "../components/common/Loading";
-import Error from "../components/common/Error";
-import initializeView from "../lib/initializeView";
+import { clearMovies, getUpcoming } from "../../reducers/movies";
+import { setBackground } from "../../reducers/background";
+import pickRandomMovie from "../../lib/pickRandomMovie";
+import { isEmptyArray } from "../../lib/isEmpty";
+import MoviesPageBody from "../../components/MoviesPage";
+import Loading from "../../components/common/Loading";
+import Error from "../../components/common/Error";
+import initializeView from "../../lib/initializeView";
 
 function UpcomingPageBodyContainer({ currentPage }) {
   const dispatch = useDispatch();

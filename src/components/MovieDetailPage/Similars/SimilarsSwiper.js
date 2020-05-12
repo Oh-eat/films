@@ -3,7 +3,7 @@ import Swiper from "react-id-swiper";
 import remToPixel from "../../../lib/remToPixel";
 import getVmin from "../../../lib/getVmin";
 import SimilarSlide from "./SimilarSlide";
-import debounce from "../../../lib/debounce";
+import useDebounce from "../../../lib/useDebounce";
 
 function SimilarsSwiper({ similars }) {
   const [swiperParams, setSwiperParams] = useState(null);
@@ -28,15 +28,17 @@ function SimilarsSwiper({ similars }) {
       // slidesPerColumn,
     });
   }, []);
-  const debouncedOnResize = useCallback(debounce(onResize, 100), [onResize]);
+  const [debouncedOnResize, timer] = useDebounce(onResize, 100);
 
   useEffect(() => {
     debouncedOnResize();
     window.addEventListener("resize", debouncedOnResize);
     return () => {
       window.removeEventListener("resize", debouncedOnResize);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      clearTimeout(timer.current);
     };
-  }, [debouncedOnResize]);
+  }, [debouncedOnResize, timer]);
 
   return (
     <Swiper {...params}>

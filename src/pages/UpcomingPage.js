@@ -1,6 +1,6 @@
 import React from "react";
 import qs from "qs";
-import UpcomingPageBodyContainer from "../containers/UpcomingPageBodyContainer";
+import UpcomingPageBodyContainer from "../containers/MoviesPage/UpcomingPageBodyContainer";
 
 function UpcomingPage({ location }) {
   const { page: currentPage } = qs.parse(location.search, {

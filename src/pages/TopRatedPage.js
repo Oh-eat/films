@@ -1,6 +1,6 @@
 import React from "react";
 import qs from "qs";
-import TopRatedPageBodyContainer from "../containers/TopRatedPageBodyContainer";
+import TopRatedPageBodyContainer from "../containers/MoviesPage/TopRatedPageBodyContainer";
 
 function TopRatedPage({ location }) {
   const { page: currentPage } = qs.parse(location.search, {

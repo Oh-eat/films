@@ -3,7 +3,7 @@ import Swiper from "react-id-swiper";
 import CreditSlide from "./CreditSlide";
 import remToPixel from "../../../lib/remToPixel";
 import getVmin from "../../../lib/getVmin";
-import debounce from "../../../lib/debounce";
+import useDebounce from "../../../lib/useDebounce";
 
 function CreditSwiper({ people }) {
   const [swiperParams, setSwiperParams] = useState(null);
@@ -29,14 +29,17 @@ function CreditSwiper({ people }) {
       slidesPerColumn,
     });
   }, []);
-  const debouncedOnResize = useCallback(debounce(onResize, 100), [onResize]);
+  const [debouncedOnResize, timer] = useDebounce(onResize, 100);
+
   useEffect(() => {
     debouncedOnResize();
     window.addEventListener("resize", debouncedOnResize);
     return () => {
       window.removeEventListener("resize", debouncedOnResize);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      clearTimeout(timer.current);
     };
-  }, [debouncedOnResize]);
+  }, [debouncedOnResize, timer]);
 
   return (
     <Swiper {...params}>

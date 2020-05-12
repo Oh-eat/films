@@ -1,17 +1,48 @@
-import React from "react";
+import React, { useCallback, useRef, useEffect } from "react";
 import {
   MdHome,
   MdFavorite,
-  // eslint-disable-next-line
   MdFavoriteBorder,
   MdBookmark,
-  // eslint-disable-next-line
   MdBookmarkBorder,
 } from "react-icons/md";
 import Button from "../../common/Button";
 import { ButtonsStyled } from "./styles";
 
-function Buttons({ homepage }) {
+function Buttons({
+  homepage,
+  liked,
+  inWatchlist,
+  toggleLiked,
+  toggleInWatchlist,
+}) {
+  const likeTimeoutRef = useRef(null);
+  const watchlistTimeoutRef = useRef(null);
+
+  const onLikeClick = useCallback(() => {
+    const button = document.activeElement;
+    button.blur();
+    button.focus();
+    toggleLiked();
+    clearTimeout(likeTimeoutRef.current);
+    likeTimeoutRef.current = setTimeout(() => button.blur(), 1000);
+  }, [toggleLiked]);
+  const onWatchlistClick = useCallback(() => {
+    const button = document.activeElement;
+    button.blur();
+    button.focus();
+    toggleInWatchlist();
+    clearTimeout(watchlistTimeoutRef.current);
+    watchlistTimeoutRef.current = setTimeout(() => button.blur(), 1000);
+  }, [toggleInWatchlist]);
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(likeTimeoutRef.current);
+      clearTimeout(watchlistTimeoutRef.current);
+    };
+  }, []);
+
   return (
     <ButtonsStyled>
       {homepage && (
@@ -26,18 +57,32 @@ function Buttons({ homepage }) {
           </a>
         </Button>
       )}
-      <Button size="1.5rem" variant="transparent circle" color="red">
-        <MdFavorite size="1.5rem" />
+      <Button
+        className="like"
+        size="1.5rem"
+        variant="transparent circle"
+        color="red"
+        onClick={onLikeClick}
+      >
+        {liked ? (
+          <MdFavorite size="1.5rem" />
+        ) : (
+          <MdFavoriteBorder size="1.5rem" />
+        )}
       </Button>
-      {/* <Button size="1.5rem" variant="transparent circle" color="red">
-        <MdFavoriteBorder size="1.5rem" />
-      </Button> */}
-      <Button size="1.5rem" variant="transparent circle" color="yellow">
-        <MdBookmark size="1.5rem" />
+      <Button
+        className="watchlist"
+        size="1.5rem"
+        variant="transparent circle"
+        color="yellow"
+        onClick={onWatchlistClick}
+      >
+        {inWatchlist ? (
+          <MdBookmark size="1.5rem" />
+        ) : (
+          <MdBookmarkBorder size="1.5rem" />
+        )}
       </Button>
-      {/* <Button size="1.5rem" variant="transparent circle" color="yellow">
-        <MdBookmarkBorder size="1.5rem" />
-      </Button> */}
     </ButtonsStyled>
   );
 }

@@ -3,7 +3,7 @@ export default function pickRandomMovie(movies, currentBackgroundPath) {
   const moviesWithBackdrop = movies.filter((movie) => movie.backdrop_path);
   while (
     !movie ||
-    (moviesWithBackdrop.length !== 0 &&
+    (moviesWithBackdrop.length > 1 &&
       movie.backdrop_path === currentBackgroundPath)
   ) {
     let randomIndex = Math.floor(Math.random() * moviesWithBackdrop.length);

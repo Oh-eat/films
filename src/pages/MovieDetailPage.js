@@ -1,5 +1,5 @@
 import React from "react";
-import MovieDetailPageBodyContainer from "../containers/MovieDetailPageBodyContainer";
+import MovieDetailPageBodyContainer from "../containers/MovieDetailPage/MovieDetailPageBodyContainer";
 
 function MovieDetailPage({ match }) {
   const { movieId } = match.params;

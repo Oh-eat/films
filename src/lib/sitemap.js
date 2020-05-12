@@ -29,11 +29,11 @@ const sitemap = [
     subnavs: [
       {
         caption: "좋아요",
-        to: "/like",
+        to: "/my_movies/like",
       },
       {
-        caption: "찜",
-        to: "/wishlist",
+        caption: "와치리스트",
+        to: "/my_movies/watchlist",
       },
     ],
   },

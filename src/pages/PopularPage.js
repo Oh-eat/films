@@ -1,6 +1,6 @@
 import React from "react";
 import qs from "qs";
-import PopularPageBodyContainer from "../containers/PopularPageBodyContainer";
+import PopularPageBodyContainer from "../containers/MoviesPage/PopularPageBodyContainer";
 
 function PopularPage({ location }) {
   const { page: currentPage } = qs.parse(location.search, {

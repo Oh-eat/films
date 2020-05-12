@@ -4,7 +4,7 @@ import color from "../../lib/color";
 export const SectionStyle = styled.section`
   display: flex;
   flex-direction: column;
-  margin-top: 4rem;
+  margin-top: 6rem;
 
   & > * {
     margin: 0;

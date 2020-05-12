@@ -21,6 +21,7 @@ export const PosterStyled = styled.div`
     width: 80%;
     order: 2;
     height: auto;
+    min-height: 30vh;
   }
 
   @media screen and (min-width: 768px) and (min-height: 768px) {

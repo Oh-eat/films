@@ -12,7 +12,7 @@ import {
   NextWrapper,
 } from "./styles";
 import Button from "../../common/Button";
-import debounce from "../../../lib/debounce";
+import useDebounce from "../../../lib/useDebounce";
 import checkEnoughWidth from "../../../lib/checkEnoughWidth";
 
 function getPageNumbers(pageIndex, lastPage, size) {
@@ -50,7 +50,7 @@ function Pagination({ currentPage, lastPage }) {
     const size = checkEnoughWidth() ? 10 : 5;
     setSize(size);
   }, []);
-  const debouncedOnResize = useCallback(debounce(onResize, 100), [onResize]);
+  const [debouncedOnResize, timer] = useDebounce(onResize, 100);
 
   useEffect(() => {
     const size = checkEnoughWidth() ? 10 : 5;
@@ -58,8 +58,10 @@ function Pagination({ currentPage, lastPage }) {
     window.addEventListener("resize", debouncedOnResize);
     return () => {
       window.removeEventListener("resize", debouncedOnResize);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      clearTimeout(timer.current);
     };
-  }, [debouncedOnResize]);
+  }, [debouncedOnResize, timer]);
 
   useEffect(() => {
     setCurrentPageIndex(getPageIndex(currentPage, size));

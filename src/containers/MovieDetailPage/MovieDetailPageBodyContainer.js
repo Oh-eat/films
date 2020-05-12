@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import MovieDetailPageBody from "../components/MovieDetailPage";
 import { useDispatch, useSelector } from "react-redux";
-import Error from "../components/common/Error";
-import Loading from "../components/common/Loading";
-import { initializeState, getFurtherDetail } from "../reducers/movieDetail";
-import { setBackground } from "../reducers/background";
-import initializeView from "../lib/initializeView";
+import initializeView from "../../lib/initializeView";
+import { initializeState, getFurtherDetail } from "../../reducers/movieDetail";
+import { setBackground } from "../../reducers/background";
+import Error from "../../components/common/Error";
+import Loading from "../../components/common/Loading";
+import MovieDetailPageBody from "../../components/MovieDetailPage";
 
 function MovieDetailPageBodyContainer({ movieId }) {
   const [loaded, setLoaded] = useState(false);

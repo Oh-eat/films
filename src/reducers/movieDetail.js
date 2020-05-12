@@ -73,7 +73,7 @@ const movieDetail = handleActions(
       detailKR,
       detailEN,
       images,
-      videos,
+      videos: videos.results,
       credit,
       similars: similars.results,
       meta,
