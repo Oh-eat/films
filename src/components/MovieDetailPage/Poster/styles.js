@@ -6,22 +6,15 @@ export const PosterStyled = styled.div`
   margin-right: 1rem;
   order: 1;
 
-  /* margin-top: 2rem; */
-
-  /* @media screen and (orientation: landscape) {
-    height: 80vh;
-  } */
-
-  /* @media screen and (min-width: 768px) {
-    height: 40vh;
-  } */
-
   @media screen and (orientation: portrait) {
     margin: 1rem 0 0 0;
     width: 80%;
     order: 2;
     height: auto;
-    min-height: 30vh;
+
+    & > div {
+      min-height: 20vh;
+    }
   }
 
   @media screen and (min-width: 768px) and (min-height: 768px) {

@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { VideoPlayerStyled, OuterWrapper, InnerWrapper } from "./styles";
 import Button from "../../common/Button";
 import Video from "./Video";
@@ -16,10 +17,28 @@ function VideoPlayer({ videos }) {
   }, [videos.length]);
 
   return (
-    <VideoPlayerStyled>
-      <Button className="prev" variant="outlined" onClick={onPrevClick}>
-        ◀
-      </Button>
+    <VideoPlayerStyled id="video-player">
+      {selected !== 0 && (
+        <>
+          <Button
+            className="prev landscape"
+            size="2rem"
+            variant="transparent circle"
+            onClick={onPrevClick}
+          >
+            <MdNavigateBefore size="2.5rem" />
+          </Button>
+          <Button
+            className="prev portrait"
+            width="auto"
+            height="2rem"
+            variant="transparent"
+            onClick={onPrevClick}
+          >
+            <MdNavigateBefore size="2.5rem" />
+          </Button>
+        </>
+      )}
       <OuterWrapper>
         <InnerWrapper
           videoCount={videos.length}
@@ -38,9 +57,27 @@ function VideoPlayer({ videos }) {
           )}
         </InnerWrapper>
       </OuterWrapper>
-      <Button className="next" variant="outlined" onClick={onNextClick}>
-        ▶
-      </Button>
+      {selected !== videos.length - 1 && (
+        <>
+          <Button
+            className="next landscape"
+            size="2rem"
+            variant="transparent circle"
+            onClick={onNextClick}
+          >
+            <MdNavigateNext size="2.5rem" />
+          </Button>
+          <Button
+            className="next portrait"
+            width="auto"
+            height="2rem"
+            variant="transparent"
+            onClick={onNextClick}
+          >
+            <MdNavigateNext size="2.5rem" />
+          </Button>
+        </>
+      )}
     </VideoPlayerStyled>
   );
 }

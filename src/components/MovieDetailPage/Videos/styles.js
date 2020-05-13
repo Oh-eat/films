@@ -5,27 +5,46 @@ import { DEFAULT_HORIZONTAL_MARGIN } from "../../../lib/defaultStyles";
 export const VideosStyled = styled(SectionStyle)``;
 
 export const VideoPlayerStyled = styled.div`
-  width: 100%;
   display: grid;
-  grid-template-columns: auto min(100%, 640px) auto;
+  grid-template-columns: 1fr min(60%, 640px) 1fr;
   grid-template-areas: "prev video next";
   grid-gap: 0 ${DEFAULT_HORIZONTAL_MARGIN};
   align-items: center;
 
   .prev {
     grid-area: prev;
+
+    &.landscape {
+      justify-self: flex-end;
+    }
   }
 
   .next {
     grid-area: next;
+
+    &.landscape {
+      justify-self: flex-start;
+    }
   }
 
-  @media screen and (max-width: 800px) {
-    grid-template-columns: 50% 50%;
+  .portrait {
+    display: none;
+  }
+
+  @media screen and (orientation: portrait) and (max-width: 767px) {
+    grid-template-columns: 1fr 1fr;
     grid-gap: ${DEFAULT_HORIZONTAL_MARGIN} 0;
     grid-template-areas:
       "video video"
       "prev next";
+
+    .landscape {
+      display: none;
+    }
+
+    .portrait {
+      display: block;
+    }
   }
 `;
 
@@ -44,18 +63,25 @@ export const InnerWrapper = styled.div`
 `;
 
 export const VideoStyled = styled.div`
+  width: 100%;
+  position: relative;
+  text-align: center;
+
+  span {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-weight: 300;
+  }
+`;
+
+export const PlayerWrapper = styled.div`
   position: relative;
   width: 100%;
-  /* padding-top: ${(props) => props.paddingTop}; */
-  padding-top:56.25%;
+  padding-top: 56.25%;
 
   .react-player {
     position: absolute;
     top: 0;
     left: 0;
-  }
-
-  span{
-      text-align:center;
   }
 `;

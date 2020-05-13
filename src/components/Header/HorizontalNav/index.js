@@ -3,15 +3,12 @@ import { HorizontalNavItemWrapper, HorizontalNavStyled } from "./styles";
 import ButtonNavItem from "./ButtonNavItem";
 import HoverableNavItem from "./HoverableNavItem";
 import sitemap from "../../../lib/sitemap";
-import Button from "../../common/Button";
-import { MdSearch } from "react-icons/md";
+import SearchButton from "../../Search/SearchButton";
 
 function HorizontalNav() {
   return (
     <HorizontalNavStyled>
-      <Button variant="transparent circle" size="1.75rem">
-        <MdSearch size="2rem" />
-      </Button>
+      <SearchButton />
       <HorizontalNavItemWrapper>
         {sitemap.map(({ caption, to, subnavs }, index) =>
           subnavs ? (

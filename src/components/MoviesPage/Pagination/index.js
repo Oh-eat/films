@@ -5,6 +5,7 @@ import {
   MdFirstPage,
   MdLastPage,
 } from "react-icons/md";
+import qs from "qs";
 import {
   PaginationStyled,
   PrevWrapper,
@@ -14,6 +15,7 @@ import {
 import Button from "../../common/Button";
 import useDebounce from "../../../lib/useDebounce";
 import checkEnoughWidth from "../../../lib/checkEnoughWidth";
+import { withRouter } from "react-router-dom";
 
 function getPageNumbers(pageIndex, lastPage, size) {
   return [...Array(size).keys()]
@@ -25,11 +27,17 @@ function getPageIndex(page, size) {
   return parseInt((page - 1) / size);
 }
 
-function Pagination({ currentPage, lastPage }) {
+function buildPageUrl(path, query, page) {
+  return `${path}?${qs.stringify({ ...query, page })}`;
+}
+
+function Pagination({ currentPage, lastPage, location, match }) {
   const [size, setSize] = useState(10);
   const [currentPageIndex, setCurrentPageIndex] = useState(
     getPageIndex(currentPage, size)
   );
+  const query = qs.parse(location.search, { ignoreQueryPrefix: true });
+  const { path } = match;
   const lastPageIndex = getPageIndex(lastPage, size);
   const hidePrev = currentPageIndex === 0;
   const hideNext = currentPageIndex >= lastPageIndex;
@@ -91,7 +99,12 @@ function Pagination({ currentPage, lastPage }) {
         {getPageNumbers(currentPageIndex, lastPage, size).map(
           (page) =>
             page <= lastPage && (
-              <PageNumber key={page} currentPage={currentPage} page={page} />
+              <PageNumber
+                key={page}
+                selected={currentPage === page}
+                to={buildPageUrl(path, query, page)}
+                page={page}
+              />
             )
         )}
       </PageNumberWrapper>
@@ -117,18 +130,16 @@ function Pagination({ currentPage, lastPage }) {
   );
 }
 
-function PageNumber({ currentPage, page }) {
+function PageNumber({ selected, to, page }) {
   return (
     // <PageNumberStyled className={currentPage === page && "selected"}>
     //   <NavLink to={`?page=${page}`}>{page}</NavLink>
     // </PageNumberStyled>
     <Button
-      variant={`${
-        currentPage === page ? "outlined circle" : "transparent circle"
-      }`}
+      variant={`${selected ? "outlined circle" : "transparent circle"}`}
       size="1rem"
       fontSize="0.75rem"
-      to={`?page=${page}`}
+      to={to}
       color="default"
     >
       {page}
@@ -136,4 +147,4 @@ function PageNumber({ currentPage, page }) {
   );
 }
 
-export default Pagination;
+export default withRouter(Pagination);

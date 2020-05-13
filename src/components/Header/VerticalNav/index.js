@@ -3,6 +3,7 @@ import { MdMenu } from "react-icons/md";
 import SideBar from "./SideBar";
 import Button from "../../common/Button";
 import { VerticalNavStyled, VerticalNavButtonsStyled } from "./styles";
+import SearchButton from "../../Search/SearchButton";
 
 function VerticalNav() {
   const [visible, setVisible] = useState(false);
@@ -17,6 +18,7 @@ function VerticalNav() {
   return (
     <VerticalNavStyled>
       <VerticalNavButtonsStyled>
+        <SearchButton />
         <Button
           variant="transparent circle"
           size="1.75rem"

@@ -16,6 +16,8 @@ import WatchlistPage from "./pages/WatchlistPage";
 // eslint-disable-next-line
 import CustomScrollbars from "./components/CustomScrollbars";
 import Zoom from "./components/Zoom";
+import SearchBar from "./components/Search/SearchBar";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
       {/* <CustomScrollbars> */}
       <Header />
       <FullscreenBackground />
+      <SearchBar />
       <Zoom />
       <PageMain>
         <Switch>
@@ -38,6 +41,9 @@ function App() {
             <MoviesNav />
             <Route path="/my_movies/like" component={LikePage} />
             <Route path="/my_movies/watchlist" component={WatchlistPage} />
+          </Route>
+          <Route path="/search">
+            <Route path="/search" component={SearchPage} />
           </Route>
           <Route path="/movie/:movieId" component={MovieDetailPage} />
           <Route path="/about" component={AboutPage} />

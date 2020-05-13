@@ -54,6 +54,9 @@ export const getFurtherDetail = (movieId) =>
       getSimilar(movieId),
     ])
     .then((data) => ({ data }));
+export const searchMovies = ({ query, page = 1 }) =>
+  axios.get(`
+https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=ko-KR&query=${query}&page=${page}&include_adult=false`);
 
 export const buildImageUrl = (path, size = 500) => {
   return `

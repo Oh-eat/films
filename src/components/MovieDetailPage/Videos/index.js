@@ -5,7 +5,6 @@ import VideoPlayer from "./VideoPlayer";
 import { VideosStyled } from "./styles";
 
 function Videos({ videos }) {
-  console.log(videos);
   return (
     <VideosStyled>
       <h2>비디오</h2>
