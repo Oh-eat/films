@@ -14,8 +14,6 @@ function Video({ index, video, selected }) {
     }
   }, [index, selected]);
 
-  console.log(`https://www.youtube.com/watch?v=${video.key}`);
-
   return (
     <VideoStyled>
       <PlayerWrapper>

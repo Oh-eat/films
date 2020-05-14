@@ -6,14 +6,13 @@ import { hideSearchBar } from "../../reducers/search";
 import { SearchBarStyled } from "./styles";
 import Button from "../common/Button";
 
-function SearchBar({ history }) {
+function SearchBar({ history, location }) {
   const dispatch = useDispatch();
   const visible = useSelector(({ search }) => search.showSearchBar);
   const [keyword, setKeyword] = useState("");
   const inputRef = useRef(null);
 
   const onCancelClick = useCallback(() => {
-    setKeyword("");
     dispatch(hideSearchBar());
   }, [dispatch]);
   const onChange = useCallback((e) => {
@@ -24,16 +23,23 @@ function SearchBar({ history }) {
       e.preventDefault();
       if (keyword === "" || !keyword) return;
       history.push(`/search?query=${keyword}`);
-      setKeyword("");
     },
     [keyword, history]
   );
 
   useEffect(() => {
-    if (visible && inputRef.current) {
-      inputRef.current.focus();
+    if (inputRef.current) {
+      if (visible) {
+        inputRef.current.focus();
+      } else {
+        setKeyword("");
+      }
     }
   }, [visible]);
+
+  useEffect(() => {
+    dispatch(hideSearchBar());
+  }, [location, dispatch]);
 
   return (
     <SearchBarStyled className={visible ? "visible" : ""}>

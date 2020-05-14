@@ -18,6 +18,7 @@ import CustomScrollbars from "./components/CustomScrollbars";
 import Zoom from "./components/Zoom";
 import SearchBar from "./components/Search/SearchBar";
 import SearchPage from "./pages/SearchPage";
+import SearchText from "./components/Search/SearchText";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
             <Route path="/my_movies/watchlist" component={WatchlistPage} />
           </Route>
           <Route path="/search">
+            <Route path="/search" component={SearchText} />
             <Route path="/search" component={SearchPage} />
           </Route>
           <Route path="/movie/:movieId" component={MovieDetailPage} />

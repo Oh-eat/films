@@ -2,7 +2,7 @@
 import { keyframes, css } from "styled-components";
 
 export const DEFAULT_HORIZONTAL_MARGIN = "max(1rem, 2vmin)";
-export const HEADER_HEIGHT = "4rem";
+export const HEADER_HEIGHT = "3.5rem";
 
 export const TRANSITION_HEIGHT = `height 0.25s ease`;
 export const TRANSITION_BACKGROUND_COLOR = `background-color 0.25s ease`;

@@ -135,15 +135,17 @@ function PageNumber({ selected, to, page }) {
     // <PageNumberStyled className={currentPage === page && "selected"}>
     //   <NavLink to={`?page=${page}`}>{page}</NavLink>
     // </PageNumberStyled>
-    <Button
-      variant={`${selected ? "outlined circle" : "transparent circle"}`}
-      size="1rem"
-      fontSize="0.75rem"
-      to={to}
-      color="default"
-    >
-      {page}
-    </Button>
+    <li>
+      <Button
+        variant={`${selected ? "outlined circle" : "transparent circle"}`}
+        size="1rem"
+        fontSize="0.75rem"
+        to={to}
+        color="default"
+      >
+        {page}
+      </Button>
+    </li>
   );
 }
 

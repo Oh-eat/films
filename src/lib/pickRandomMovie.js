@@ -7,7 +7,10 @@ export default function pickRandomMovie(movies, currentBackgroundPath) {
       movie.backdrop_path === currentBackgroundPath)
   ) {
     let randomIndex = Math.floor(Math.random() * moviesWithBackdrop.length);
-    movie = movies[randomIndex];
+    movie =
+      moviesWithBackdrop.length > 0
+        ? moviesWithBackdrop[randomIndex]
+        : movies[0];
   }
   return movie;
 }

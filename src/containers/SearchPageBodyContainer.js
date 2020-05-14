@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searchMovies, initializeState } from "../reducers/search";
-import { setBackground } from "../reducers/background";
+import { setBackground, setBrightness } from "../reducers/background";
 import pickRandomMovie from "../lib/pickRandomMovie";
 import { isEmptyArray } from "../lib/isEmpty";
 import MoviesPageBody from "../components/MoviesPage";
@@ -27,6 +27,7 @@ function SearchPageBodyContainer({ query, currentPage }) {
 
   useEffect(() => {
     if (!movies || isEmptyArray(movies)) {
+      dispatch(setBrightness("dark"));
       return;
     }
     const movie = pickRandomMovie(movies, backgroundPath);

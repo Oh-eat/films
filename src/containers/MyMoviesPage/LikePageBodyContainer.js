@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setBackground } from "../../reducers/background";
+import { setBackground, setBrightness } from "../../reducers/background";
 import pickRandomMovie from "../../lib/pickRandomMovie";
 import { isEmptyArray } from "../../lib/isEmpty";
 import MoviesPageBody from "../../components/MoviesPage";
@@ -35,6 +35,7 @@ function LikePageBodyContainer({ currentPage, history }) {
 
   useEffect(() => {
     if (!like || isEmptyArray(like)) {
+      dispatch(setBrightness("dark"));
       return;
     }
     const movie = pickRandomMovie(like, backgroundPath);

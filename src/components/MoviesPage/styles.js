@@ -18,7 +18,7 @@ export const MovieGridStyled = styled.div`
     }
   }
 
-  @media screen and (max-width: 600px) and (orientation: portrait) {
+  @media screen and (max-width: 567px) {
     & {
       grid-template-columns: repeat(2, 1fr);
     }

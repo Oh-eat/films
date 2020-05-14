@@ -19,7 +19,7 @@ function SimilarsSwiper({ similars }) {
     const vmin = getVmin(2);
     const spaceBetween = Math.max(rem, vmin);
     // const slidesPerColumn = height >= 500 ? 2 : 1;
-    const slidesPerView = width >= 1024 ? 6 : width >= 568 ? 4 : 2;
+    const slidesPerView = width >= 1280 ? 5 : width >= 568 ? 4 : 2;
     const slidesPerGroup = slidesPerView;
     setSwiperParams({
       spaceBetween,
