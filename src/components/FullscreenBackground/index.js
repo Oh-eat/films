@@ -1,8 +1,8 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { FullscreenBackgroundStyled } from "./styles";
-import { buildImageUrl } from "../../lib/TMDB_API";
 import { setLoaded } from "../../reducers/background";
+import { buildImageUrl } from "../../lib/TMDB_API";
+import { FullscreenBackgroundStyled } from "./styles";
 
 function FullscreenBackground() {
   const dispatch = useDispatch();

@@ -10,6 +10,7 @@ import Credit from "./Credit";
 import Images from "./Images";
 import Similars from "./Similars";
 import Videos from "./Videos";
+import AlternativeMovieDetailPageBody from "../AlternativeMovieDetailPage";
 
 function MovieDetailPageBody({
   detailKR,
@@ -23,6 +24,14 @@ function MovieDetailPageBody({
 
   return (
     <>
+      <AlternativeMovieDetailPageBody
+        detailKR={detailKR}
+        detailEN={detailEN}
+        images={images}
+        videos={videos}
+        credit={credit}
+        similars={similars}
+      />
       <Wrapper>
         <Poster posterPath={detail.poster_path} />
         <div className="header">

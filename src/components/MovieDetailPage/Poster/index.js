@@ -34,7 +34,7 @@ function Poster({ posterPath }) {
         <Image
           objectFit="contain"
           basis={basis}
-          src={buildImageUrl(posterPath, 1280)}
+          src={buildImageUrl(posterPath, 500)}
         />
       </PosterStyled>
     )

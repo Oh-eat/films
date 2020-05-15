@@ -7,17 +7,17 @@ import PopularPage from "./pages/PopularPage";
 import TopRatedPage from "./pages/TopRatedPage";
 import UpcomingPage from "./pages/UpcomingPage";
 import AboutPage from "./pages/AboutPage";
+import LikePage from "./pages/LikePage";
+import WatchlistPage from "./pages/WatchlistPage";
+import SearchPage from "./pages/SearchPage";
 import FullscreenBackground from "./components/FullscreenBackground";
 import Header from "./components/Header";
 import PageMain from "./components/common/PageMain";
 import MoviesNav from "./components/MoviesPage/MoviesNav";
-import LikePage from "./pages/LikePage";
-import WatchlistPage from "./pages/WatchlistPage";
 // eslint-disable-next-line
 import CustomScrollbars from "./components/CustomScrollbars";
 import Zoom from "./components/Zoom";
 import SearchBar from "./components/Search/SearchBar";
-import SearchPage from "./pages/SearchPage";
 import SearchText from "./components/Search/SearchText";
 
 function App() {
