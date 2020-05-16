@@ -3,23 +3,27 @@ import { TRANSITION_BACKGROUND_COLOR } from "../../../lib/defaultStyles";
 import color from "../../../lib/color";
 
 export const MovieDetailNavStyled = styled.nav`
-  display: flex;
-  /* justify-content: space-between; */
-  justify-content: flex-end;
-  align-items: center;
   height: 1.5rem;
-  margin: 0 auto 1rem;
 
-  span {
-    font-size: 1rem;
+  @media screen and (max-width: 567px) {
+    height: 4rem;
+  }
+
+  @media screen and (min-width: 768px) and (min-height: 768px) {
+    height: 2.5rem;
   }
 `;
 
 export const NavItemWrapper = styled.ul`
   display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
 `;
 
 export const NavItemStyled = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   height: 100%;
   box-sizing: border-box;
@@ -31,11 +35,20 @@ export const NavItemStyled = styled.li`
     background: ${color.default.background};
   }
 
-  &.empty {
+  &.selected {
+    text-decoration: underline;
+  }
+
+  &.disabled {
     color: gray;
 
     &:hover {
       background: none;
     }
+  }
+
+  @media screen and (min-width: 768px) and (min-height: 768px) {
+    font-size: 1.25rem;
+    padding: 0.25rem 0.75rem;
   }
 `;

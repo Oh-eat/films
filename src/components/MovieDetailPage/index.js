@@ -32,7 +32,7 @@ function MovieDetailPageBody({
         credit={credit}
         similars={similars}
       />
-      <Wrapper>
+      {/* <Wrapper>
         <Poster posterPath={detail.poster_path} />
         <div className="header">
           <Title
@@ -51,7 +51,7 @@ function MovieDetailPageBody({
       <Credit credit={credit} />
       <Images images={images} />
       <Videos videos={videos} />
-      <Similars similars={similars} />
+      <Similars similars={similars} /> */}
     </>
   );
 }

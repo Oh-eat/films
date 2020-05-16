@@ -1,65 +1,31 @@
 import React from "react";
+import { sections } from "..";
 import { MovieDetailNavStyled, NavItemWrapper, NavItemStyled } from "./styles";
-import { isEmpty } from "../../../lib/isEmpty";
 
-function MovieDetailNav({
-  detail,
-  images,
-  videos,
-  credit,
-  similars,
-  onClick,
-  selected,
-}) {
+function MovieDetailNav({ availableSections, onClick, now }) {
   return (
     <MovieDetailNavStyled>
-      {/* <span>{detail.title}</span> */}
       <NavItemWrapper>
-        <NavItem caption="소개" onClick={() => onClick(0)} />
-        <NavItem
-          caption="줄거리"
-          selected={selected === 0}
-          empty={isEmpty(detail.overview)}
-          onClick={() => onClick(1)}
-        />
-        <NavItem
-          caption="출연진"
-          empty={isEmpty(credit.cast)}
-          onClick={() => onClick(2)}
-        />
-        <NavItem
-          caption="제작진"
-          empty={isEmpty(credit.crew)}
-          onClick={() => onClick(3)}
-        />
-        <NavItem
-          caption="포스터"
-          empty={isEmpty(images.posters)}
-          onClick={() => onClick(4)}
-        />
-        <NavItem
-          caption="배경"
-          empty={isEmpty(images.backdrops)}
-          onClick={() => onClick(5)}
-        />
-        <NavItem
-          caption="비디오"
-          empty={isEmpty(videos)}
-          onClick={() => onClick(6)}
-        />
-        <NavItem
-          caption="비슷한 작품"
-          empty={isEmpty(similars)}
-          onClick={() => onClick(7)}
-        />
+        {sections.map((section, index) => (
+          <NavItem
+            key={index}
+            caption={section}
+            selected={index === now}
+            onClick={() => onClick(index)}
+            disabled={!availableSections.includes(section)}
+          />
+        ))}
       </NavItemWrapper>
     </MovieDetailNavStyled>
   );
 }
 
-function NavItem({ empty, caption, onClick }) {
+function NavItem({ caption, selected, disabled, onClick }) {
   return (
-    <NavItemStyled className={empty ? "empty" : ""} onClick={onClick}>
+    <NavItemStyled
+      className={selected ? "selected" : disabled ? "disabled" : ""}
+      onClick={disabled ? null : onClick}
+    >
       {caption}
     </NavItemStyled>
   );
