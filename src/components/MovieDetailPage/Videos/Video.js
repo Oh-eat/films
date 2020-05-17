@@ -2,17 +2,17 @@ import React, { useEffect, useRef } from "react";
 import ReactPlayer from "react-player";
 import { VideoStyled, PlayerWrapper } from "./styles";
 
-function Video({ index, video, selected }) {
+function Video({ index, video, selected, stopPlaying }) {
   const playerRef = useRef(null);
 
   useEffect(() => {
-    if (index !== selected && playerRef.current) {
+    if ((index !== selected && playerRef.current) || stopPlaying) {
       const player = playerRef.current.getInternalPlayer();
       if (player && player.pauseVideo) {
         player.pauseVideo();
       }
     }
-  }, [index, selected]);
+  }, [index, selected, stopPlaying]);
 
   return (
     <VideoStyled>

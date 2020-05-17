@@ -1,37 +1,71 @@
-import styled from "styled-components";
-import color from "../../lib/color";
+import styled, { keyframes } from "styled-components";
 
-export const SectionStyle = styled.section`
-  display: flex;
-  flex-direction: column;
-  margin-top: 6rem;
+const fromRight = keyframes`
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+`;
+const fromLeft = keyframes`
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+`;
+const toRight = keyframes`
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(101%);
+    }
+`;
+const toLeft = keyframes`
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-101%);
+    }
+`;
+export const OuterSectionWrapper = styled.div`
+  margin: 1rem 0;
+  height: calc(100% - 1.5rem - 2rem);
+  width: 100%;
+  overflow: hidden;
 
-  & > * {
-    margin: 0;
+  @media screen and (max-width: 567px) {
+    height: calc(100% - 4rem - 2rem);
   }
 
-  h2,
-  h3 {
-    line-height: 1.25;
-    text-align: center;
+  @media screen and (min-width: 768px) and (min-height: 768px) {
+    margin: 2rem 0;
+    height: calc(100% - 2.5rem - 4rem);
+  }
+`;
+
+export const InnerSectionWrapper = styled.div`
+  position: relative;
+  height: 100%;
+  width: 100%;
+`;
+
+export const SectionStyled = styled.section`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+
+  .content-wrapper {
+    width: 100%;
+    min-height: 100%;
   }
 
-  h2 {
-    margin: 0 auto 2.5rem;
-    padding: 0 2rem;
-    display: inline-block;
-    font-size: 1.5rem;
-    border-left: 5px solid ${color.default.normal};
-    border-right: 5px solid ${color.default.normal};
-  }
-
-  h3 {
-    margin-bottom: 1rem;
-    font-size: 1.25rem;
-    font-style: italic;
-  }
-
-  .swiper-slide.click-action {
+  .click-action {
     transition: transform 0.25s ease;
     cursor: pointer;
 
@@ -39,52 +73,23 @@ export const SectionStyle = styled.section`
       transform: scale(0.95, 0.95);
     }
   }
-`;
 
-export const Wrapper = styled.section`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  height: calc(100% - 4rem);
-  margin: 2rem auto;
-  width: 100%;
-
-  .header {
-    display: flex;
-    flex-direction: column;
-    flex: initial;
-    width: max-content;
-    order: 2;
-    max-width: 60%;
+  &.initial {
+    transform: translateX(0);
   }
-
-  @media screen and (orientation: portrait) {
-    flex-direction: column;
-    justify-content: flex-start;
-    height: auto;
-
-    .header {
-      order: 1;
-      margin: 0;
-      /* width: 100%; */
-      max-width: 100%;
-    }
+  &.from-right {
+    animation: ${fromRight} 0.5s ease forwards;
   }
-
-  @media screen and (min-width: 768px) and (min-height: 768px) {
-    height: auto;
-    flex-direction: column;
-    justify-content: flex-start;
-
-    .header {
-      order: 1;
-      margin: 0;
-      width: 100%;
-    }
+  &.from-left {
+    animation: ${fromLeft} 0.5s ease forwards;
   }
-`;
-
-export const NoContentStyled = styled.span`
-  color: gray;
-  text-align: center;
+  &.to-right {
+    animation: ${toRight} 0.5s ease forwards;
+  }
+  &.to-left {
+    animation: ${toLeft} 0.5s ease forwards;
+  }
+  &.hidden {
+    display: none;
+  }
 `;

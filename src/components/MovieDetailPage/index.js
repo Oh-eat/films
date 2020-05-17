@@ -1,18 +1,30 @@
-import React from "react";
-import Info from "./Info";
-import Title from "./Title";
-import Poster from "./Poster";
-import MovieDetailButtonsContainer from "../../containers/MovieDetailPage/MovieDetailButtonsContainer";
+import React, { useState, useCallback } from "react";
 import mergeDetail from "../../lib/mergeDetail";
+import MovieDetailNav from "./MovieDetailNav";
+import { useRef } from "react";
+import { useEffect } from "react";
+import { isEmpty } from "../../lib/isEmpty";
+import { OuterSectionWrapper, InnerSectionWrapper } from "./styles";
+import Section from "./Section";
+import Introduction from "./Introduction";
 import Summary from "./Summary";
-import { Wrapper } from "./styles";
-import Credit from "./Credit";
-import Images from "./Images";
-import Similars from "./Similars";
+import { Cast, Crew } from "./Credit";
+import { Posters, Backdrops } from "./Images";
 import Videos from "./Videos";
-import AlternativeMovieDetailPageBody from "../AlternativeMovieDetailPage";
+import Similars from "./Similars";
 
-function MovieDetailPageBody({
+export const sections = [
+  "소개",
+  "줄거리",
+  "출연진",
+  "제작진",
+  "포스터",
+  "배경",
+  "비디오",
+  "비슷한 영화",
+];
+
+function AlternativeMovieDetailPageBody({
   detailKR,
   detailEN,
   images,
@@ -20,40 +32,82 @@ function MovieDetailPageBody({
   credit,
   similars,
 }) {
-  const detail = mergeDetail(detailKR, detailEN);
+  const detail = useRef(mergeDetail(detailKR, detailEN));
+  const [availableSections, setAvailableSections] = useState(null);
+  const [display, setDisplay] = useState({
+    now: 0,
+    prev: null,
+    from: "initial",
+    to: null,
+  });
+
+  const onNavClick = useCallback(
+    (index) => {
+      const { now } = display;
+      if (now === index) return;
+      setDisplay({
+        now: index,
+        prev: now,
+        from: index > now ? "from-right" : "from-left",
+        to: index > now ? "to-left" : "to-right",
+      });
+    },
+    [display]
+  );
+  const getState = useCallback(
+    (index) => {
+      const { now, prev, from, to } = display;
+      if (now === index) return from;
+      else if (prev === index) return to;
+      else return "hidden";
+    },
+    [display]
+  );
+
+  useEffect(() => {
+    const arr = [];
+    arr.push("소개");
+    if (!isEmpty(detail.current.overview)) arr.push("줄거리");
+    if (!isEmpty(credit.cast)) arr.push("출연진");
+    if (!isEmpty(credit.crew)) arr.push("제작진");
+    if (!isEmpty(images.posters)) arr.push("포스터");
+    if (!isEmpty(images.backdrops)) arr.push("배경");
+    if (!isEmpty(videos)) arr.push("비디오");
+    if (!isEmpty(similars)) arr.push("비슷한 영화");
+    setAvailableSections(arr);
+  }, [images, videos, credit, similars]);
+
+  if (!availableSections) return null;
 
   return (
     <>
-      <AlternativeMovieDetailPageBody
-        detailKR={detailKR}
-        detailEN={detailEN}
-        images={images}
-        videos={videos}
-        credit={credit}
-        similars={similars}
+      <MovieDetailNav
+        availableSections={availableSections}
+        onClick={onNavClick}
+        now={display.now}
       />
-      {/* <Wrapper>
-        <Poster posterPath={detail.poster_path} />
-        <div className="header">
-          <Title
-            title={detail.title}
-            originalTitle={detail.original_title}
-            year={new Date(detail.release_date).getFullYear()}
+      <OuterSectionWrapper>
+        <InnerSectionWrapper>
+          <Introduction detail={detail.current} state={getState(0)} />
+          <Summary
+            tagline={detail.current.tagline}
+            overview={detail.current.overview}
+            state={getState(1)}
           />
-          <MovieDetailButtonsContainer
-            homepage={detail.homepage}
-            movie={detail}
+          <Cast cast={credit.cast} state={getState(2)} />
+          <Crew crew={credit.crew} state={getState(3)} />
+          <Posters posters={images.posters} state={getState(4)} />
+          <Backdrops backdrops={images.backdrops} state={getState(5)} />
+          <Videos
+            videos={videos}
+            state={getState(6)}
+            stopPlaying={display.now !== 6}
           />
-        </div>
-      </Wrapper>
-      <Info detail={detail} />
-      <Summary tagline={detail.tagline} overview={detail.overview} />
-      <Credit credit={credit} />
-      <Images images={images} />
-      <Videos videos={videos} />
-      <Similars similars={similars} /> */}
+          <Similars similars={similars} state={getState(7)} />
+        </InnerSectionWrapper>
+      </OuterSectionWrapper>
     </>
   );
 }
 
-export default MovieDetailPageBody;
+export default AlternativeMovieDetailPageBody;

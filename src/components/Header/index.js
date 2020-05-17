@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import { HeaderStyled, Spacer, HeaderWrapper } from "./styles";
 import Logo from "./Logo";
 import VerticalNav from "./VerticalNav";
-import AlternativeHorizontalNav from "./AlternativeHorizontalNav";
+import HorizontalNav from "./HorizontalNav";
 
 export function initializeHeader() {
   // document.getElementById("header").classList.remove("hidden", "dark");
@@ -66,12 +66,7 @@ function Header() {
       >
         <HeaderWrapper>
           <Logo />
-          {showVerticalNav ? (
-            <VerticalNav />
-          ) : (
-            // <HorizontalNav />
-            <AlternativeHorizontalNav />
-          )}
+          {showVerticalNav ? <VerticalNav /> : <HorizontalNav />}
         </HeaderWrapper>
       </HeaderStyled>
       <Spacer />

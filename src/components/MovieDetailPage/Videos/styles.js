@@ -1,8 +1,14 @@
 import styled from "styled-components";
-import { SectionStyle } from "../styles";
+import { SectionStyled } from "../styles";
 import { DEFAULT_HORIZONTAL_MARGIN } from "../../../lib/defaultStyles";
 
-export const VideosStyled = styled(SectionStyle)``;
+export const VideosStyled = styled(SectionStyled)`
+  .content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
 
 export const VideoPlayerStyled = styled.div`
   display: grid;
@@ -10,6 +16,7 @@ export const VideoPlayerStyled = styled.div`
   grid-template-areas: "prev video next";
   grid-gap: 0 ${DEFAULT_HORIZONTAL_MARGIN};
   align-items: center;
+  width: 100%;
 
   .prev {
     grid-area: prev;

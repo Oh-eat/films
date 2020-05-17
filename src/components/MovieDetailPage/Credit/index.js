@@ -1,43 +1,37 @@
 import React from "react";
-import { CreditStyled, CreditWrapper } from "./styles";
-import CreditSwiper from "./CreditSwiper";
-import { isEmpty } from "../../../lib/isEmpty";
-import NoContent from "../NoContent";
+import { CreditStyled } from "./styles";
+import CreditItem from "./CreditItem";
 
-function Credit({ credit }) {
+export function Cast({ cast, state }) {
   return (
-    <CreditWrapper>
-      <h2>출연진 & 제작진</h2>
-      <Cast cast={credit.cast} />
-      <Crew crew={credit.crew} />
-    </CreditWrapper>
-  );
-}
-
-function Cast({ cast }) {
-  return (
-    <CreditStyled>
-      <h2>출연진</h2>
-      {isEmpty(cast) ? (
-        <NoContent>등록된 출연진이 없습니다.</NoContent>
-      ) : (
-        <CreditSwiper people={cast} />
-      )}
+    <CreditStyled className={state}>
+      <div className="content-wrapper">
+        {cast.map((person, index) => (
+          <CreditItem
+            key={index}
+            imagePath={person.profile_path}
+            name={person.name}
+            role={person.job || person.character}
+          />
+        ))}
+      </div>
     </CreditStyled>
   );
 }
 
-function Crew({ crew }) {
+export function Crew({ crew, state }) {
   return (
-    <CreditStyled>
-      <h2>제작진</h2>
-      {isEmpty(crew) ? (
-        <NoContent>등록된 제작진이 없습니다.</NoContent>
-      ) : (
-        <CreditSwiper people={crew} />
-      )}
+    <CreditStyled className={state}>
+      <div className="content-wrapper">
+        {crew.map((person, index) => (
+          <CreditItem
+            key={index}
+            imagePath={person.profile_path}
+            name={person.name}
+            role={person.job || person.character}
+          />
+        ))}
+      </div>
     </CreditStyled>
   );
 }
-
-export default Credit;

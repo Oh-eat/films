@@ -1,11 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
-  NavItemCaptionStyled,
-  NavItemStyled,
-  SubnavItemStyled,
-  SubnavItemWrapper,
-  SubnavItemCaptionStyled,
-} from "../../Nav/styles";
+  TRANSITION_BACKGROUND_COLOR,
+  TRANSITION_HEIGHT,
+  TRANSITION_COLOR,
+} from "../../../../lib/defaultStyles";
+import color from "../../../../lib/color";
 
 export const Fullscreen = styled.div`
   z-index: 1;
@@ -42,6 +41,32 @@ export const SideBarStyled = styled.div`
   }
 `;
 
+const CaptionStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  height: 4rem;
+  width: 100%;
+  font-weight: 100;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: ${TRANSITION_BACKGROUND_COLOR};
+
+  .arrow {
+    transition: transform 0.25s ease;
+
+    &.selected {
+      transform: rotateX(180deg);
+    }
+  }
+
+  &:hover {
+    background: ${color.default.background};
+  }
+`;
+
 export const Closer = styled.header`
   display: flex;
   flex-direction: row-reverse;
@@ -52,49 +77,44 @@ export const VerticalNavItemWrapper = styled.ul`
   width: 100%;
   display: flex;
   flex-direction: column;
+
+  & > li + li {
+    border-top: 1px solid ${color.default.background};
+  }
 `;
 
-export const VerticalNavItemStyled = styled(NavItemStyled)`
+export const VerticalNavItemStyled = styled.li`
   width: 100%;
-
-  & + & {
-    border-top: 1px solid gray;
-  }
 `;
 
-export const VerticalNavItemCaptionStyled = styled(NavItemCaptionStyled)`
-  height: 4rem;
-  justify-content: ${(props) => (props.dropdown ? "space-between" : "center")};
-  padding: ${(props) => (props.dropdown ? "0 1rem" : 0)};
-
+export const ButtonNavItemStyled = styled(VerticalNavItemStyled)`
   a {
-    padding: 0 1rem;
-    justify-content: flex-end;
-  }
-
-  .arrow {
-    transition: transform 0.25s ease;
-
-    &.selected {
-      transform: rotateX(180deg);
-    }
+    ${CaptionStyle}
   }
 `;
 
-export const VerticalSubnavItemWrapper = styled(SubnavItemWrapper)`
+export const DropdownNavItemStyled = styled(VerticalNavItemStyled)`
+  .caption {
+    ${CaptionStyle}
+    justify-content:space-between;
+  }
+`;
+
+export const VerticalSubnavItemWrapper = styled.ul`
+  min-width: 100%;
+  height: 0;
+  overflow-y: hidden;
+  transition: ${TRANSITION_HEIGHT}, ${TRANSITION_COLOR};
+
   &.visible {
     height: ${(props) => `${props.itemCount * 3}rem`};
   }
 `;
 
-export const VerticalSubnavItemStyled = styled(SubnavItemStyled)``;
-
-export const VerticalSubnavItemCaptionStyled = styled(SubnavItemCaptionStyled)`
-  width: 100%;
-  height: 3rem;
-
+export const VerticalSubnavItemStyled = styled.li`
   a {
-    padding: 0 1rem;
-    justify-content: flex-end;
+    ${CaptionStyle}
+    height:3rem;
+    font-size: 1.25rem;
   }
 `;

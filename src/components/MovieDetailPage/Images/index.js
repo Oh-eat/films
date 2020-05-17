@@ -1,43 +1,57 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { useDispatch } from "react-redux";
 import { PostersStyled, BackdropsStyled } from "./styles";
-import { isEmpty } from "../../../lib/isEmpty";
-import BackdropsSwiper from "./BackdropsSwiper";
-import PostersSwiper from "./PostersSwiper";
-import NoContent from "../NoContent";
+import ImagesItem from "./ImagesItem";
+import { showZoom } from "../../../reducers/zoom";
 
-function Images({ images }) {
-  return (
-    <>
-      <Backdrops backdrops={images.backdrops} />
-      <Posters posters={images.posters} />
-    </>
+export function Posters({ posters, state }) {
+  const dispatch = useDispatch();
+
+  const onClick = useCallback(
+    (path) => {
+      dispatch(showZoom(path));
+    },
+    [dispatch]
   );
-}
 
-function Posters({ posters }) {
   return (
-    <PostersStyled>
-      <h2>포스터</h2>
-      {isEmpty(posters) ? (
-        <NoContent>등록된 포스터가 없습니다.</NoContent>
-      ) : (
-        <PostersSwiper posters={posters} />
-      )}
+    <PostersStyled className={state}>
+      <div className="content-wrapper">
+        {posters.map((poster, index) => (
+          <ImagesItem
+            key={index}
+            type="poster"
+            image={poster}
+            onClick={onClick}
+          />
+        ))}
+      </div>
     </PostersStyled>
   );
 }
 
-function Backdrops({ backdrops }) {
+export function Backdrops({ backdrops, state }) {
+  const dispatch = useDispatch();
+
+  const onClick = useCallback(
+    (path) => {
+      dispatch(showZoom(path));
+    },
+    [dispatch]
+  );
+
   return (
-    <BackdropsStyled>
-      <h2>배경</h2>
-      {isEmpty(backdrops) ? (
-        <NoContent>등록된 배경이 없습니다.</NoContent>
-      ) : (
-        <BackdropsSwiper backdrops={backdrops} />
-      )}
+    <BackdropsStyled className={state}>
+      <div className="content-wrapper">
+        {backdrops.map((backdrop, index) => (
+          <ImagesItem
+            key={index}
+            type="backdrop"
+            image={backdrop}
+            onClick={onClick}
+          />
+        ))}
+      </div>
     </BackdropsStyled>
   );
 }
-
-export default Images;

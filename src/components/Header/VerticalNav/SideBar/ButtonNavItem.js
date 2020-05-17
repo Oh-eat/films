@@ -1,12 +1,12 @@
 import React from "react";
-import { VerticalNavItemStyled } from "./styles";
-import NavItemCaption from "./NavItemCaption";
+import { Link } from "react-router-dom";
+import { ButtonNavItemStyled } from "./styles";
 
 function ButtonNavItem({ caption, to, handleMenuClick }) {
   return (
-    <VerticalNavItemStyled onClick={handleMenuClick}>
-      <NavItemCaption to={to} caption={caption} />
-    </VerticalNavItemStyled>
+    <ButtonNavItemStyled onClick={handleMenuClick}>
+      <Link to={to}>{caption}</Link>
+    </ButtonNavItemStyled>
   );
 }
 

@@ -4,7 +4,7 @@ import { VideoPlayerStyled, OuterWrapper, InnerWrapper } from "./styles";
 import Button from "../../common/Button";
 import Video from "./Video";
 
-function VideoPlayer({ videos }) {
+function VideoPlayer({ videos, stopPlaying }) {
   const [selected, setSelected] = useState(0);
 
   const onPrevClick = useCallback(() => {
@@ -52,6 +52,7 @@ function VideoPlayer({ videos }) {
                   index={index}
                   video={video}
                   selected={selected}
+                  stopPlaying={stopPlaying}
                 />
               )
           )}

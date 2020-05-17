@@ -6,7 +6,7 @@ import {
   MdBookmark,
   MdBookmarkBorder,
 } from "react-icons/md";
-import Button from "../../common/Button";
+import Button from "../../../common/Button";
 import { ButtonsStyled } from "./styles";
 
 function Buttons({

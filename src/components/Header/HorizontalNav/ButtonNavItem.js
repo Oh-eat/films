@@ -1,12 +1,13 @@
 import React from "react";
-import { HoverableNavItemStyled } from "./styles";
-import NavItemCaption from "./NavItemCaption";
+import { NavItemStyled } from "./styles";
+import { Link } from "react-router-dom";
 
-function ButtonNavItem({ caption, to, onClick }) {
+function ButtonNavItem({ caption, to }) {
   return (
-    <HoverableNavItemStyled onClick={onClick}>
-      <NavItemCaption caption={caption} to={to} />
-    </HoverableNavItemStyled>
+    <NavItemStyled>
+      <Link to={to}>{caption}</Link>
+    </NavItemStyled>
   );
 }
+
 export default ButtonNavItem;

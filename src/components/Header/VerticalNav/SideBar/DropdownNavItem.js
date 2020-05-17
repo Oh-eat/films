@@ -1,11 +1,11 @@
 import React, { useCallback } from "react";
+import { MdArrowDropDown } from "react-icons/md";
 import {
-  VerticalNavItemStyled,
   VerticalSubnavItemWrapper,
   VerticalSubnavItemStyled,
+  DropdownNavItemStyled,
 } from "./styles";
-import NavItemCaption from "./NavItemCaption";
-import SubnavItemCaption from "./SubnavItemCaption";
+import { Link } from "react-router-dom";
 
 function DropdownNavItem({
   index,
@@ -28,13 +28,13 @@ function DropdownNavItem({
   }, [handleMenuClick]);
 
   return (
-    <VerticalNavItemStyled>
-      <NavItemCaption
-        caption={caption}
-        dropdown
-        selected={selected}
-        onClick={handleSelected}
-      />
+    <DropdownNavItemStyled>
+      <div className="caption" onClick={handleSelected}>
+        <span className={`arrow ${selected && "selected"}`}>
+          <MdArrowDropDown />
+        </span>
+        <span>{caption}</span>
+      </div>
       <VerticalSubnavItemWrapper
         className={selected && "visible"}
         onClick={handleSubnavClick}
@@ -44,14 +44,14 @@ function DropdownNavItem({
           <SubnavItem key={index} caption={caption} to={to} />
         ))}
       </VerticalSubnavItemWrapper>
-    </VerticalNavItemStyled>
+    </DropdownNavItemStyled>
   );
 }
 
 function SubnavItem({ caption, to }) {
   return (
     <VerticalSubnavItemStyled>
-      <SubnavItemCaption caption={caption} to={to} />
+      <Link to={to}>{caption}</Link>
     </VerticalSubnavItemStyled>
   );
 }

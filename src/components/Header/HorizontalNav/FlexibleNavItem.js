@@ -1,11 +1,7 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { MdArrowDropDown } from "react-icons/md";
-import {
-  AlternativeNavItemStyled,
-  AlternativeSubnavIemWrapper,
-  AlternativeSubnavItemStyled,
-} from "./styles";
+import { NavItemStyled, SubnavIemWrapper, SubnavItemStyled } from "./styles";
 
 function getChildrenWidthSum(element) {
   let widthSum = 0;
@@ -19,14 +15,14 @@ function FlexibleNavItem({ subnavs, caption, onClick, selected }) {
   const subnavWrapperRef = useRef(null);
 
   return (
-    <AlternativeNavItemStyled onClick={onClick}>
+    <NavItemStyled onClick={onClick}>
       <span>
         {caption}
         <div className={`arrow ${selected ? "selected" : ""}`}>
           <MdArrowDropDown size="1.5rem" />
         </div>
       </span>
-      <AlternativeSubnavIemWrapper
+      <SubnavIemWrapper
         ref={subnavWrapperRef}
         style={{
           maxWidth: selected
@@ -35,12 +31,12 @@ function FlexibleNavItem({ subnavs, caption, onClick, selected }) {
         }}
       >
         {subnavs.map((subnav) => (
-          <AlternativeSubnavItemStyled key={subnav.caption}>
+          <SubnavItemStyled key={subnav.caption}>
             <Link to={subnav.to}>{subnav.caption}</Link>
-          </AlternativeSubnavItemStyled>
+          </SubnavItemStyled>
         ))}
-      </AlternativeSubnavIemWrapper>
-    </AlternativeNavItemStyled>
+      </SubnavIemWrapper>
+    </NavItemStyled>
   );
 }
 

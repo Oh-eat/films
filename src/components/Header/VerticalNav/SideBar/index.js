@@ -8,7 +8,7 @@ import {
   Fullscreen,
 } from "./styles";
 import Button from "../../../common/Button";
-import DropdownMenu from "./DropdownNavItem";
+import DropdownNavItem from "./DropdownNavItem";
 import ButtonNavItem from "./ButtonNavItem";
 
 function SideBar({ visible, setNavHidden }) {
@@ -42,7 +42,7 @@ function SideBar({ visible, setNavHidden }) {
         <VerticalNavItemWrapper>
           {sitemap.map(({ caption, to, subnavs }, index) =>
             subnavs ? (
-              <DropdownMenu
+              <DropdownNavItem
                 key={index}
                 index={index}
                 selected={selected === index}

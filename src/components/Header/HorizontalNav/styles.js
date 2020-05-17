@@ -1,41 +1,70 @@
 import styled from "styled-components";
-import {
-  NavItemWrapper,
-  NavItemStyled,
-  NavItemCaptionStyled,
-  SubnavItemWrapper,
-  SubnavItemStyled,
-  SubnavItemCaptionStyled,
-} from "../Nav/styles";
+import { TRANSITION_BACKGROUND_COLOR } from "../../../lib/defaultStyles";
+import color from "../../../lib/color";
 
 export const HorizontalNavStyled = styled.nav`
   display: flex;
   align-items: center;
-`;
+  height: 100%;
 
-export const HorizontalNavItemWrapper = styled(NavItemWrapper)``;
+  ul {
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    height: 100%;
+    transition: max-width 0.5s ease;
+  }
 
-export const HoverableNavItemStyled = styled(NavItemStyled)``;
+  li {
+    display: flex;
+    height: 100%;
+  }
 
-export const HorizontalNavItemCaptionStyled = styled(NavItemCaptionStyled)`
-  cursor: default;
-  width: 7rem;
-  height: 3rem;
-`;
+  span,
+  a {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    transition: ${TRANSITION_BACKGROUND_COLOR};
+    padding: 0 1rem;
 
-export const HoverableSubnavItemWrapper = styled(SubnavItemWrapper)`
-  position: absolute;
-  color: transparent;
+    &:hover {
+      background: ${color.default.background};
+    }
+  }
 
-  &.visible {
-    color: inherit;
+  .arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotateZ(-90deg);
+    transition: transform 0.25s ease;
+
+    &.selected {
+      transform: rotateZ(90deg);
+    }
+  }
+
+  button {
+    box-sizing: content-box !important;
+    border-radius: 0 !important;
+    border: none !important;
+    padding: 0 1rem !important;
+    margin: 0 !important;
+    height: 100% !important;
   }
 `;
 
-export const HoverableSubnavItemStyled = styled(SubnavItemStyled)``;
-
-export const HorizontalSubnavItemCaptionStyled = styled(
-  SubnavItemCaptionStyled
-)`
-  height: 2.5rem;
+export const NavItemWrapper = styled.ul`
+  font-size: 1.25rem;
 `;
+
+export const NavItemStyled = styled.li``;
+
+export const SubnavIemWrapper = styled.ul`
+  font-size: 1rem;
+  font-weight: 300;
+`;
+
+export const SubnavItemStyled = styled.li``;

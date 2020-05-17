@@ -3,6 +3,7 @@ import Poster from "./Poster";
 import Title from "./Title";
 import Info from "./Info";
 import { IntroductionStyled } from "./styles";
+import MovieDetailButtonsContainer from "../../../containers/MovieDetailPage/MovieDetailButtonsContainer";
 
 function Introduction({ detail, state }) {
   return (
@@ -15,6 +16,10 @@ function Introduction({ detail, state }) {
               title={detail.title}
               originalTitle={detail.original_title}
               year={new Date(detail.release_date).getFullYear()}
+            />
+            <MovieDetailButtonsContainer
+              movie={detail}
+              homepage={detail.homepage}
             />
             <div className="info-under-title">
               <Info detail={detail} />

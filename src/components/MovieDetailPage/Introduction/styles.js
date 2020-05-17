@@ -10,30 +10,42 @@ export const IntroductionStyled = styled(SectionStyled)`
     .poster-title {
       width: 100%;
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-evenly;
     }
     .title-info {
       display: flex;
       flex-direction: column;
-      max-width: 50%;
+      max-width: 100%;
     }
     .info-under-title {
       display: none;
     }
 
-    @media screen and (orientation: portrait) {
+    @media screen and (min-width: 568px) {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 100% auto;
+      min-height: unset;
+      height: 100%;
+
+      .poster-title {
+        flex-direction: row;
+        justify-content: space-evenly;
+        height: 100%;
+      }
       .title-info {
-        max-width: 100%;
+        max-width: 45%;
       }
     }
 
-    @media screen and (min-width: 1024px) and (min-height: 768px) {
-      .poster-title {
-        min-height: 0;
-      }
+    @media screen and (min-height: 568px) {
+      display: flex;
+      min-height: 100%;
+      height: auto;
+    }
 
+    @media screen and (min-width: 1024px) and (min-height: 768px) {
       .info-under-title {
         display: block;
       }
@@ -49,13 +61,26 @@ export const PosterStyled = styled.div`
   width: max-content;
 
   .basis-height {
-    height: 55vmin;
+    height: 50vh;
   }
 
   .basis-width {
     display: none;
     width: 70vw;
   }
+
+  @media screen and (min-width: 568px) {
+    margin-right: 1rem;
+  }
+
+  @media screen and (min-width: 568px) and (max-height: 567px) {
+    height: 100%;
+
+    .basis-height {
+      height: 100%;
+    }
+  }
+
   @media screen and (orientation: portrait) and (max-width: 567px) {
     .basis-height {
       display: none;
@@ -63,6 +88,12 @@ export const PosterStyled = styled.div`
 
     .basis-width {
       display: block;
+    }
+  }
+
+  @media screen and (min-width: 1024px) and (min-height: 768px) {
+    .basis-height {
+      height: 60vmin;
     }
   }
 `;
@@ -84,7 +115,7 @@ export const InfoStyled = styled.ul`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   align-items: flex-start;
-  max-width: 768px;
+  max-width: min(768px, 100%);
 
   /* @media screen and (max-width: 767px) {
     width: 100%;

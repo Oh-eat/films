@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import Buttons from "../../components/MovieDetailPage/Buttons";
+import Buttons from "../../components/MovieDetailPage/Introduction/Buttons";
 
 function MovieDetailButtonsContainer({ movie, homepage }) {
   const [liked, setLiked] = useState(null);
