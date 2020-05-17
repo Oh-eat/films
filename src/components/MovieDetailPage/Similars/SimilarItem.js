@@ -13,12 +13,7 @@ function SimilarItem({ similar }) {
       alt={similar.title}
     >
       {similar.poster_path ? (
-        <Image
-          objectFit="fill"
-          src={buildImageUrl(similar.poster_path, 400)}
-          alt=""
-          height="150%"
-        />
+        <Image objectFit="fill" src={buildImageUrl(similar.poster_path, 400)} />
       ) : (
         <PosterPlaceholder title={similar.title} />
       )}

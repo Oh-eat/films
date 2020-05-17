@@ -31,24 +31,26 @@ export const NavItemStyled = styled.li`
   font-size: 1rem;
   transition: ${TRANSITION_BACKGROUND_COLOR};
 
-  &:hover {
-    background: ${color.default.background};
-  }
-
   &.selected {
     text-decoration: underline;
   }
 
   &.disabled {
     color: gray;
-
-    &:hover {
-      background: none;
-    }
   }
 
   @media screen and (min-width: 768px) and (min-height: 768px) {
     font-size: 1.25rem;
     padding: 0.25rem 0.75rem;
+  }
+
+  @media screen and (hover: hover) {
+    &:hover {
+      background: ${color.default.background};
+    }
+
+    &.disabled:hover {
+      background: initial;
+    }
   }
 `;

@@ -26,12 +26,8 @@ export const HorizontalNavStyled = styled.nav`
     display: flex;
     align-items: center;
     height: 100%;
-    transition: ${TRANSITION_BACKGROUND_COLOR};
     padding: 0 1rem;
-
-    &:hover {
-      background: ${color.default.background};
-    }
+    transition: ${TRANSITION_BACKGROUND_COLOR};
   }
 
   .arrow {
@@ -53,6 +49,15 @@ export const HorizontalNavStyled = styled.nav`
     padding: 0 1rem !important;
     margin: 0 !important;
     height: 100% !important;
+  }
+
+  @media screen and (hover: hover) {
+    span,
+    a {
+      &:hover {
+        background: ${color.default.background};
+      }
+    }
   }
 `;
 

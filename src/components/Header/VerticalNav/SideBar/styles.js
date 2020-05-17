@@ -63,8 +63,14 @@ const CaptionStyle = css`
   }
 
   &:hover {
-    background: ${color.default.background};
-  }
+      background: ${color.default.background};
+    }
+
+  /* @media screen and (hover: hover) {
+    &:hover {
+      background: ${color.default.background};
+    }
+  } */
 `;
 
 export const Closer = styled.header`

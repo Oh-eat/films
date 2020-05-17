@@ -5,7 +5,6 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import { isEmpty } from "../../lib/isEmpty";
 import { OuterSectionWrapper, InnerSectionWrapper } from "./styles";
-import Section from "./Section";
 import Introduction from "./Introduction";
 import Summary from "./Summary";
 import { Cast, Crew } from "./Credit";

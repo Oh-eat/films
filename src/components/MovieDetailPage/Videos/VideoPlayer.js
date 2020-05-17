@@ -21,15 +21,16 @@ function VideoPlayer({ videos, stopPlaying }) {
       {selected !== 0 && (
         <>
           <Button
-            className="prev landscape"
-            size="2rem"
-            variant="transparent circle"
+            className="prev low-height"
+            width="2rem"
+            height="100%"
+            variant="transparent"
             onClick={onPrevClick}
           >
             <MdNavigateBefore size="2.5rem" />
           </Button>
           <Button
-            className="prev portrait"
+            className="prev default"
             width="auto"
             height="2rem"
             variant="transparent"
@@ -61,15 +62,16 @@ function VideoPlayer({ videos, stopPlaying }) {
       {selected !== videos.length - 1 && (
         <>
           <Button
-            className="next landscape"
-            size="2rem"
-            variant="transparent circle"
+            className="next low-height"
+            width="2rem"
+            height="100%"
+            variant="transparent"
             onClick={onNextClick}
           >
             <MdNavigateNext size="2.5rem" />
           </Button>
           <Button
-            className="next portrait"
+            className="next default"
             width="auto"
             height="2rem"
             variant="transparent"

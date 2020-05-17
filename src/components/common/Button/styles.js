@@ -27,31 +27,17 @@ const ButtonStyle = css`
   &.outlined {
     border: 2px solid ${(props) => color[props.color || "default"].normal};
     color: ${(props) => color[props.color || "default"].normal};
-
-    &:hover {
-      border-color: ${(props) => color[props.color || "default"].dark};
-      color: ${(props) => color[props.color || "default"].dark};
-    }
   }
 
   &.filled {
     border: 2px solid ${(props) => color[props.color || "default"].normal};
     background-color: ${(props) => color[props.color || "default"].normal};
     color: black;
-
-    &:hover {
-      border-color: ${(props) => color[props.color || "default"].dark};
-      background-color: ${(props) => color[props.color || "default"].dark};
-    }
   }
 
   &.transparent {
     border: 2px solid transparent;
     color: ${(props) => color[props.color || "default"].normal};
-
-    &:hover {
-      background-color: ${color.default.background};
-    }
   }
 
   &.circle {
@@ -64,6 +50,22 @@ const ButtonStyle = css`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  @media screen and (hover: hover) {
+    &.outlined:hover {
+      border-color: ${(props) => color[props.color || "default"].dark};
+      color: ${(props) => color[props.color || "default"].dark};
+    }
+
+    &.filled:hover {
+      border-color: ${(props) => color[props.color || "default"].dark};
+      background-color: ${(props) => color[props.color || "default"].dark};
+    }
+
+    &.transparent:hover {
+      background-color: ${color.default.background};
+    }
   }
 `;
 

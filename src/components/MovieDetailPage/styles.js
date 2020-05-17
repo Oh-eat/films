@@ -69,8 +69,10 @@ export const SectionStyled = styled.section`
     transition: transform 0.25s ease;
     cursor: pointer;
 
-    &:hover {
-      transform: scale(0.95, 0.95);
+    @media screen and (hover: hover) {
+      &:hover {
+        transform: scale(0.95, 0.95);
+      }
     }
   }
 

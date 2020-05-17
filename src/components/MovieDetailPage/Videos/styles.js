@@ -11,17 +11,18 @@ export const VideosStyled = styled(SectionStyled)`
 `;
 
 export const VideoPlayerStyled = styled.div`
-  display: grid;
-  grid-template-columns: 1fr min(60%, 640px) 1fr;
-  grid-template-areas: "prev video next";
-  grid-gap: 0 ${DEFAULT_HORIZONTAL_MARGIN};
-  align-items: center;
   width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-gap: ${DEFAULT_HORIZONTAL_MARGIN} 0;
+  grid-template-areas:
+    "video video"
+    "prev next";
 
   .prev {
     grid-area: prev;
 
-    &.landscape {
+    &.low-height {
       justify-self: flex-end;
     }
   }
@@ -29,29 +30,36 @@ export const VideoPlayerStyled = styled.div`
   .next {
     grid-area: next;
 
-    &.landscape {
+    &.low-height {
       justify-self: flex-start;
     }
   }
 
-  .portrait {
+  .low-height {
     display: none;
   }
 
-  @media screen and (orientation: portrait) and (max-width: 767px) {
-    grid-template-columns: 1fr 1fr;
-    grid-gap: ${DEFAULT_HORIZONTAL_MARGIN} 0;
-    grid-template-areas:
-      "video video"
-      "prev next";
+  .default {
+    display: block;
+  }
 
-    .landscape {
-      display: none;
-    }
+  @media screen and (orientation: landscape) and (max-height: 767px) {
+    grid-template-columns: 1fr 50% 1fr;
+    grid-template-areas: "prev video next";
+    grid-gap: 0 ${DEFAULT_HORIZONTAL_MARGIN};
+    align-items: center;
 
-    .portrait {
+    .low-height {
       display: block;
     }
+
+    .default {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 768px) and (min-height: 768px) {
+    width: min(80%, 1024px);
   }
 `;
 
@@ -78,6 +86,15 @@ export const VideoStyled = styled.div`
     display: inline-block;
     margin-top: 0.5rem;
     font-weight: 300;
+    font-size: 0.9rem;
+  }
+
+  @media screen and (min-width: 768px) and (min-height: 768px) {
+    span {
+      max-width: 80%;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+    }
   }
 `;
 

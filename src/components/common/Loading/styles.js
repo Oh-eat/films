@@ -17,14 +17,12 @@ export const LoadingStyled = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: ${(props) => (props.height ? 0 : "100%")};
-  padding-top: ${(props) => props.height || "0"};
+  height: 100%;
   opacity: 1;
   color: rgba(255, 255, 255, 0.75);
   transition: opacity 0.25s linear;
 
   svg {
-    /* transform: translate(-50%, -50%); */
     animation: ${spinKeyframes} 1s linear infinite;
   }
 

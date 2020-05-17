@@ -1,17 +1,22 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Wrapper } from "./styles";
 import Loading from "../Loading";
 
-function Image({ src, alt = "", objectFit, basis, height }) {
+function Image({ src, alt = "", objectFit, basis, onLoadCallback }) {
   const [loaded, setLoaded] = useState(false);
 
   const onLoad = useCallback(() => {
     setLoaded(true);
   }, []);
 
+  useEffect(() => {
+    if (!onLoadCallback || !loaded) return;
+    onLoadCallback();
+  }, [loaded, onLoadCallback]);
+
   return (
     <Wrapper objectFit={objectFit} basis={basis}>
-      {!loaded && <Loading loaded={loaded} height={height} />}
+      {!loaded && <Loading loaded={loaded} />}
       <img
         className={loaded ? "loaded" : ""}
         src={src}
