@@ -1,16 +1,14 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import mergeDetail from "../../lib/mergeDetail";
-import MovieDetailNav from "./MovieDetailNav";
-import { useRef } from "react";
-import { useEffect } from "react";
 import { isEmpty } from "../../lib/isEmpty";
-import { OuterSectionWrapper, InnerSectionWrapper } from "./styles";
+import MovieDetailNav from "./MovieDetailNav";
 import Introduction from "./Introduction";
 import Summary from "./Summary";
 import { Cast, Crew } from "./Credit";
 import { Posters, Backdrops } from "./Images";
 import Videos from "./Videos";
 import Similars from "./Similars";
+import { OuterSectionWrapper, InnerSectionWrapper } from "./styles";
 
 export const sections = [
   "소개",

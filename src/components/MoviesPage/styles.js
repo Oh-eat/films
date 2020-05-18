@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import color from "../../lib/color";
 import { FADE_IN, DEFAULT_HORIZONTAL_MARGIN } from "../../lib/defaultStyles";
 
 export const MovieGridStyled = styled.div`
@@ -37,11 +38,11 @@ export const MovieItemStyled = styled(Link)`
 
   & > * {
     position: absolute !important;
-    top: 0;
-    left: 0;
+    top: 0 !important;
+    left: 0 !important;
   }
 
   &:hover {
-    box-shadow: 0 0 0 0.5vmin white;
+    box-shadow: 0 0 0 0.5vmin ${color.default.normal};
   }
 `;

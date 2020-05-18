@@ -14,8 +14,6 @@ import FullscreenBackground from "./components/FullscreenBackground";
 import Header from "./components/Header";
 import PageMain from "./components/common/PageMain";
 import MoviesNav from "./components/MoviesPage/MoviesNav";
-// eslint-disable-next-line
-import CustomScrollbars from "./components/CustomScrollbars";
 import Zoom from "./components/Zoom";
 import SearchBar from "./components/Search/SearchBar";
 import SearchText from "./components/Search/SearchText";
@@ -23,7 +21,6 @@ import SearchText from "./components/Search/SearchText";
 function App() {
   return (
     <>
-      {/* <CustomScrollbars> */}
       <Header />
       <FullscreenBackground />
       <SearchBar />
@@ -51,7 +48,6 @@ function App() {
           <Route path="/about" component={AboutPage} />
         </Switch>
       </PageMain>
-      {/* </CustomScrollbars> */}
     </>
   );
 }

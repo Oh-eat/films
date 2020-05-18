@@ -1,13 +1,13 @@
 import React from "react";
-import { SummaryStyled } from "./styles";
 import { isEmpty } from "../../../lib/isEmpty";
+import { SummaryStyled } from "./styles";
 
 function Summary({ tagline, overview, state }) {
   return (
     <SummaryStyled className={state}>
       <div className="content-wrapper">
         {!isEmpty(tagline) && <em>{tagline}</em>}
-        {!isEmpty(overview) && <p>{overview}</p>}
+        {!isEmpty(overview) && <p className="font-light">{overview}</p>}
       </div>
     </SummaryStyled>
   );

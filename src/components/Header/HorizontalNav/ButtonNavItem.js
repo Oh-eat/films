@@ -1,11 +1,13 @@
 import React from "react";
-import { NavItemStyled } from "./styles";
 import { Link } from "react-router-dom";
+import { NavItemStyled } from "./styles";
 
-function ButtonNavItem({ caption, to }) {
+function ButtonNavItem({ caption, to, onClick }) {
   return (
-    <NavItemStyled>
-      <Link to={to}>{caption}</Link>
+    <NavItemStyled onClick={onClick}>
+      <Link className="caption" to={to}>
+        {caption}
+      </Link>
     </NavItemStyled>
   );
 }

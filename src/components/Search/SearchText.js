@@ -4,9 +4,11 @@ import { SearchTextStyled } from "./styles";
 
 function SearchText({ location }) {
   const { query } = qs.parse(location.search, { ignoreQueryPrefix: true });
+
   return (
     <SearchTextStyled>
-      검색:<em>{query}</em>
+      <span className="font-light">검색:</span>
+      <em className="font-bold">{query}</em>
     </SearchTextStyled>
   );
 }

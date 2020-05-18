@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { Wrapper } from "./styles";
 import Loading from "../Loading";
+import { Wrapper } from "./styles";
 
 function Image({ src, alt = "", objectFit, basis, onLoadCallback }) {
   const [loaded, setLoaded] = useState(false);
@@ -10,8 +10,7 @@ function Image({ src, alt = "", objectFit, basis, onLoadCallback }) {
   }, []);
 
   useEffect(() => {
-    if (!onLoadCallback || !loaded) return;
-    onLoadCallback();
+    if (onLoadCallback && loaded) onLoadCallback();
   }, [loaded, onLoadCallback]);
 
   return (

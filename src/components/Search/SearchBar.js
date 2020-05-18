@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { MdClose, MdSearch } from "react-icons/md";
 import { hideSearchBar } from "../../reducers/search";
-import { SearchBarStyled } from "./styles";
 import Button from "../common/Button";
+import { SearchBarStyled } from "./styles";
 
 function SearchBar({ history, location }) {
   const dispatch = useDispatch();
@@ -21,7 +21,10 @@ function SearchBar({ history, location }) {
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      if (keyword === "" || !keyword) return;
+      if (keyword === "" || !keyword) {
+        if (inputRef.current) inputRef.current.focus();
+        return;
+      }
       history.push(`/search?query=${keyword}`);
     },
     [keyword, history]
@@ -54,9 +57,10 @@ function SearchBar({ history, location }) {
       </Button>
       <form onSubmit={onSubmit}>
         <input
+          className="font-light"
           ref={inputRef}
           type="text"
-          placeholder="검색어"
+          placeholder="제목"
           value={keyword}
           onChange={onChange}
         />

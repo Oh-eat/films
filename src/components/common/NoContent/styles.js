@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-export const ErrorStyled = styled.div`
-  height: 50%;
+export const NoContentStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  height: 50%;
 
   strong {
     margin-top: 1rem;

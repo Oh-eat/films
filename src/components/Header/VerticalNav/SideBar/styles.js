@@ -1,10 +1,10 @@
 import styled, { css } from "styled-components";
+import color from "../../../../lib/color";
 import {
   TRANSITION_BACKGROUND_COLOR,
   TRANSITION_HEIGHT,
   TRANSITION_COLOR,
 } from "../../../../lib/defaultStyles";
-import color from "../../../../lib/color";
 
 export const Fullscreen = styled.div`
   z-index: 1;
@@ -33,7 +33,6 @@ export const SideBarStyled = styled.div`
   background-color: rgb(50, 50, 50);
   transform: translateX(100%);
   transition: transform 0.5s ease;
-  color: white;
   overflow-y: auto;
 
   &.visible {
@@ -49,7 +48,6 @@ const CaptionStyle = css`
   padding: 0 1rem;
   height: 4rem;
   width: 100%;
-  font-weight: 100;
   font-size: 1.5rem;
   cursor: pointer;
   transition: ${TRANSITION_BACKGROUND_COLOR};
@@ -91,18 +89,17 @@ export const VerticalNavItemWrapper = styled.ul`
 
 export const VerticalNavItemStyled = styled.li`
   width: 100%;
-`;
 
-export const ButtonNavItemStyled = styled(VerticalNavItemStyled)`
-  a {
+  .caption {
     ${CaptionStyle}
   }
 `;
 
+export const ButtonNavItemStyled = styled(VerticalNavItemStyled)``;
+
 export const DropdownNavItemStyled = styled(VerticalNavItemStyled)`
   .caption {
-    ${CaptionStyle}
-    justify-content:space-between;
+    justify-content: space-between;
   }
 `;
 
@@ -118,9 +115,9 @@ export const VerticalSubnavItemWrapper = styled.ul`
 `;
 
 export const VerticalSubnavItemStyled = styled.li`
-  a {
-    ${CaptionStyle}
-    height:3rem;
+  .caption {
+    height: 3rem;
+    justify-content: flex-end;
     font-size: 1.25rem;
   }
 `;

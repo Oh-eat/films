@@ -26,7 +26,7 @@ export const ButtonsStyled = styled.div`
 
   & > a,
   & > button {
-    margin: 0 0.1rem;
+    margin: 0 0.1rem !important;
   }
 
   .like:focus {

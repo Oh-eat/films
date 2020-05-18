@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { TRANSITION_BACKGROUND_COLOR } from "../../../lib/defaultStyles";
 import color from "../../../lib/color";
+import { TRANSITION_BACKGROUND_COLOR } from "../../../lib/defaultStyles";
 
 export const HorizontalNavStyled = styled.nav`
   display: flex;
@@ -20,8 +20,7 @@ export const HorizontalNavStyled = styled.nav`
     height: 100%;
   }
 
-  span,
-  a {
+  .caption {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -52,24 +51,20 @@ export const HorizontalNavStyled = styled.nav`
   }
 
   @media screen and (hover: hover) {
-    span,
-    a {
-      &:hover {
-        background: ${color.default.background};
-      }
+    .caption:hover {
+      background: ${color.default.background};
     }
   }
 `;
 
-export const NavItemWrapper = styled.ul`
+export const NavItemWrapper = styled.ul``;
+
+export const NavItemStyled = styled.li`
   font-size: 1.25rem;
 `;
 
-export const NavItemStyled = styled.li``;
+export const SubnavIemWrapper = styled.ul``;
 
-export const SubnavIemWrapper = styled.ul`
-  font-size: 1rem;
-  font-weight: 300;
+export const SubnavItemStyled = styled.li`
+  font-size: 1.1rem;
 `;
-
-export const SubnavItemStyled = styled.li``;

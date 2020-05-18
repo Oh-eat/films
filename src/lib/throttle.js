@@ -4,6 +4,8 @@ export default function throttle(func, gap) {
     if (ignoreEvent) return;
     ignoreEvent = true;
     func(...params);
-    setTimeout(() => (ignoreEvent = false), gap);
+    setTimeout(() => {
+      ignoreEvent = false;
+    }, gap);
   };
 }

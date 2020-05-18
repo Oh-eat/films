@@ -1,7 +1,7 @@
 import React from "react";
-import { PosterStyled } from "./styles";
-import Image from "../../common/Image";
 import { buildImageUrl } from "../../../lib/TMDB_API";
+import Image from "../../common/Image";
+import { PosterStyled } from "./styles";
 
 function Poster({ posterPath }) {
   return (

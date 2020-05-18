@@ -1,8 +1,8 @@
 import React from "react";
-import { LogoStyled } from "./styles";
 import { Link } from "react-router-dom";
+import { LogoStyled } from "./styles";
 
-function Logo(props) {
+function Logo() {
   return (
     <LogoStyled>
       <Link to="/">films</Link>

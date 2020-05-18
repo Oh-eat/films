@@ -1,10 +1,18 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { PostersStyled, BackdropsStyled } from "./styles";
-import ImagesItem from "./ImagesItem";
 import { showZoom } from "../../../reducers/zoom";
 import Button from "../../common/Button";
+import ImagesItem from "./ImagesItem";
+import { PostersStyled, BackdropsStyled } from "./styles";
+
+export function Posters({ posters, state }) {
+  return <Images type="poster" images={posters} state={state} />;
+}
+
+export function Backdrops({ backdrops, state }) {
+  return <Images type="backdrop" images={backdrops} state={state} />;
+}
 
 function Images({ type, images, state }) {
   const dispatch = useDispatch();
@@ -14,19 +22,13 @@ function Images({ type, images, state }) {
   );
   const Container = type === "poster" ? PostersStyled : BackdropsStyled;
 
-  useEffect(() => {
-    if (!render && state !== "hidden") {
-      setRender(true);
-    }
-  }, [state, render]);
-
-  const onImageClick = useCallback(
+  const zoomImage = useCallback(
     (path) => {
       dispatch(showZoom(path));
     },
     [dispatch]
   );
-  const onLoadMoreClicK = useCallback(() => {
+  const loadMoreImages = useCallback(() => {
     if (partialItems.length < images.length) {
       const nextPartialItems = images.slice(
         0,
@@ -35,6 +37,12 @@ function Images({ type, images, state }) {
       setPartialItems(nextPartialItems);
     }
   }, [type, images, partialItems]);
+
+  useEffect(() => {
+    if (!render && state !== "hidden") {
+      setRender(true);
+    }
+  }, [state, render]);
 
   if (!render) return null;
 
@@ -46,14 +54,14 @@ function Images({ type, images, state }) {
             key={index}
             type={type}
             image={image}
-            onClick={onImageClick}
+            onClick={zoomImage}
           />
         ))}
         {images.length > partialItems.length && (
           <Button
             variant="transparent"
             height="2.5rem"
-            onClick={onLoadMoreClicK}
+            onClick={loadMoreImages}
           >
             <MdKeyboardArrowDown size="2rem" />
           </Button>
@@ -61,12 +69,4 @@ function Images({ type, images, state }) {
       </div>
     </Container>
   );
-}
-
-export function Posters({ posters, state }) {
-  return <Images type="poster" images={posters} state={state} />;
-}
-
-export function Backdrops({ backdrops, state }) {
-  return <Images type="backdrop" images={backdrops} state={state} />;
 }

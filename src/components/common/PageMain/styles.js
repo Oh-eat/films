@@ -7,13 +7,7 @@ import {
 export const PageMainStyled = styled.main`
   overflow-y: scroll;
   width: 100%;
-  /* width: ${(props) =>
-    props.hideScrollbar
-      ? `$calc(100% + ${props.scrollbarWidth + 1}px)`
-      : "100%"}; */
-  /* width: 100%; */
   min-height: calc(100% - ${HEADER_HEIGHT});
-  /* min-height: 100%; */
   display: block;
   position: relative;
 `;

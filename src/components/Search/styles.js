@@ -11,17 +11,19 @@ export const SearchBarStyled = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  width: 100%;
-  height: 0;
-  /* height: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 0;
   opacity: 0;
   transition: height 0.5s ease, opacity 0.5s ease;
-  /* transform: translateY(-100%); */
-  /* transition: transform 0.5s ease; */
+
+  &.visible {
+    opacity: 1;
+    height: 100%;
+  }
 
   .close {
     position: absolute;
@@ -38,9 +40,8 @@ export const SearchBarStyled = styled.div`
     margin-top: 1rem;
     display: grid;
     grid-template-columns: auto max-content;
-    grid-gap: 1rem;
+    grid-gap: ${DEFAULT_HORIZONTAL_MARGIN};
     align-items: center;
-    justify-items: center;
 
     input {
       width: 100%;
@@ -51,15 +52,8 @@ export const SearchBarStyled = styled.div`
       background: transparent;
       border-bottom: 2px solid ${color.default.normal};
       font-size: 1.25rem;
-      font-weight: 100;
       color: ${color.default.normal};
     }
-  }
-
-  &.visible {
-    opacity: 1;
-    height: 100%;
-    /* transform: translateY(0); */
   }
 `;
 
@@ -68,13 +62,11 @@ export const SearchTextStyled = styled.div`
   margin: 5vmin auto;
   padding: 1.5vmin 3vmin;
   font-size: 3vmin;
-  font-weight: 300;
   text-align: center;
-  border-top: 0.5vmin solid white;
-  border-bottom: 0.5vmin solid white;
+  border-top: 0.5vmin solid ${color.default.normal};
+  border-bottom: 0.5vmin solid ${color.default.normal};
 
   em {
     margin-left: 1.5vmin;
-    font-weight: 600;
   }
 `;

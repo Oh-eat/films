@@ -20,7 +20,6 @@ const ButtonStyle = css`
   width: ${(props) => (props.size ? props.size : props.width || "auto")};
   height: ${(props) => (props.size ? props.size : props.height || "auto")};
   font-size: ${(props) => props.fontSize || "initial"};
-  visibility: ${(props) => (props.hidden ? "hidden" : "visible")};
   transition: border 0.25s ease, ${TRANSITION_BACKGROUND_COLOR},
     ${TRANSITION_COLOR};
 

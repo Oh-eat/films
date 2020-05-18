@@ -49,14 +49,6 @@ export const BackdropsStyled = styled(SectionStyled)`
         grid-column: 1 / 2;
       }
     }
-
-    @media screen and (min-width: 768px) and (min-height: 768px) {
-      grid-template-columns: repeat(3, 1fr);
-
-      button {
-        grid-column: 1 / 4;
-      }
-    }
   }
 `;
 

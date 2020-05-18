@@ -12,7 +12,6 @@ export const HeaderStyled = styled.header`
   position: absolute;
   /* position: fixed; */
   /* text-shadow: 0 0 5px black; */
-  /* color: white; */
   /* background: black; */
   transition: transform 0.25s ease, ${TRANSITION_BACKGROUND_COLOR};
 

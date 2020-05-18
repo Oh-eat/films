@@ -1,4 +1,7 @@
+import { isEmptyArray } from "./isEmpty";
+
 export default function pickRandomMovie(movies, currentBackgroundPath) {
+  if (isEmptyArray(movies)) return { backdrop_path: null };
   let movie;
   const moviesWithBackdrop = movies.filter((movie) => movie.backdrop_path);
   while (

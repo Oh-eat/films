@@ -26,34 +26,17 @@ export const PrevWrapper = styled.div`
   flex: auto;
 `;
 
-export const PageNumberWrapper = styled.ol`
-  display: flex;
-  align-items: center;
-  flex: none;
-`;
-
-export const PageNumberStyled = styled.li`
-  /* a {
-    display: flex;
-    line-height: 1;
-    font-size: 0.8rem;
-    padding: 0.75vmin;
-
-    @media screen and (orientation: landscape), (min-width: 768px) {
-      & {
-        font-size: 0.9rem;
-      }
-    }
-  }
-
-  &.selected {
-    text-decoration: underline;
-  } */
-`;
-
 export const NextWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-start;
   flex: auto;
 `;
+
+export const PageNumberWrapper = styled.ol`
+  display: flex;
+  align-items: center;
+  flex: none;
+`;
+
+export const PageNumberStyled = styled.li``;

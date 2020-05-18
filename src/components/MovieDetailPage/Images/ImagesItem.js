@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from "react";
 import { buildImageUrl } from "../../../lib/TMDB_API";
-// eslint-disable-next-line
 import Image from "../../common/Image";
 import { ImagesItemStyled } from "./styles";
 
@@ -18,7 +17,7 @@ function ImagesItem({ type, image, onClick }) {
       type={type}
     >
       <Image
-        src={buildImageUrl(image.file_path, type === "backdrop" ? 400 : 300)}
+        src={buildImageUrl(image.file_path, type === "backdrop" ? 500 : 300)}
         basis="width"
         onLoadCallback={onLoad}
       />

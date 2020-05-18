@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const PosterPlaceholderStyled = styled.div`
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 0;
   padding-top: 150%;
@@ -21,7 +21,6 @@ export const PosterPlaceholderStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    /* word-break: break-all; */
     font-size: 100%;
     text-align: center;
   }

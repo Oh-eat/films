@@ -1,8 +1,8 @@
 import React from "react";
-import { MovieItemStyled } from "./styles";
 import { buildImageUrl } from "../../lib/TMDB_API";
 import Image from "../common/Image";
 import PosterPlaceholder from "../common/PosterPlaceholder";
+import { MovieItemStyled } from "./styles";
 
 function MovieItem({ movie, index }) {
   return (
@@ -11,7 +11,6 @@ function MovieItem({ movie, index }) {
         <Image
           src={buildImageUrl(movie.poster_path, 400)}
           alt={movie.title}
-          position="absolute"
           objectFit="fill"
         />
       ) : (

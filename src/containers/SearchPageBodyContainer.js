@@ -5,9 +5,9 @@ import { setBackground, setBrightness } from "../reducers/background";
 import pickRandomMovie from "../lib/pickRandomMovie";
 import { isEmptyArray } from "../lib/isEmpty";
 import MoviesPageBody from "../components/MoviesPage";
+import NoContent from "../components/common/NoContent";
 import Loading from "../components/common/Loading";
 import Error from "../components/common/Error";
-import initializeView from "../lib/initializeView";
 
 function SearchPageBodyContainer({ query, currentPage }) {
   const dispatch = useDispatch();
@@ -18,7 +18,6 @@ function SearchPageBodyContainer({ query, currentPage }) {
   );
 
   useEffect(() => {
-    initializeView();
     dispatch(searchMovies({ query, page: currentPage }));
     return () => {
       dispatch(initializeState());
@@ -26,7 +25,7 @@ function SearchPageBodyContainer({ query, currentPage }) {
   }, [query, currentPage, dispatch]);
 
   useEffect(() => {
-    if (!movies || isEmptyArray(movies)) {
+    if (!movies) {
       dispatch(setBrightness("dark"));
       return;
     }
@@ -36,8 +35,9 @@ function SearchPageBodyContainer({ query, currentPage }) {
   }, [movies, dispatch]);
 
   if (error) return <Error />;
-  if (isEmptyArray(movies)) return <strong>검색된 영화가 없습니다.</strong>;
   if (loading) return <Loading />;
+  if (isEmptyArray(movies))
+    return <NoContent>검색된 영화가 없습니다.</NoContent>;
   if (!movies) return null;
 
   return (

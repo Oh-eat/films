@@ -16,9 +16,9 @@ function FlexibleNavItem({ subnavs, caption, onClick, selected }) {
 
   return (
     <NavItemStyled onClick={onClick}>
-      <span>
+      <span className="caption">
         {caption}
-        <div className={`arrow ${selected ? "selected" : ""}`}>
+        <div className={`arrow${selected ? " selected" : ""}`}>
           <MdArrowDropDown size="1.5rem" />
         </div>
       </span>
@@ -31,12 +31,20 @@ function FlexibleNavItem({ subnavs, caption, onClick, selected }) {
         }}
       >
         {subnavs.map((subnav) => (
-          <SubnavItemStyled key={subnav.caption}>
-            <Link to={subnav.to}>{subnav.caption}</Link>
-          </SubnavItemStyled>
+          <SubnavItem key={subnav.caption} subnav={subnav} />
         ))}
       </SubnavIemWrapper>
     </NavItemStyled>
+  );
+}
+
+function SubnavItem({ subnav }) {
+  return (
+    <SubnavItemStyled key={subnav.caption}>
+      <Link className="caption font-light" to={subnav.to}>
+        {subnav.caption}
+      </Link>
+    </SubnavItemStyled>
   );
 }
 

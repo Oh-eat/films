@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import pickRandomMovie from "../lib/pickRandomMovie";
 import mergeDetail from "../lib/mergeDetail";
-import initializeView from "../lib/initializeView";
-import { getDetail, initializeState } from "../reducers/movieDetail";
+import pickRandomMovie from "../lib/pickRandomMovie";
 import { getNowPlaying } from "../reducers/movies";
 import { setBackground } from "../reducers/background";
+import { getDetail, initializeState } from "../reducers/movieDetail";
 import Error from "../components/common/Error";
 import Loading from "../components/common/Loading";
 import HomePageBody from "../components/HomePage";
@@ -27,7 +26,6 @@ function HomePageBodyContainer() {
   );
 
   useEffect(() => {
-    initializeView();
     return () => {
       dispatch(initializeState());
     };

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { TRANSITION_BACKGROUND_COLOR } from "../../../lib/defaultStyles";
 import color from "../../../lib/color";
+import { TRANSITION_BACKGROUND_COLOR } from "../../../lib/defaultStyles";
 
 export const MovieDetailNavStyled = styled.nav`
   height: 1.5rem;
@@ -17,6 +17,7 @@ export const MovieDetailNavStyled = styled.nav`
 export const NavItemWrapper = styled.ul`
   display: flex;
   justify-content: flex-end;
+  align-content: space-around;
   flex-wrap: wrap;
 `;
 

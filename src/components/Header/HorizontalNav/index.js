@@ -1,16 +1,21 @@
-import React, { useState, useCallback } from "react";
-import { HorizontalNavStyled, NavItemWrapper } from "./styles";
-import SearchButton from "../../Search/SearchButton";
+import React, { useState, useCallback, useEffect } from "react";
 import sitemap from "../../../lib/sitemap";
+import SearchButton from "../../Search/SearchButton";
 import FlexibleNavItem from "./FlexibleNavItem";
 import ButtonNavItem from "./ButtonNavItem";
+import { HorizontalNavStyled, NavItemWrapper } from "./styles";
+import { withRouter } from "react-router-dom";
 
-function HorizontalNav() {
+function HorizontalNav({ location }) {
   const [selected, setSelected] = useState(null);
 
   const onClick = useCallback((index) => {
     setSelected((state) => (state === index ? null : index));
   }, []);
+
+  useEffect(() => {
+    setSelected(null);
+  }, [location]);
 
   return (
     <HorizontalNavStyled>
@@ -34,4 +39,4 @@ function HorizontalNav() {
   );
 }
 
-export default HorizontalNav;
+export default withRouter(HorizontalNav);

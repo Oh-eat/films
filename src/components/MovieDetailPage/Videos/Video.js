@@ -26,7 +26,7 @@ function Video({ index, video, selected, stopPlaying }) {
           height="100%"
         />
       </PlayerWrapper>
-      <span>{video.name}</span>
+      <span className="font-light">{video.name}</span>
     </VideoStyled>
   );
 }

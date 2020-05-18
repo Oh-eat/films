@@ -15,22 +15,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* body::before {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: -2;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  content: "FILMS";
-  font-size: 20vmin;
-  color: rgba(255, 255, 255, 0.0);
-  background: radial-gradient(rgb(10, 10, 10), black);
-} */
-
 #root {
   overflow: hidden;
 }
@@ -61,4 +45,16 @@ h6 {
 a {
   color: inherit;
   text-decoration: inherit;
+}
+
+.font-light {
+  font-weight: 100;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.emoticon {
+  font-size: 10vmin;
 }

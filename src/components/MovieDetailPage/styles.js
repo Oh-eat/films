@@ -71,7 +71,7 @@ export const SectionStyled = styled.section`
 
     @media screen and (hover: hover) {
       &:hover {
-        transform: scale(0.95, 0.95);
+        transform: scale(0.975, 0.975);
       }
     }
   }

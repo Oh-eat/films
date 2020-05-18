@@ -1,29 +1,30 @@
 import React, { useState, useCallback, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import {
   MdNavigateBefore,
   MdNavigateNext,
   MdFirstPage,
   MdLastPage,
 } from "react-icons/md";
+import useDebounce from "../../../lib/useDebounce";
+import checkEnoughWidth from "../../../lib/checkEnoughWidth";
 import qs from "qs";
+import Button from "../../common/Button";
 import {
   PaginationStyled,
   PrevWrapper,
   PageNumberWrapper,
   NextWrapper,
+  PageNumberStyled,
 } from "./styles";
-import Button from "../../common/Button";
-import useDebounce from "../../../lib/useDebounce";
-import checkEnoughWidth from "../../../lib/checkEnoughWidth";
-import { withRouter } from "react-router-dom";
 
-function getPageNumbers(pageIndex, lastPage, size) {
+function getPageNumbers(pageGroup, lastPage, size) {
   return [...Array(size).keys()]
-    .map((page) => page + 1 + size * pageIndex)
+    .map((page) => page + 1 + size * pageGroup)
     .filter((page) => page <= lastPage);
 }
 
-function getPageIndex(page, size) {
+function getPageGroup(page, size) {
   return parseInt((page - 1) / size);
 }
 
@@ -33,27 +34,27 @@ function buildPageUrl(path, query, page) {
 
 function Pagination({ currentPage, lastPage, location, match }) {
   const [size, setSize] = useState(10);
-  const [currentPageIndex, setCurrentPageIndex] = useState(
-    getPageIndex(currentPage, size)
+  const [currentpageGroup, setCurrentpageGroup] = useState(
+    getPageGroup(currentPage, size)
   );
   const query = qs.parse(location.search, { ignoreQueryPrefix: true });
   const { path } = match;
-  const lastPageIndex = getPageIndex(lastPage, size);
-  const hidePrev = currentPageIndex === 0;
-  const hideNext = currentPageIndex >= lastPageIndex;
+  const lastpageGroup = getPageGroup(lastPage, size);
+  const hidePrev = currentpageGroup === 0;
+  const hideNext = currentpageGroup >= lastpageGroup;
 
   const onClickFirst = useCallback(() => {
-    setCurrentPageIndex(0);
+    setCurrentpageGroup(0);
   }, []);
   const onClickPrev = useCallback(() => {
-    setCurrentPageIndex((state) => state - 1);
+    setCurrentpageGroup((state) => state - 1);
   }, []);
   const onClickNext = useCallback(() => {
-    setCurrentPageIndex((state) => state + 1);
+    setCurrentpageGroup((state) => state + 1);
   }, []);
   const onClickLast = useCallback(() => {
-    setCurrentPageIndex(lastPageIndex);
-  }, [lastPageIndex]);
+    setCurrentpageGroup(lastpageGroup);
+  }, [lastpageGroup]);
   const onResize = useCallback(() => {
     const size = checkEnoughWidth() ? 10 : 5;
     setSize(size);
@@ -72,31 +73,18 @@ function Pagination({ currentPage, lastPage, location, match }) {
   }, [debouncedOnResize, timer]);
 
   useEffect(() => {
-    setCurrentPageIndex(getPageIndex(currentPage, size));
+    setCurrentpageGroup(getPageGroup(currentPage, size));
   }, [currentPage, size]);
 
   return (
     <PaginationStyled>
       <PrevWrapper>
-        <Button
-          hidden={hidePrev}
-          size="1rem"
-          variant="transparent circle"
-          onClick={onClickFirst}
-        >
-          <MdFirstPage size="1.5rem" />
-        </Button>
-        <Button
-          hidden={hidePrev}
-          size="1rem"
-          variant="transparent circle"
-          onClick={onClickPrev}
-        >
-          <MdNavigateBefore size="1.5rem" />
-        </Button>
+        {!hidePrev && (
+          <PrevButtons onClickFirst={onClickFirst} onClickPrev={onClickPrev} />
+        )}
       </PrevWrapper>
       <PageNumberWrapper>
-        {getPageNumbers(currentPageIndex, lastPage, size).map(
+        {getPageNumbers(currentpageGroup, lastPage, size).map(
           (page) =>
             page <= lastPage && (
               <PageNumber
@@ -109,33 +97,43 @@ function Pagination({ currentPage, lastPage, location, match }) {
         )}
       </PageNumberWrapper>
       <NextWrapper>
-        <Button
-          hidden={hideNext}
-          size="1rem"
-          variant="transparent circle"
-          onClick={onClickNext}
-        >
-          <MdNavigateNext size="1.5rem" />
-        </Button>
-        <Button
-          hidden={hideNext}
-          size="1rem"
-          variant="transparent circle"
-          onClick={onClickLast}
-        >
-          <MdLastPage size="1.5rem" />
-        </Button>
+        {!hideNext && (
+          <NextButtons onClickLast={onClickLast} onClickNext={onClickNext} />
+        )}
       </NextWrapper>
     </PaginationStyled>
   );
 }
 
+function PrevButtons({ onClickFirst, onClickPrev }) {
+  return (
+    <>
+      <Button size="1rem" variant="transparent circle" onClick={onClickFirst}>
+        <MdFirstPage size="1.5rem" />
+      </Button>
+      <Button size="1rem" variant="transparent circle" onClick={onClickPrev}>
+        <MdNavigateBefore size="1.5rem" />
+      </Button>
+    </>
+  );
+}
+
+function NextButtons({ onClickLast, onClickNext }) {
+  return (
+    <>
+      <Button size="1rem" variant="transparent circle" onClick={onClickNext}>
+        <MdNavigateNext size="1.5rem" />
+      </Button>
+      <Button size="1rem" variant="transparent circle" onClick={onClickLast}>
+        <MdLastPage size="1.5rem" />
+      </Button>
+    </>
+  );
+}
+
 function PageNumber({ selected, to, page }) {
   return (
-    // <PageNumberStyled className={currentPage === page && "selected"}>
-    //   <NavLink to={`?page=${page}`}>{page}</NavLink>
-    // </PageNumberStyled>
-    <li>
+    <PageNumberStyled>
       <Button
         variant={`${selected ? "outlined circle" : "transparent circle"}`}
         size="1rem"
@@ -145,7 +143,7 @@ function PageNumber({ selected, to, page }) {
       >
         {page}
       </Button>
-    </li>
+    </PageNumberStyled>
   );
 }
 

@@ -1,8 +1,16 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { CreditStyled } from "./styles";
-import CreditItem from "./CreditItem";
-import Button from "../../common/Button";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import Button from "../../common/Button";
+import CreditItem from "./CreditItem";
+import { CreditStyled } from "./styles";
+
+export function Cast({ cast, state }) {
+  return <Credit people={cast} state={state} />;
+}
+
+export function Crew({ crew, state }) {
+  return <Credit people={crew} state={state} />;
+}
 
 function Credit({ people, state }) {
   const [render, setRender] = useState(false);
@@ -46,12 +54,4 @@ function Credit({ people, state }) {
       </div>
     </CreditStyled>
   );
-}
-
-export function Cast({ cast, state }) {
-  return <Credit people={cast} state={state} />;
-}
-
-export function Crew({ crew, state }) {
-  return <Credit people={crew} state={state} />;
 }

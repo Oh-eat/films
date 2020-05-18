@@ -1,9 +1,9 @@
 import React from "react";
+import MovieDetailButtonsContainer from "../../../containers/MovieDetailPage/MovieDetailButtonsContainer";
 import Poster from "./Poster";
 import Title from "./Title";
 import Info from "./Info";
 import { IntroductionStyled } from "./styles";
-import MovieDetailButtonsContainer from "../../../containers/MovieDetailPage/MovieDetailButtonsContainer";
 
 function Introduction({ detail, state }) {
   return (

@@ -1,11 +1,13 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { MoviesNavItemStyled } from "./styles";
-import NavItemCaption from "./NavItemCaption";
 
 function NavItem({ caption, to }) {
   return (
     <MoviesNavItemStyled>
-      <NavItemCaption caption={caption} to={to} />
+      <NavLink activeClassName="selected" className="caption font-bold" to={to}>
+        {caption}
+      </NavLink>
     </MoviesNavItemStyled>
   );
 }

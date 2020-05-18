@@ -11,6 +11,7 @@ export const SummaryStyled = styled(SectionStyled)`
 
   em {
     font-size: 1.25rem;
+    text-align: center;
   }
 
   p {
@@ -18,17 +19,17 @@ export const SummaryStyled = styled(SectionStyled)`
     line-height: 1.8;
     margin-top: 1rem;
     box-sizing: border-box;
-    /* padding: 0 2vmin; */
-    /* text-align: justify; */
   }
 
   @media screen and (min-width: 768px) and (min-height: 768px) {
     em {
       font-size: 1.5rem;
+      max-width: 90%;
     }
 
     p {
       font-size: 1.25rem;
+      max-width: 90%;
     }
   }
 `;

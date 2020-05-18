@@ -1,9 +1,9 @@
 import React from "react";
 import { MdLabel, MdAccessTime, MdMovie, MdStar, MdFlag } from "react-icons/md";
-import { InfoStyled, InfoItemStyled } from "./styles";
 import mapCountries from "../../../lib/ISO_3166_1";
-import mapGenres from "../../../lib/GENRES";
 import { isEmpty } from "../../../lib/isEmpty";
+import mapGenres from "../../../lib/GENRES";
+import { InfoStyled, InfoItemStyled } from "./styles";
 
 const statusMap = {
   "In Production": "제작",

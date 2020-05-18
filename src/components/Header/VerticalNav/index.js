@@ -2,8 +2,8 @@ import React, { useState, useCallback } from "react";
 import { MdMenu } from "react-icons/md";
 import SideBar from "./SideBar";
 import Button from "../../common/Button";
-import { VerticalNavStyled, VerticalNavButtonsStyled } from "./styles";
 import SearchButton from "../../Search/SearchButton";
+import { VerticalNavStyled, VerticalNavButtonsStyled } from "./styles";
 
 function VerticalNav() {
   const [visible, setVisible] = useState(false);
@@ -27,7 +27,7 @@ function VerticalNav() {
           <MdMenu size="2rem" />
         </Button>
       </VerticalNavButtonsStyled>
-      <SideBar visible={visible} setNavHidden={setVisibleFalse} />
+      <SideBar visible={visible} setVisibleFalse={setVisibleFalse} />
     </VerticalNavStyled>
   );
 }

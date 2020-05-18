@@ -1,43 +1,23 @@
-import React, { useCallback } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import { MdArrowDropDown } from "react-icons/md";
 import {
   VerticalSubnavItemWrapper,
   VerticalSubnavItemStyled,
   DropdownNavItemStyled,
 } from "./styles";
-import { Link } from "react-router-dom";
 
-function DropdownNavItem({
-  index,
-  caption,
-  subnavs,
-  selected,
-  setSelected,
-  handleMenuClick,
-}) {
-  const handleSelected = useCallback(() => {
-    if (selected) {
-      setSelected(null);
-    } else {
-      setSelected(index);
-    }
-  }, [selected, setSelected, index]);
-
-  const handleSubnavClick = useCallback(() => {
-    handleMenuClick();
-  }, [handleMenuClick]);
-
+function DropdownNavItem({ caption, subnavs, selected, onClick }) {
   return (
     <DropdownNavItemStyled>
-      <div className="caption" onClick={handleSelected}>
-        <span className={`arrow ${selected && "selected"}`}>
+      <span className="caption" onClick={onClick}>
+        <div className={`arrow${selected ? " selected" : ""}`}>
           <MdArrowDropDown />
-        </span>
-        <span>{caption}</span>
-      </div>
+        </div>
+        {caption}
+      </span>
       <VerticalSubnavItemWrapper
-        className={selected && "visible"}
-        onClick={handleSubnavClick}
+        className={selected ? "visible" : ""}
         itemCount={subnavs.length}
       >
         {subnavs.map(({ caption, to }, index) => (
@@ -51,7 +31,9 @@ function DropdownNavItem({
 function SubnavItem({ caption, to }) {
   return (
     <VerticalSubnavItemStyled>
-      <Link to={to}>{caption}</Link>
+      <Link className="caption font-light" to={to}>
+        {caption}
+      </Link>
     </VerticalSubnavItemStyled>
   );
 }

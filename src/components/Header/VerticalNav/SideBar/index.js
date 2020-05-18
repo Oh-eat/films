@@ -1,40 +1,44 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import { MdClose } from "react-icons/md";
 import sitemap from "../../../../lib/sitemap";
+import Button from "../../../common/Button";
+import DropdownNavItem from "./DropdownNavItem";
+import ButtonNavItem from "./ButtonNavItem";
 import {
   SideBarStyled,
   Closer,
   VerticalNavItemWrapper,
   Fullscreen,
 } from "./styles";
-import Button from "../../../common/Button";
-import DropdownNavItem from "./DropdownNavItem";
-import ButtonNavItem from "./ButtonNavItem";
 
-function SideBar({ visible, setNavHidden }) {
+function SideBar({ visible, setVisibleFalse, location }) {
   const [selected, setSelected] = useState(null);
 
-  const handleMenuClick = useCallback(() => {
+  const onClick = useCallback((index) => {
+    setSelected((state) => (state === index ? null : index));
+  }, []);
+  const hideVerticalNav = useCallback(() => {
     setSelected(null);
-    setNavHidden();
-  }, [setNavHidden]);
+    setVisibleFalse();
+  }, [setVisibleFalse]);
+
+  useEffect(() => {
+    hideVerticalNav();
+  }, [location, hideVerticalNav]);
 
   return (
     <>
       <Fullscreen
-        className={visible && "visible"}
-        onClick={handleMenuClick}
-        onScroll={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-        }}
+        className={visible ? "visible" : ""}
+        onClick={hideVerticalNav}
       />
-      <SideBarStyled className={visible && "visible"}>
+      <SideBarStyled className={visible ? "visible" : ""}>
         <Closer>
           <Button
             variant="transparent circle"
             size="1.75rem"
-            onClick={handleMenuClick}
+            onClick={hideVerticalNav}
           >
             <MdClose size="2rem" />
           </Button>
@@ -44,20 +48,13 @@ function SideBar({ visible, setNavHidden }) {
             subnavs ? (
               <DropdownNavItem
                 key={index}
-                index={index}
                 selected={selected === index}
                 subnavs={subnavs}
                 caption={caption}
-                setSelected={setSelected}
-                handleMenuClick={handleMenuClick}
+                onClick={() => onClick(index)}
               />
             ) : (
-              <ButtonNavItem
-                key={index}
-                caption={caption}
-                to={to}
-                handleMenuClick={handleMenuClick}
-              />
+              <ButtonNavItem key={index} caption={caption} to={to} />
             )
           )}
         </VerticalNavItemWrapper>
@@ -66,4 +63,4 @@ function SideBar({ visible, setNavHidden }) {
   );
 }
 
-export default SideBar;
+export default withRouter(SideBar);

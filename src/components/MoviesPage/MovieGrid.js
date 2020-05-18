@@ -1,6 +1,6 @@
 import React from "react";
-import { MovieGridStyled } from "./styles";
 import MovieItem from "./MovieItem";
+import { MovieGridStyled } from "./styles";
 
 function MovieGrid({ movies }) {
   return (

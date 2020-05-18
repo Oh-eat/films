@@ -1,8 +1,6 @@
-import React from "react";
-import { SimilarsStyled } from "./styles";
+import React, { useState, useEffect } from "react";
 import SimilarItem from "./SimilarItem";
-import { useState } from "react";
-import { useEffect } from "react";
+import { SimilarsStyled } from "./styles";
 
 function Similars({ similars, state }) {
   const [render, setRender] = useState(false);

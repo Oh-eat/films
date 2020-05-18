@@ -1,9 +1,8 @@
 import React from "react";
 import { buildImageUrl } from "../../../lib/TMDB_API";
-import { SimilarItemStyled } from "./styles";
 import PosterPlaceholder from "../../common/PosterPlaceholder";
-// eslint-disable-next-line
 import Image from "../../common/Image";
+import { SimilarItemStyled } from "./styles";
 
 function SimilarItem({ similar }) {
   return (

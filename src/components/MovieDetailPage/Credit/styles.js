@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { SectionStyled } from "../styles";
 import { DEFAULT_HORIZONTAL_MARGIN } from "../../../lib/defaultStyles";
+import { SectionStyled } from "../styles";
 
 export const CreditStyled = styled(SectionStyled)`
   .content-wrapper {
@@ -29,7 +29,6 @@ export const CreditItemStyled = styled.div`
 
   .image,
   .placeholder {
-    position: relative;
     flex: none;
     width: min(calc(60vmin / 3), 6rem);
     height: min(calc(60vmin / 2), 9rem);
@@ -37,14 +36,9 @@ export const CreditItemStyled = styled.div`
 
   .placeholder {
     background: rgb(45, 45, 45);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
     svg {
       color: rgb(120, 120, 120);
-      width: 100%;
-      height: 100%;
     }
   }
 
@@ -53,14 +47,5 @@ export const CreditItemStyled = styled.div`
     display: flex;
     flex-direction: column;
     margin-left: 0.5rem;
-
-    span {
-      /* margin-top: 0.5rem; */
-      /* text-align: center; */
-
-      &.name {
-        font-weight: bold;
-      }
-    }
   }
 `;

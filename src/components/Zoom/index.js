@@ -6,7 +6,7 @@ import Image from "../common/Image";
 import { ZoomStyled, Wrapper } from "./styles";
 import { withRouter } from "react-router-dom";
 
-function Zoom({ match }) {
+function Zoom({ location }) {
   const dispatch = useDispatch();
   const { path, visible } = useSelector(({ zoom }) => zoom);
 
@@ -16,7 +16,7 @@ function Zoom({ match }) {
 
   useEffect(() => {
     dispatch(initializeState());
-  }, [dispatch, match]);
+  }, [dispatch, location]);
 
   if (!visible) return null;
 

@@ -6,5 +6,4 @@ export const VerticalNavStyled = styled.nav`
 
 export const VerticalNavButtonsStyled = styled.div`
   display: flex;
-  /* transform: translateX(0.5rem); */
 `;

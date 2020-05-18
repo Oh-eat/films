@@ -1,8 +1,8 @@
 import React from "react";
-import { MoviesNavStyled, MoviesNavItemWrapper } from "./styles";
+import { withRouter } from "react-router-dom";
 import sitemap from "../../../lib/sitemap";
 import NavItem from "./NavItem";
-import { withRouter } from "react-router-dom";
+import { MoviesNavStyled, MoviesNavItemWrapper } from "./styles";
 
 function MoviesNav({ match }) {
   const sitemapIndex = match.path === "/movies" ? 1 : 2;

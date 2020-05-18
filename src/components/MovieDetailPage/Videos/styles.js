@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { SectionStyled } from "../styles";
 import { DEFAULT_HORIZONTAL_MARGIN } from "../../../lib/defaultStyles";
+import { SectionStyled } from "../styles";
 
 export const VideosStyled = styled(SectionStyled)`
   .content-wrapper {
@@ -85,13 +85,12 @@ export const VideoStyled = styled.div`
   span {
     display: inline-block;
     margin-top: 0.5rem;
-    font-weight: 300;
     font-size: 0.9rem;
   }
 
   @media screen and (min-width: 768px) and (min-height: 768px) {
     span {
-      max-width: 80%;
+      max-width: 90%;
       font-size: 1.1rem;
       margin-top: 1rem;
     }

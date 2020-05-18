@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import initializeView from "../../lib/initializeView";
 import { initializeState, getFurtherDetail } from "../../reducers/movieDetail";
 import { setBackground } from "../../reducers/background";
 import Error from "../../components/common/Error";
@@ -17,7 +16,6 @@ function MovieDetailPageBodyContainer({ movieId }) {
   );
 
   useEffect(() => {
-    initializeView();
     setLoaded(false);
     dispatch(getFurtherDetail(movieId));
     return () => {

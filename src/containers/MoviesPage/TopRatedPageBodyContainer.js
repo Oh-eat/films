@@ -1,48 +1,8 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { clearMovies, getTopRated } from "../../reducers/movies";
-import { setBackground } from "../../reducers/background";
-import pickRandomMovie from "../../lib/pickRandomMovie";
-import { isEmptyArray } from "../../lib/isEmpty";
-import MoviesPageBody from "../../components/MoviesPage";
-import Loading from "../../components/common/Loading";
-import Error from "../../components/common/Error";
-import initializeView from "../../lib/initializeView";
+import React from "react";
+import MoviesPageBodyContainer from "./MoviesPageBodyContainer";
 
 function TopRatedPageBodyContainer({ currentPage }) {
-  const dispatch = useDispatch();
-  const { topRated, lastPage, error } = useSelector(({ movies }) => movies);
-  const backgroundPath = useSelector(({ background }) => background.path);
-  const loading = useSelector(
-    ({ loading }) => loading["movies/GET_TOP_RATED_REQUEST"]
-  );
-
-  useEffect(() => {
-    initializeView();
-    dispatch(getTopRated(currentPage));
-    return () => dispatch(clearMovies("topRated"));
-  }, [currentPage, dispatch]);
-
-  useEffect(() => {
-    if (!topRated || isEmptyArray(topRated)) {
-      return;
-    }
-    const movie = pickRandomMovie(topRated, backgroundPath);
-    dispatch(setBackground({ path: movie.backdrop_path, brightness: "dark" }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [topRated, dispatch]);
-
-  if (error || isEmptyArray(topRated)) return <Error />;
-  if (loading) return <Loading />;
-  if (!topRated) return null;
-
-  return (
-    <MoviesPageBody
-      movies={topRated}
-      currentPage={currentPage}
-      lastPage={lastPage}
-    />
-  );
+  return <MoviesPageBodyContainer type="topRated" currentPage={currentPage} />;
 }
 
 export default TopRatedPageBodyContainer;
