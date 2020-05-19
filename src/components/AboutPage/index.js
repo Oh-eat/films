@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { AboutPageBodyStyled } from "./styles";
 
 const images = [
@@ -33,6 +34,21 @@ const images = [
 function AboutPageBody() {
   return (
     <AboutPageBodyStyled>
+      <Helmet>
+        <title>FILMS - 소개</title>
+      </Helmet>
+      <section>
+        <h2>소스 코드:</h2>
+        <span>Github - </span>
+        <a
+          href="https://github.com/Oh-eat/films"
+          target="_blank"
+          rel="noopener noreferrer"
+          alt="github source"
+        >
+          https://github.com/Oh-eat/films
+        </a>
+      </section>
       <section>
         <h2>OPEN API:</h2>
         <img
@@ -64,6 +80,16 @@ function AboutPageBody() {
               <br />
               <span>Player</span>
             </div>
+          </li>
+          <li className="item">
+            <div>
+              <span>React</span>
+              <br />
+              <span>Helmet</span>
+            </div>
+          </li>
+          <li className="item">
+            <span>redux-actions</span>
           </li>
         </ul>
       </section>

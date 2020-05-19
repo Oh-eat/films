@@ -11,7 +11,7 @@ import {
 import pickRandomMovie from "../../lib/pickRandomMovie";
 import { isEmptyArray } from "../../lib/isEmpty";
 import MoviesPageBody from "../../components/MoviesPage";
-import NoContent from "../../components/common/NoContent";
+import NoContent from "../../components/MoviesPage/NoContent";
 import Loading from "../../components/common/Loading";
 import Error from "../../components/common/Error";
 
@@ -60,7 +60,7 @@ function MoviesPageBodyContainer({ type, currentPage }) {
   if (error) return <Error />;
   if (loading) return <Loading />;
   if (isEmptyArray(movies))
-    return <NoContent>검색된 영화가 없습니다.</NoContent>;
+    return <NoContent type={type}>검색된 영화가 없습니다.</NoContent>;
   if (!movies) return null;
 
   return (
@@ -68,6 +68,7 @@ function MoviesPageBodyContainer({ type, currentPage }) {
       movies={movies}
       currentPage={currentPage}
       lastPage={lastPage}
+      type={type}
     />
   );
 }

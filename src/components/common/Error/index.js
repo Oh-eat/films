@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { withRouter } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import Button from "../Button";
 import { ErrorStyled } from "./styles";
 
@@ -10,6 +11,9 @@ function Error({ history }) {
 
   return (
     <ErrorStyled>
+      <Helmet>
+        <title>ERROR!</title>
+      </Helmet>
       <span className="emoticon">(×_×)</span>
       <strong>에러가 발생했습니다.</strong>
       <strong>인터넷 상태가 원활한지 또는 </strong>

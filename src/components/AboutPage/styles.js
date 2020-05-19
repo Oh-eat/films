@@ -18,6 +18,10 @@ export const AboutPageBodyStyled = styled.div`
       font-size: 2rem;
       margin-bottom: 2rem;
     }
+
+    a {
+      color: dodgerblue;
+    }
   }
 
   #TMDB-logo {

@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import mergeDetail from "../../lib/mergeDetail";
 import { isEmpty } from "../../lib/isEmpty";
 import MovieDetailNav from "./MovieDetailNav";
@@ -78,6 +79,9 @@ function AlternativeMovieDetailPageBody({
 
   return (
     <Wrapper>
+      <Helmet>
+        <title>{detail.current.title}</title>
+      </Helmet>
       <MovieDetailNav
         availableSections={availableSections}
         onClick={onNavClick}

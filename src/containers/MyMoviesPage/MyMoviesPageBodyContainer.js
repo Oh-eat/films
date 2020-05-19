@@ -5,7 +5,7 @@ import { setBackground, setBrightness } from "../../reducers/background";
 import pickRandomMovie from "../../lib/pickRandomMovie";
 import { isEmptyArray } from "../../lib/isEmpty";
 import MoviesPageBody from "../../components/MoviesPage";
-import NoContent from "../../components/common/NoContent";
+import NoContent from "../../components/MoviesPage/NoContent";
 import Error from "../../components/common/Error";
 
 function MyMoviesPageBodyContainer({ type, currentPage, history }) {
@@ -46,7 +46,7 @@ function MyMoviesPageBodyContainer({ type, currentPage, history }) {
   if (!movies) return null;
   if (isEmptyArray(movies))
     return (
-      <NoContent>
+      <NoContent type={type}>
         {type === "like"
           ? "좋아하는 영화가 없습니다."
           : "와치리스트에 등록된 영화가 없습니다."}
@@ -58,6 +58,7 @@ function MyMoviesPageBodyContainer({ type, currentPage, history }) {
       movies={movies}
       currentPage={currentPage}
       lastPage={lastPage}
+      type={type}
     />
   );
 }
