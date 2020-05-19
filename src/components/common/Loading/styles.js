@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { TRANSITION_OPACITY } from "../../../lib/defaultStyles";
 
 const spinKeyframes = keyframes`
     from{
@@ -20,7 +21,7 @@ export const LoadingStyled = styled.div`
   height: 100%;
   opacity: 1;
   color: rgba(255, 255, 255, 0.75);
-  transition: opacity 0.25s linear;
+  transition: ${TRANSITION_OPACITY};
 
   svg {
     animation: ${spinKeyframes} 1s linear infinite;

@@ -17,6 +17,7 @@ import MoviesNav from "./components/MoviesPage/MoviesNav";
 import Zoom from "./components/Zoom";
 import SearchBar from "./components/Search/SearchBar";
 import SearchText from "./components/Search/SearchText";
+import Error from "./components/common/Error";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
           </Route>
           <Route path="/movie/:movieId" component={MovieDetailPage} />
           <Route path="/about" component={AboutPage} />
+          <Route path="*" component={Error} />
         </Switch>
       </PageMain>
     </>

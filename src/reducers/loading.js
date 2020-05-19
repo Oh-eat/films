@@ -10,8 +10,14 @@ const initialState = {};
 
 const loading = handleActions(
   {
-    [START_LOADING]: (state, { action }) => ({ ...state, [action]: true }),
-    [FINISH_LOADING]: (state, { action }) => ({ ...state, [action]: false }),
+    [START_LOADING]: (state, { payload: action }) => ({
+      ...state,
+      [action]: true,
+    }),
+    [FINISH_LOADING]: (state, { payload: action }) => ({
+      ...state,
+      [action]: false,
+    }),
   },
   initialState
 );

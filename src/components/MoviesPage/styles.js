@@ -33,7 +33,6 @@ export const MovieItemStyled = styled(Link)`
   padding-top: 150%;
   opacity: 0;
   transition: box-shadow 0.25s ease;
-  /* transition: opacity 0.25s ease; */
   animation: ${FADE_IN} ${(props) => `${props.index * 0.1}s`} linear;
 
   & > * {

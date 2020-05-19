@@ -62,6 +62,7 @@ export const SearchTextStyled = styled.div`
   margin: 5vmin auto;
   padding: 1.5vmin 3vmin;
   font-size: 3vmin;
+  line-height: 1;
   text-align: center;
   border-top: 0.5vmin solid ${color.default.normal};
   border-bottom: 0.5vmin solid ${color.default.normal};

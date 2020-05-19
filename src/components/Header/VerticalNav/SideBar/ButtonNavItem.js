@@ -5,7 +5,7 @@ import { ButtonNavItemStyled } from "./styles";
 function ButtonNavItem({ caption, to }) {
   return (
     <ButtonNavItemStyled>
-      <Link className="caption" to={to}>
+      <Link className="caption font-bold " to={to}>
         {caption}
       </Link>
     </ButtonNavItemStyled>

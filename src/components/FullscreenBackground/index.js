@@ -9,39 +9,37 @@ import {
 
 function FullscreenBackground() {
   const dispatch = useDispatch();
-  const [currentPath, setCurrentPath] = useState(null);
+  const [currentPath, setCurrentPath] = useState(undefined);
   const [currentBrightness, setCurrentBrightness] = useState(null);
   const { path, brightness = "dark", loaded } = useSelector(
     ({ background }) => background
   );
 
   const onLoad = useCallback(() => {
-    dispatch(setLoaded(true));
+    setTimeout(() => {
+      dispatch(setLoaded(true));
+    }, 250);
   }, [dispatch]);
 
   useEffect(() => {
-    if (!currentPath) {
-      setCurrentPath(path);
-      setCurrentBrightness(brightness);
-      return;
-    }
-    if (path === currentPath) {
-      setCurrentBrightness(brightness);
+    setCurrentBrightness(brightness);
+    if (path === undefined || path === currentPath) {
       return;
     }
     setTimeout(() => {
       setCurrentPath(path);
-      setCurrentBrightness(brightness);
     }, 250);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path, brightness]);
+
+  if (currentPath === undefined) return null;
 
   return (
     <>
       <BackgroundPlaceholder visible={!currentPath} />
       {currentPath && (
         <FullscreenBackgroundStyled
-          className={`${currentBrightness} ${loaded && "loaded"}`}
+          className={`${currentBrightness}${loaded ? " loaded" : ""}`}
           src={buildImageUrl(currentPath, "original")}
           onLoad={onLoad}
         />

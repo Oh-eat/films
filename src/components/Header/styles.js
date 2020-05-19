@@ -3,6 +3,7 @@ import {
   HEADER_HEIGHT,
   DEFAULT_HORIZONTAL_MARGIN,
   TRANSITION_BACKGROUND_COLOR,
+  TRANSITION_TRANSFORM,
 } from "../../lib/defaultStyles";
 
 export const HeaderStyled = styled.header`
@@ -13,7 +14,7 @@ export const HeaderStyled = styled.header`
   /* position: fixed; */
   /* text-shadow: 0 0 5px black; */
   /* background: black; */
-  transition: transform 0.25s ease, ${TRANSITION_BACKGROUND_COLOR};
+  transition: ${TRANSITION_TRANSFORM}, ${TRANSITION_BACKGROUND_COLOR};
 
   /* &.hidden {
     transform: translateY(-100%);

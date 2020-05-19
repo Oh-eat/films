@@ -17,7 +17,7 @@ export const setBrightness = createAction(
 export const setLoaded = createAction(SET_LOADED, (loaded) => loaded);
 
 const initialiState = {
-  path: null,
+  path: undefined,
   brightness: null,
   loaded: false,
 };

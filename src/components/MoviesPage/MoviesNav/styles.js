@@ -15,11 +15,10 @@ export const MoviesNavItemWrapper = styled.ul`
 
 export const MoviesNavItemStyled = styled.li`
   display: flex;
-  align-items: center;
-  justify-content: center;
 
   .caption {
     font-size: 3vmin;
+    line-height: 1;
     padding: 1.5vmin 3vmin;
     border-top: 0.5vmin solid transparent;
     border-bottom: 0.5vmin solid transparent;

@@ -10,7 +10,7 @@ import {
 function DropdownNavItem({ caption, subnavs, selected, onClick }) {
   return (
     <DropdownNavItemStyled>
-      <span className="caption" onClick={onClick}>
+      <span className="caption font-bold" onClick={onClick}>
         <div className={`arrow${selected ? " selected" : ""}`}>
           <MdArrowDropDown />
         </div>

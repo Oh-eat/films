@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import color from "../../../lib/color";
-import { TRANSITION_BACKGROUND_COLOR } from "../../../lib/defaultStyles";
+import {
+  TRANSITION_BACKGROUND_COLOR,
+  TRANSITION_TRANSFORM,
+} from "../../../lib/defaultStyles";
 
 export const HorizontalNavStyled = styled.nav`
   display: flex;
@@ -34,7 +37,7 @@ export const HorizontalNavStyled = styled.nav`
     align-items: center;
     justify-content: center;
     transform: rotateZ(-90deg);
-    transition: transform 0.25s ease;
+    transition: ${TRANSITION_TRANSFORM};
 
     &.selected {
       transform: rotateZ(90deg);

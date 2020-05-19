@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { TRANSITION_OPACITY } from "../../../lib/defaultStyles";
 
 export const Wrapper = styled.div`
   position: relative;
@@ -34,7 +35,7 @@ export const Wrapper = styled.div`
         ? "100%"
         : "auto"};
     opacity: 0;
-    transition: opacity 0.25s linear;
+    transition: ${TRANSITION_OPACITY};
 
     &.loaded {
       opacity: 1;

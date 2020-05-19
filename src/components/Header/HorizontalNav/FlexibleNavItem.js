@@ -16,7 +16,7 @@ function FlexibleNavItem({ subnavs, caption, onClick, selected }) {
 
   return (
     <NavItemStyled onClick={onClick}>
-      <span className="caption">
+      <span className="caption font-bold">
         {caption}
         <div className={`arrow${selected ? " selected" : ""}`}>
           <MdArrowDropDown size="1.5rem" />

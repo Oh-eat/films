@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import mergeDetail from "../lib/mergeDetail";
 import pickRandomMovie from "../lib/pickRandomMovie";
-import { getNowPlaying } from "../reducers/movies";
-import { setBackground } from "../reducers/background";
+import { getNowPlaying, clearMovies } from "../reducers/movies";
 import { getDetail, initializeState } from "../reducers/movieDetail";
+import { setBackground } from "../reducers/background";
 import Error from "../components/common/Error";
 import Loading from "../components/common/Loading";
 import HomePageBody from "../components/HomePage";
@@ -32,33 +32,29 @@ function HomePageBodyContainer() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (!nowPlaying && !nowPlayingLoading) {
-      dispatch(getNowPlaying());
-      return;
-    }
-    if (!detailKR && !detailLoading) {
+    dispatch(getNowPlaying());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (nowPlaying && !detailKR && !detailLoading) {
       const movie = pickRandomMovie(nowPlaying, backgroundPath);
       dispatch(getDetail(movie.id));
-      return;
     }
+  }, [nowPlaying, detailKR, detailLoading, backgroundPath, dispatch]);
+
+  useEffect(() => {
     if (detailKR && detailKR.backdrop_path !== backgroundPath) {
+      dispatch(clearMovies("nowPlaying"));
       dispatch(
         setBackground({ path: detailKR.backdrop_path, brightness: "bright" })
       );
     }
-  }, [
-    nowPlaying,
-    nowPlayingLoading,
-    detailKR,
-    detailLoading,
-    backgroundPath,
-    dispatch,
-  ]);
+  }, [detailKR, backgroundPath, dispatch]);
 
   if (detailError || nowPlayingError) return <Error />;
   if (detailLoading || nowPlayingLoading || !backgroundLoaded)
     return <Loading />;
-  if (!detailKR || !nowPlaying) return null;
+  if (!detailKR) return null;
 
   return <HomePageBody detail={mergeDetail(detailKR, detailEN)} />;
 }

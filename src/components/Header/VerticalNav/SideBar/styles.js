@@ -4,6 +4,7 @@ import {
   TRANSITION_BACKGROUND_COLOR,
   TRANSITION_HEIGHT,
   TRANSITION_COLOR,
+  TRANSITION_TRANSFORM,
 } from "../../../../lib/defaultStyles";
 
 export const Fullscreen = styled.div`
@@ -53,7 +54,7 @@ const CaptionStyle = css`
   transition: ${TRANSITION_BACKGROUND_COLOR};
 
   .arrow {
-    transition: transform 0.25s ease;
+    transition: ${TRANSITION_TRANSFORM};
 
     &.selected {
       transform: rotateX(180deg);

@@ -8,7 +8,7 @@ import { Cast, Crew } from "./Credit";
 import { Posters, Backdrops } from "./Images";
 import Videos from "./Videos";
 import Similars from "./Similars";
-import { OuterSectionWrapper, InnerSectionWrapper } from "./styles";
+import { OuterSectionWrapper, InnerSectionWrapper, Wrapper } from "./styles";
 
 export const sections = [
   "소개",
@@ -77,7 +77,7 @@ function AlternativeMovieDetailPageBody({
   if (!availableSections) return null;
 
   return (
-    <>
+    <Wrapper>
       <MovieDetailNav
         availableSections={availableSections}
         onClick={onNavClick}
@@ -103,7 +103,7 @@ function AlternativeMovieDetailPageBody({
           <Similars similars={similars} state={getState(7)} />
         </InnerSectionWrapper>
       </OuterSectionWrapper>
-    </>
+    </Wrapper>
   );
 }
 

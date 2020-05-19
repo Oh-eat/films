@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { TRANSITION_OPACITY } from "../../lib/defaultStyles";
 
 export const FullscreenBackgroundStyled = styled.img`
   z-index: -1;
@@ -10,7 +11,7 @@ export const FullscreenBackgroundStyled = styled.img`
   object-fit: cover;
   opacity: 0;
   filter: brightness(0.25);
-  transition: opacity 0.25s linear, filter 0.25s linear;
+  transition: ${TRANSITION_OPACITY}, filter 0.25s linear;
 
   &.dark {
     filter: brightness(0.25);
@@ -44,7 +45,7 @@ export const BackgroundPlaceholderStyled = styled.div`
   font-size: 20vmin;
   color: black;
   text-transform: uppercase;
-  transition: opacity 0.25s linear, filter 0.25s linear;
+  transition: ${TRANSITION_OPACITY}, filter 0.25s linear;
 
   &.visible {
     opacity: 1;

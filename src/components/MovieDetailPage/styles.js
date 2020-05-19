@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { TRANSITION_TRANSFORM } from "../../lib/defaultStyles";
 
 const fromRight = keyframes`
     from {
@@ -32,19 +33,21 @@ const toLeft = keyframes`
         transform: translateX(-101%);
     }
 `;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
+
 export const OuterSectionWrapper = styled.div`
+  flex: auto;
   margin: 1rem 0;
-  height: calc(100% - 1.5rem - 2rem);
   width: 100%;
   overflow: hidden;
 
-  @media screen and (max-width: 567px) {
-    height: calc(100% - 4rem - 2rem);
-  }
-
   @media screen and (min-width: 768px) and (min-height: 768px) {
     margin: 2rem 0;
-    height: calc(100% - 2.5rem - 4rem);
   }
 `;
 
@@ -66,7 +69,7 @@ export const SectionStyled = styled.section`
   }
 
   .click-action {
-    transition: transform 0.25s ease;
+    transition: ${TRANSITION_TRANSFORM};
     cursor: pointer;
 
     @media screen and (hover: hover) {
